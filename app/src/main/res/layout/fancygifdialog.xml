@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="16dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlLav"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lav"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1.25" />
+            </RelativeLayout>
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_14sdp"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingBottom="@dimen/_16sdp">
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:text="Granny eating chocolate dialog box"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_12sdp"
+                        app:textStyle="@integer/font_style_semibold"
+                        app:fontName="@string/font_name_dmsans" />
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:id="@+id/message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title"
+                        android:layout_marginVertical="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:text="This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog."
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        app:fontName="@string/font_name_dmsans" />
+
+                    <LinearLayout
+                        android:id="@+id/llConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/message"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:clipToPadding="false"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.fidilaundry.app.util.FontButton
+                            android:id="@+id/negativeBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_2sdp"
+                            android:layout_weight="0.4"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorPrimary"
+                            app:fontName="@string/font_name_dmsans"
+                            tools:text="Rate" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlDivider"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1" />
+
+                        <com.fidilaundry.app.util.FontButton
+                            android:id="@+id/positiveBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_2sdp"
+                            android:layout_weight="0.4"
+                            android:background="@drawable/rounded_button"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:textAllCaps="false"
+                            android:textColor="#ffffff"
+                            app:fontName="@string/font_name_dmsans"
+                            tools:text="Ok" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPos2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/llConfirm"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.fidilaundry.app.util.FontButton
+                            android:id="@+id/btnPos2"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:background="@drawable/rounded_button"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:textAllCaps="false"
+                            android:textColor="#ffffff"
+                            app:fontName="@string/font_name_dmsans"
+                            tools:text="Ok" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FontTextView">
+        <attr name="fontName" format="string" />
+        <attr name="textStyle" format="integer" />
+    </declare-styleable>
+    <bool name="is_rtl">false</bool>
+
+    <declare-styleable name="ViewSwitch">
+        <attr name="firstText" format="string" />
+        <attr name="secondText" format="string" />
+        <attr name="activeTextColor" format="color" />
+        <attr name="inActiveTextColor" format="color" />
+        <attr name="activeColor" format="color" />
+        <attr name="inActiveColor" format="color" />
+        <attr name="currentActive" format="enum">
+            <enum name="First" value="0" />
+            <enum name="Second" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

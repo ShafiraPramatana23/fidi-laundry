@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FIDI Laundry</string>
+
+    <string name="font_name_fontawesome">fontawesome</string>
+    <string name="font_name_dmsans">dmsans</string>
+
+    <integer name="font_style_reguler">11</integer>
+    <integer name="font_style_semibold">12</integer>
+    <integer name="font_style_bold">13</integer>
+
+    <string name="loadingWithThreeDots">Loading…</string>
+</resources>
