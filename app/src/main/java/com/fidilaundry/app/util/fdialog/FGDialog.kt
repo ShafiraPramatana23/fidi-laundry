@@ -146,6 +146,12 @@ class FancyGifDialog {
                 title1.visibility = View.GONE
             }
 
+            if (!message.equals("")) {
+                message1.visibility = View.VISIBLE
+            } else {
+                message1.visibility = View.GONE
+            }
+
             if (positiveBtnText != null) {
                 pBtn.text = positiveBtnText
                 if (pBtnColor != null) {

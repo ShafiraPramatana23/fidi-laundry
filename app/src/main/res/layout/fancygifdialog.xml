@@ -98,14 +98,17 @@
                         <com.fidilaundry.app.util.FontButton
                             android:id="@+id/negativeBtn"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_marginLeft="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_2sdp"
                             android:layout_weight="0.4"
+                            android:background="@drawable/bordered_green"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:textAllCaps="false"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_11sdp"
                             app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold"
                             tools:text="Rate" />
 
                         <RelativeLayout
@@ -117,7 +120,7 @@
                         <com.fidilaundry.app.util.FontButton
                             android:id="@+id/positiveBtn"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_marginLeft="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_2sdp"
                             android:layout_weight="0.4"
@@ -125,7 +128,9 @@
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:textAllCaps="false"
                             android:textColor="#ffffff"
+                            android:textSize="@dimen/_11sdp"
                             app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold"
                             tools:text="Ok" />
                     </LinearLayout>
 

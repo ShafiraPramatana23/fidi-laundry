@@ -33,6 +33,7 @@ class FontButton : AppCompatButton {
             }
             val customFont = selectTypeface(context, fontName!!, textStyle)
             customFontTextView.typeface = customFont
+            customFontTextView.stateListAnimator = null
             attributeArray.recycle()
         }
 

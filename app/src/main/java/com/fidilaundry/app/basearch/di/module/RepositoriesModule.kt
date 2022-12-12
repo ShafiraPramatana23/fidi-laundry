@@ -5,8 +5,8 @@ import org.koin.dsl.module
 
 val reposModule = module {
 
-    single<LoginRepository> {
-        LoginRepositoryImpl(
+    single<AuthRepository> {
+        AuthRepositoryImpl(
             api = get(),
             paperPrefs = get()
         )

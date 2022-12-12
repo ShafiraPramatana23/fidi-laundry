@@ -41,10 +41,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity
-            android:name="com.fidilaundry.app.ui.login.LoginActivity"
-            android:screenOrientation="portrait" />
-
         <activity android:name="com.fidilaundry.app.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,6 +48,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.fidilaundry.app.ui.auth.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.auth.RegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.home.order.UserOrderActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/mn_ic_home"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/mn_ic_history"
+        android:title="Riwayat" />
+
+<!--    <item-->
+<!--        android:id="@+id/trade"-->
+<!--        android:title="" />-->
+
+    <item
+        android:id="@+id/notif"
+        android:icon="@drawable/mn_ic_notif"
+        android:title="Notif" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/mn_ic_profile"
+        android:title="Akun" />
+
+</menu>

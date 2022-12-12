@@ -7,7 +7,7 @@
     <data>
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.LoginViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.RegisterViewModel" />
     </data>
 
     <RelativeLayout
@@ -44,8 +44,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:includeFontPadding="false"
-                android:text="Masukkan akun Anda di sini"
+                android:textAlignment="center"
+                android:text="Daftarkan data diri Anda untuk\nmenggunakan fitur yang tersedia"
                 android:textColor="@color/grey_text"
                 android:textSize="@dimen/_12sdp"
                 app:fontName="@string/font_name_dmsans"
@@ -73,16 +75,77 @@
                         android:src="@drawable/ic_user" />
 
                     <com.fidilaundry.app.util.FontEditText
-                        android:id="@+id/etUsername"
+                        android:id="@+id/etFullname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
-                        android:afterTextChanged="@{vm::onUsernameText}"
                         android:background="@null"
-                        android:hint="Email atau Telepon"
+                        android:hint="Nama Lengkap"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:text="@{vm.loginUsername}"
+                        android:text="@={vm.vlName}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:fontName="@string/font_name_dmsans" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_text"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_email" />
+
+                    <com.fidilaundry.app.util.FontEditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:background="@null"
+                        android:hint="Email"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:text="@={vm.vlEmail}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:fontName="@string/font_name_dmsans" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_text"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:paddingHorizontal="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_phone" />
+
+                    <com.fidilaundry.app.util.FontEditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:background="@null"
+                        android:hint="Telepon"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:text="@={vm.vlPhoneNumber}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp"
                         app:fontName="@string/font_name_dmsans" />
@@ -114,12 +177,11 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_8sdp"
-                            android:afterTextChanged="@{vm::onPassword}"
                             android:background="@null"
                             android:hint="Kata Sandi"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:text="@{vm.loginPassword}"
+                            android:text="@={vm.vlPassword}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -134,18 +196,50 @@
 
                 </LinearLayout>
 
-                <com.fidilaundry.app.util.FontTextView
-                    android:id="@+id/tvForgotPass"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/bg_input_text"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingVertical="@dimen/_12sdp"
-                    android:layout_gravity="right"
-                    android:text="Lupa Password?"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/_12sdp"
-                    app:fontName="@string/font_name_dmsans"
-                    app:textStyle="@integer/font_style_semibold" />
+                    android:paddingHorizontal="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_lock" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.fidilaundry.app.util.FontEditText
+                            android:id="@+id/etConfirmPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_8sdp"
+                            android:background="@null"
+                            android:hint="Konfirmasi Kata Sandi"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:text="@={vm.vlPasswordConfirmation}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp"
+                            app:fontName="@string/font_name_dmsans" />
+
+                        <ImageView
+                            android:id="@+id/ivConfirmPassword"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_eye" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
@@ -158,13 +252,13 @@
             android:orientation="vertical">
 
             <com.fidilaundry.app.util.FontButton
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_38sdp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
                 android:clipChildren="false"
-                android:text="Masuk"
+                android:text="Daftar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
@@ -182,19 +276,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="Tidak punya akun?"
+                    android:text="Sudah punya akun?"
                     android:textColor="@color/blackHistory"
                     android:textSize="@dimen/_12sdp"
                     app:fontName="@string/font_name_dmsans"
                     app:textStyle="@integer/font_style_reguler" />
 
                 <com.fidilaundry.app.util.FontTextView
-                    android:id="@+id/btnRegister"
+                    android:id="@+id/btnLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
                     android:padding="@dimen/_5sdp"
-                    android:text="Daftar"
+                    android:text="Masuk"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/_12sdp"
                     app:fontName="@string/font_name_dmsans"

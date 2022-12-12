@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_home_to_history"
+            app:destination="@id/history" />
+
+        <action
+            android:id="@+id/action_home_to_notif"
+            app:destination="@id/notif" />
+
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/history"
+        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:label="HistoryFragment">
+
+        <action
+            android:id="@+id/action_history_to_home"
+            app:destination="@id/home" />
+
+        <action
+            android:id="@+id/action_history_to_notif"
+            app:destination="@id/notif" />
+
+        <action
+            android:id="@+id/action_history_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notif"
+        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:label="NotifFragment">
+
+        <action
+            android:id="@+id/action_notif_to_home"
+            app:destination="@id/home" />
+
+        <action
+            android:id="@+id/action_notif_to_history"
+            app:destination="@id/history" />
+
+        <action
+            android:id="@+id/action_notif_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:label="ProfileFragment" >
+
+        <action
+            android:id="@+id/action_profile_to_home"
+            app:destination="@id/home" />
+
+        <action
+            android:id="@+id/action_profile_to_history"
+            app:destination="@id/history" />
+
+        <action
+            android:id="@+id/action_profile_to_notif"
+            app:destination="@id/notif" />
+    </fragment>
+
+</navigation>

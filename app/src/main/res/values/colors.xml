@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EEF2F8</color>
-    <color name="colorPrimaryDark">#279BFB</color>
+    <color name="colorPrimary">#eaf3f3</color>
+    <color name="colorPrimaryDark">#368B85</color>
     <color name="colorBlue">#1C6DB8</color>
     <color name="colorTransparentBlue">#50279BFB</color>
     <color name="colorAccent">#A8C3EC</color>
@@ -78,7 +78,7 @@
     <color name="custom_progress_orange_header">#FFA800</color>
     <color name="search_play_store_text_highlight">#9e9e9e</color>
     <color name="blue">#263F63</color>
-    <color name="grey">#F5F5F5</color>
+    <color name="grey">#615E5E</color>
     <color name="darkRed">#cc0000</color>
     <color name="dark_grey">#34495e</color>
     <color name="colorWhite">#FFFFFF</color>
