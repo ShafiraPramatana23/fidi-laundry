@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.auth.LoginActivity">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="Riwayat"
+                android:textColor="@color/blackHistory"
+                android:textSize="@dimen/_14sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_rounded_bottom_sheet"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/llInprogress"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.25"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.fidilaundry.app.util.FontTextView
+                                android:id="@+id/tvInprogress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:includeFontPadding="false"
+                                android:text="Berlangsung"
+                                android:textColor="@color/blackHistory"
+                                android:textSize="@dimen/_12sdp"
+                                app:fontName="@string/font_name_dmsans"
+                                app:textStyle="@integer/font_style_semibold" />
+
+                            <RelativeLayout
+                                android:id="@+id/lineInprogress"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_4sdp"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/bg_tab_line" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llComplete"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.25"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.fidilaundry.app.util.FontTextView
+                                android:id="@+id/tvComplete"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:includeFontPadding="false"
+                                android:text="Selesai"
+                                android:textColor="@color/grey_text"
+                                android:textSize="@dimen/_12sdp"
+                                app:fontName="@string/font_name_dmsans"
+                                app:textStyle="@integer/font_style_semibold" />
+
+                            <RelativeLayout
+                                android:id="@+id/lineComplete"
+                                android:layout_width="match_parent"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_height="@dimen/_4sdp"
+                                android:layout_marginTop="@dimen/_10sdp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

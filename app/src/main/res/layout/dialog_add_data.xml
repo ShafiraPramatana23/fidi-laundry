@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_14sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="Tambah Data Barang"
+                android:textColor="@color/blackHistory"
+                android:textSize="@dimen/_13sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold" />
+
+            <RelativeLayout
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/ic_close" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_input_text"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingVertical="@dimen/_12sdp">
+
+            <com.fidilaundry.app.util.FontEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Masukkan item"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@={vm.loginUsername}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                app:fontName="@string/font_name_dmsans" />
+
+        </RelativeLayout>
+
+        <com.fidilaundry.app.util.FontButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_gravity="right"
+            android:background="@drawable/rounded_button"
+            android:clipChildren="false"
+            android:text="Tambah"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:fontName="@string/font_name_dmsans"
+            app:textStyle="@integer/font_style_bold" />
+    </LinearLayout>
+
+</layout>

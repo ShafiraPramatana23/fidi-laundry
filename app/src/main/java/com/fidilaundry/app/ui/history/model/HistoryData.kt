@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.history.modelclass HistoryData(var title: String, var date: String, var total: Double)

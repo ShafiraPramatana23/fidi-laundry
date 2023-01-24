@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.auth.LoginActivity">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:outlineAmbientShadowColor="#9e9e9e"
+            android:outlineSpotShadowColor="#9e9e9e"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="@dimen/_6sdp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="0.1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_14sdp"
+                android:paddingVertical="@dimen/_14sdp"
+                android:orientation="vertical">
+
+                <com.fidilaundry.app.util.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="Pendapatan Hari Ini"
+                    android:textColor="@color/blackHistory"
+                    android:textSize="@dimen/_10sdp"
+                    app:fontName="@string/font_name_dmsans"
+                    app:textStyle="@integer/font_style_reguler" />
+
+                <com.fidilaundry.app.util.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="Rp 100.000"
+                    android:textColor="@color/blackHistory"
+                    android:textSize="@dimen/_18sdp"
+                    app:fontName="@string/font_name_dmsans"
+                    app:textStyle="@integer/font_style_bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="Antar-Jemput"
+                            android:textColor="@color/blackHistory"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvDelivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:text="1"
+                            android:textColor="@color/blackHistory"
+                            android:textSize="@dimen/_14sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="Datang Langsung"
+                            android:textColor="@color/blackHistory"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvOffline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:text="1"
+                            android:textColor="@color/blackHistory"
+                            android:textSize="@dimen/_14sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/llAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp"
+            android:paddingTop="@dimen/_10sdp">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Aktivitas"
+                android:textColor="@color/blackHistory"
+                android:textSize="@dimen/_10sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btnMaster"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@drawable/rounded_green_light_10">
+
+                            <ImageView
+                                android:layout_width="@dimen/_21sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_cuba" />
+
+                        </RelativeLayout>
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_3sdp"
+                            android:includeFontPadding="false"
+                            android:text="Kelola Data"
+                            android:textAlignment="center"
+                            android:textColor="@color/blackPrimary"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btnConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@drawable/rounded_green_light_10">
+
+                            <ImageView
+                                android:layout_width="@dimen/_22sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_cuba" />
+
+                        </RelativeLayout>
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_3sdp"
+                            android:includeFontPadding="false"
+                            android:text="Pesanan Masuk"
+                            android:textAlignment="center"
+                            android:textColor="@color/blackPrimary"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btnComplaint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@drawable/rounded_green_light_10">
+
+                            <ImageView
+                                android:layout_width="@dimen/_22sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_cuba" />
+
+                        </RelativeLayout>
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_3sdp"
+                            android:includeFontPadding="false"
+                            android:text="Pengaduan"
+                            android:textAlignment="center"
+                            android:textColor="@color/blackPrimary"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="Pesanan Aktif"
+                        android:textColor="@color/blackHistory"
+                        android:textSize="@dimen/_10sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_semibold" />
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:includeFontPadding="false"
+                        android:text="Lihat Semua"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_10sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_bold" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

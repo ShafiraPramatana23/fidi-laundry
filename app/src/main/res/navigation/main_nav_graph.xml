@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/history"
-        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:name="com.fidilaundry.app.ui.history.HistoryFragment"
         android:label="HistoryFragment">
 
         <action
