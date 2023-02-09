@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.home.order.interfacesimport com.fidilaundry.app.ui.home.order.model.SelectedSatuanIteminterface IFSatuan {    fun onItemSelected(value: SelectedSatuanItem?)}

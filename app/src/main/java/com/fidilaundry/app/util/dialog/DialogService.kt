@@ -4,26 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
+import com.fidilaundry.app.basearch.viewmodel.OrderViewModel
 import com.fidilaundry.app.databinding.DialogAddDataBinding
-import com.fidilaundry.app.databinding.DialogUpdateDataBinding
+import com.fidilaundry.app.databinding.DialogServiceBinding
 import com.fidilaundry.app.ui.base.BaseDialogFragment
+import com.fidilaundry.app.ui.home.order.adapter.ServiceCategoryAdapter
+import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.util.LoadingDialog
-import com.fidilaundry.app.util.fdialog.ConfirmMessage
-import com.fidilaundry.app.util.fdialog.FGCallback
 import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class DialogUpdateData(
-    private var type: Int
+class DialogService(
+    private var type: Int,
+    private var inf: IFItemClick
 ) : BaseDialogFragment() {
 
     lateinit var paperPrefs: PaperPrefs
     lateinit var loadingDialog: LoadingDialog
 
-    val viewModel by sharedViewModel<HomeViewModel>()
-    private var _binding: DialogUpdateDataBinding? = null
+    val viewModel by sharedViewModel<OrderViewModel>()
+    private var _binding: DialogServiceBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,10 +34,10 @@ class DialogUpdateData(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DialogUpdateDataBinding.inflate(inflater, container, false)
+        _binding = DialogServiceBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.vm = viewModel
-        binding.lifecycleOwner =  this@DialogUpdateData
+        binding.lifecycleOwner =  this@DialogService
         return view
     }
 
@@ -44,37 +47,12 @@ class DialogUpdateData(
         loadingDialog = LoadingDialog()
         paperPrefs = PaperPrefs(requireActivity())
 
-        when (type) {
-            1 -> binding.tvTitle.text = "Ubah Data Barang"
-            2 -> binding.tvTitle.text = "Ubah Data Kategori"
-            3 -> binding.tvTitle.text = "Ubah Data Jenis Cuci"
-            4 -> binding.tvTitle.text = "Ubah Data Layanan"
-        }
+        var adapter = ServiceCategoryAdapter(activity, inf)
+        binding.rv.layoutManager = LinearLayoutManager(activity)
+        binding.rv.adapter = adapter
 
         binding.btnClose.setOnClickListener {
             dismiss()
         }
-
-        binding.btnUpdate.setSafeOnClickListener {
-
-        }
-
-        binding.btnDelete.setSafeOnClickListener {
-            confirmDelete()
-        }
-    }
-
-    private fun confirmDelete() {
-        ConfirmMessage(
-            requireActivity(),
-            "Apakah Anda yakin menghapus data ini?",
-            "", "",
-            "Hapus", "Batal",
-            object : FGCallback {
-                override fun onCallback() {
-
-                }
-            }
-        )
     }
 }

@@ -11,4 +11,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<OrderRepository> {
+        OrderRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

@@ -1,4 +1,4 @@
-package com.fidilaundry.app.ui.home
+package com.fidilaundry.app.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_home_admin.view.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class HomeFragment : BaseFragment() {
+class ProfileFragment : BaseFragment() {
     lateinit var loadingDialog: LoadingDialog
     lateinit var paperPrefs: PaperPrefs
 //    private var adapter: NotifListAdapter? = null
@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.vm = viewModel
-        binding.lifecycleOwner = this@HomeFragment
+        binding.lifecycleOwner = this@ProfileFragment
         return view
     }
 
@@ -83,7 +83,7 @@ class HomeFragment : BaseFragment() {
 
     companion object {
         fun newInstance(title: String): Fragment {
-            val fragment = HomeFragment()
+            val fragment = ProfileFragment()
             val args = Bundle()
             args.putString("title", title)
             fragment.arguments = args

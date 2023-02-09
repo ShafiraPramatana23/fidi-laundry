@@ -210,6 +210,9 @@ dependencies {
     /* Preferences */
     implementation(Libraries.preferenceKtx)
 
+    /* Scanner */
+    implementation(Libraries.scanner)
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)

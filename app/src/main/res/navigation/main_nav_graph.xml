@@ -59,7 +59,7 @@
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:name="com.fidilaundry.app.ui.profile.ProfileFragment"
         android:label="ProfileFragment" >
 
         <action

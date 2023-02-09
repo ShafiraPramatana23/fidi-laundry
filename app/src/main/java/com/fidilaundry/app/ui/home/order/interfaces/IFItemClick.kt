@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.home.order.interfacesinterface IFItemClick {    fun onItemSelected(value: String?, id: String)    fun onItemSelected(value: String?, id: String, type: Int)}

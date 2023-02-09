@@ -67,7 +67,6 @@ object Libraries {
         const val ssp = "1.0.6"
         const val constraint = "2.0.4"
         const val gif = "1.2.19"
-        const val timeline = "1.1.3"
         const val gson = "2.8.6"
         const val retrofit2 = "2.7.2"
         const val glide = "4.11.0"
@@ -88,22 +87,14 @@ object Libraries {
         const val dexter = "6.2.2"
         const val paging = "2.1.2"
         const val navigation = "2.3.3"
-        const val biometric = "1.1.0"
-        const val pinview = "1.4.3"
         const val circleImg = "3.1.0"
         const val okhttp = "4.8.1"
         const val retrofitMock = "2.0.2"
-        const val signaturePad = "1.3.1"
         const val lottie = "3.6.0"
         const val jsoup = "1.13.1"
         const val shimmer = "0.5.0"
         const val preference = "1.1.1"
-        const val stepview = "1.5.1"
-        const val socketio = "1.0.0"
-        const val loopVp = "0.2.0"
-        const val stepper = "2.0.0-alpha"
-        const val liveChat = "v2.0.3"
-        const val ticketview = "1.1.2"
+        const val scanner = "2.3.2"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -155,6 +146,7 @@ object Libraries {
     const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
     const val preferenceKtx = "androidx.preference:preference-ktx:${Versions.preference}"
+    const val scanner = "com.github.yuriy-budiyev:code-scanner:${Versions.scanner}"
 }
 
 object TestLibraries {
