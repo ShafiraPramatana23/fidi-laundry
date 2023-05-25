@@ -18,4 +18,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<MasterRepository> {
+        MasterRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

@@ -50,11 +50,11 @@ class MasterActivity : BaseActivity() {
         get() {
             val appList: MutableList<MasterMenu> = ArrayList()
             appList.add(MasterMenu(1, "Master Barang"))
-            appList.add(MasterMenu(2, "Master Kategori"))
-            appList.add(MasterMenu(3, "Master Jenis Cuci"))
-            appList.add(MasterMenu(4, "Master Layanan"))
-            appList.add(MasterMenu(5, "Master Harga"))
-            appList.add(MasterMenu(6, "Master Pelanggan"))
+//            appList.add(MasterMenu(2, "Master Kategori"))
+//            appList.add(MasterMenu(3, "Master Jenis Cuci"))
+//            appList.add(MasterMenu(4, "Master Layanan"))
+            appList.add(MasterMenu(2, "Master Harga"))
+            appList.add(MasterMenu(3, "Master Pelanggan"))
             return appList
         }
 }

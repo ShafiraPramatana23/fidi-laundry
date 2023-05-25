@@ -267,6 +267,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_150sdp"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:background="@drawable/bg_input_text">
 

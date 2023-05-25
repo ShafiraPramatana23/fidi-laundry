@@ -302,6 +302,7 @@
                     android:layout_height="wrap_content">
 
                     <com.fidilaundry.app.util.FontTextView
+                        android:id="@+id/tvOrder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
@@ -312,6 +313,7 @@
                         app:textStyle="@integer/font_style_semibold" />
 
                     <com.fidilaundry.app.util.FontTextView
+                        android:id="@+id/tvSeeAllAdmin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

@@ -31,7 +31,7 @@ object BuildPlugins {
 
 object AndroidSdk {
     const val minSdk = 21
-    const val compile = 29
+    const val compile = 30
     const val target = compile
     const val versionCode = 21
     const val versionName = "0.22"
@@ -80,7 +80,8 @@ object Libraries {
         const val coroutines = "1.4.1"
         const val lifecycle23 = "2.3.0-alpha07"
         const val koin = "2.1.6"
-        const val room = "2.3.0"
+        const val room = "2.4.0-alpha04"
+//        const val room = "2.3.0"
         const val timber = "4.7.1"
         const val joda = "2.10.3"
         const val paperdb = "2.6"

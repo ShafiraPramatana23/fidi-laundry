@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
 
     </data>
 
@@ -103,20 +103,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
+                        android:background="@drawable/bg_input_text">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etCtg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:layout_centerVertical="true"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.ctgValue}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -125,6 +124,8 @@
                             android:id="@+id/ivArrow"
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_down_arrow" />
 
@@ -145,20 +146,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
+                        android:background="@drawable/bg_input_text">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etBarang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:layout_centerVertical="true"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.itemsValue}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -166,6 +166,8 @@
                         <ImageView
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_down_arrow" />
 
@@ -186,20 +188,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
+                        android:background="@drawable/bg_input_text">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etService"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:layout_centerVertical="true"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.serviceValue}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -207,6 +208,8 @@
                         <ImageView
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_down_arrow" />
 
@@ -227,20 +230,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
+                        android:background="@drawable/bg_input_text">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:layout_centerVertical="true"
                             android:hint="Rp 0"
                             android:inputType="text"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.priceValue}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />

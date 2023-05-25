@@ -11,10 +11,13 @@ import com.fidilaundry.app.databinding.FragmentHomeBinding
 import com.fidilaundry.app.ui.base.BaseFragment
 import com.fidilaundry.app.ui.complaint.UserComplaintActivity
 import com.fidilaundry.app.ui.home.master.MasterActivity
+import com.fidilaundry.app.ui.home.order.AdminOrderActivity
 import com.fidilaundry.app.ui.home.order.UserOrderActivity
 import com.fidilaundry.app.ui.scanner.ScannerActivity
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.setSafeOnClickListener
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_home_admin.view.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -59,6 +62,11 @@ class HomeFragment : BaseFragment() {
             startActivity(activity?.intent)
         }
 
+        binding.btnCuba.setSafeOnClickListener {
+            binding.layoutAdmin.visibility = View.GONE
+            binding.layoutUser.visibility = View.VISIBLE
+        }
+
         var layAdmin = binding.layoutAdmin
         layAdmin.btnMaster.setSafeOnClickListener {
             activity?.intent = Intent(activity, MasterActivity::class.java)
@@ -72,6 +80,16 @@ class HomeFragment : BaseFragment() {
 
         layAdmin.btnComplaint.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserComplaintActivity::class.java)
+            startActivity(activity?.intent)
+        }
+
+        layAdmin.tvSeeAllAdmin.setSafeOnClickListener {
+            layAdmin.visibility = View.GONE
+            binding.layoutUser.visibility = View.VISIBLE
+        }
+
+        layAdmin.tvOrder.setSafeOnClickListener {
+            activity?.intent = Intent(activity, AdminOrderActivity::class.java)
             startActivity(activity?.intent)
         }
     }
