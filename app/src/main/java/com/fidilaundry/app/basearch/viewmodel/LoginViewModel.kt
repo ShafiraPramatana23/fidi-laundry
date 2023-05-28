@@ -3,19 +3,24 @@ package com.fidilaundry.app.basearch.viewmodel
 import android.text.Editable
 import android.text.TextUtils
 import com.fidilaundry.app.basearch.repository.AuthRepository
+import com.fidilaundry.app.basearch.repository.ProfileRepository
 import com.fidilaundry.app.util.TextCheckerFormater
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.BaseResponse
+import com.fidilaundry.app.model.request.LoginRequest
+import com.fidilaundry.app.model.response.LoginResponse
+import com.fidilaundry.app.model.response.ProfileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val authRepository: AuthRepository) : BaseViewModel() {
+class LoginViewModel(private val authRepository: AuthRepository, private val profileRepository: ProfileRepository) : BaseViewModel() {
 
-    val loginRes = SingleLiveEvent<BaseResponse>()
+    val loginResponse = SingleLiveEvent<LoginResponse>()
+    val profileResponse = SingleLiveEvent<ProfileResponse>()
+
     val isEnableButton = NonNullMutableLiveData(false)
 
     private var vEmail = ""
@@ -34,33 +39,26 @@ class LoginViewModel(private val authRepository: AuthRepository) : BaseViewModel
                     TextCheckerFormater.isValidEmail(loginUsername.value) -> {
                         vEmail = loginUsername.value
                         vPhoneNumber = ""
-                        vUsername = ""
                     }
                     TextCheckerFormater.isValidPhoneNumber(loginUsername.value) -> {
                         vEmail = ""
                         vPhoneNumber = loginUsername.value
-                        vUsername = ""
-                    }
-                    else -> {
-                        vEmail = ""
-                        vPhoneNumber = ""
-                        vUsername = loginUsername.value
                     }
                 }
 
                 val response = withContext(Dispatchers.IO) {
                     authRepository.login(
-                        (if(vUsername == "") null else vUsername)!!,
-                        (if(vPhoneNumber == "") null else vPhoneNumber)!!,
-                        (if(vEmail == "") null else vEmail)!!,
-                        loginPassword.value
+                        LoginRequest(
+                            if (vEmail.isNotEmpty()) vEmail else vPhoneNumber,
+                            loginPassword.value
+                        )
                     )
                 }
 
                 showProgressLiveData.postValue(false)
 
                 when (response) {
-                    is UseCaseResult.Success -> loginRes.value = response.data
+                    is UseCaseResult.Success -> loginResponse.value = response.data
                     is UseCaseResult.Failed -> {
                         if (response.errorMessage.equals(
                                 "username dan password anda salah",
@@ -104,13 +102,21 @@ class LoginViewModel(private val authRepository: AuthRepository) : BaseViewModel
                     (TextUtils.isEmpty(loginUsername.value) && TextUtils.isEmpty(loginPassword.value)) -> {
                         showError.value = "emptyAll"
                     }
-                    TextUtils.isEmpty(loginUsername.value) -> {
-                        showError.value = "emptyUname"
-                    }
                     TextUtils.isEmpty(loginPassword.value) -> {
                         showError.value = "emptyPass"
                     }
                 }
+            }
+        }
+    }
+
+    fun getProfile() {
+        launch {
+            val response = withContext(Dispatchers.IO) { profileRepository.profile() }
+            when (response) {
+                is UseCaseResult.Success -> profileResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }

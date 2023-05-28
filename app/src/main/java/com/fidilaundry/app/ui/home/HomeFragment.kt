@@ -49,8 +49,18 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.layoutAdmin.visibility = View.VISIBLE
-        binding.layoutUser.visibility = View.GONE
+        loadingDialog = LoadingDialog()
+        paperPrefs = PaperPrefs(requireContext())
+
+        val data = paperPrefs.getDataProfile()
+
+        if (data?.role == "member") {
+            binding.layoutAdmin.visibility = View.GONE
+            binding.layoutUser.visibility = View.VISIBLE
+        } else {
+            binding.layoutAdmin.visibility = View.VISIBLE
+            binding.layoutUser.visibility = View.GONE
+        }
 
         binding.btnSetrika.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserOrderActivity::class.java)

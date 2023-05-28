@@ -3,8 +3,8 @@ package com.fidilaundry.app.basearch.localpref
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LifecycleObserver
+import com.fidilaundry.app.model.response.ProfileResponse
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import io.paperdb.Paper
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -93,20 +93,15 @@ class PaperPrefs : CoroutineScope, LifecycleObserver {
         return getStringFromPaperPrefAsync("TOKEN")
     }
 
-    fun setWalkthrough() {
-        saveStringToPaperPref("isWalkthrough", "true")
+    fun setDataProfile(dataProfile: ProfileResponse.Results) {
+        val gson = Gson()
+        val json = gson.toJson(dataProfile)
+        saveStringToPaperPref("dataProfile", json)
     }
 
-    fun getWalkthrough(): String {
-        return getStringFromPaperPrefAsync("isWalkthrough")
-    }
-
-    fun setFirstTime() {
-        saveStringToPaperPref("isFirstTime", "false")
-    }
-
-    fun getFirstTime(): String {
-        return getStringFromPaperPrefAsync("isFirstTime")
+    fun getDataProfile(): ProfileResponse.Results? {
+        val data: String = getStringFromPaperPrefAsync("dataProfile")
+        return Gson().fromJson(data, ProfileResponse.Results::class.java)
     }
 
     /*fun setDataLogin(dataLogin: LoginDataInside) {

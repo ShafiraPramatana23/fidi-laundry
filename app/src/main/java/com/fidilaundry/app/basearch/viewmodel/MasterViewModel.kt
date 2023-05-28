@@ -1,18 +1,9 @@
 package com.fidilaundry.app.basearch.viewmodel
 
-import android.text.Editable
-import android.text.TextUtils
-import com.fidilaundry.app.basearch.repository.AuthRepository
 import com.fidilaundry.app.basearch.repository.MasterRepository
-import com.fidilaundry.app.util.TextCheckerFormater
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
-import com.fidilaundry.app.basearch.util.UseCaseResult
-import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.BaseResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.fidilaundry.app.model.response.BaseResponse
 
 class MasterViewModel(private val masterRepository: MasterRepository) : BaseViewModel() {
 

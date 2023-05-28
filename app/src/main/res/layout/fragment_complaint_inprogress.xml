@@ -1,0 +1,86 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+<!--            <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--                android:id="@+id/shimmer_view_container"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <include layout="@layout/item_report_order_shimmer" />-->
+
+<!--                    <include layout="@layout/item_report_order_shimmer" />-->
+
+<!--                    <include layout="@layout/item_report_order_shimmer" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/llEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lav"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="lottiefiles/empty_data.json"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1" />
+
+                <com.fidilaundry.app.util.FontTextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="No data"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_grey_color"
+                    android:textSize="@dimen/_16sdp"
+                    app:fontName="@string/font_name_dmsans"
+                    app:textStyle="@integer/font_style_bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -82,7 +82,7 @@
                         android:hint="Email atau Telepon"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:text="@{vm.loginUsername}"
+                        android:text="@={vm.loginUsername}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp"
                         app:fontName="@string/font_name_dmsans" />
@@ -119,7 +119,7 @@
                             android:hint="Kata Sandi"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:text="@{vm.loginPassword}"
+                            android:text="@={vm.loginPassword}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp"
                             app:fontName="@string/font_name_dmsans" />

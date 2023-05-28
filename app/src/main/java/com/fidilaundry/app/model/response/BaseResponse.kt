@@ -1,4 +1,4 @@
-package com.fidilaundry.app.model
+package com.fidilaundry.app.model.response
 
 import com.google.gson.annotations.SerializedName
 

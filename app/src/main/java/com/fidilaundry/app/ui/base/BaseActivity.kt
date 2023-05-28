@@ -43,8 +43,8 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope, LifecycleObse
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(BaseContextWrapper.wrap(newBase!!, Locale("en")))
-        /*paperPref = PaperPrefs(newBase!!)
-        if(paperPref.getLang().toString() == ""){
+        paperPref = PaperPrefs(newBase!!)
+        /*if(paperPref.getLang().toString() == ""){
             //Log.info("cekLang, if "+paperPref.getLang().toString() + " " + newBase.resources.configuration.locale.toString())
             var lang = "in"
             paperPref.setLang(lang)

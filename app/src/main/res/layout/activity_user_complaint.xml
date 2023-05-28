@@ -102,20 +102,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_input_text"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:paddingVertical="@dimen/_12sdp"
-                        android:paddingHorizontal="@dimen/_16sdp">
+                        android:layout_marginTop="@dimen/_8sdp">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etCtg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingVertical="@dimen/_12sdp"
+                            android:paddingHorizontal="@dimen/_16sdp"
                             android:background="@null"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.loginUsername}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -124,6 +123,8 @@
                             android:id="@+id/ivArrow"
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_down_arrow"/>
 
@@ -144,20 +145,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_100sdp"
                         android:background="@drawable/bg_text_area"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:paddingVertical="@dimen/_12sdp"
-                        android:paddingHorizontal="@dimen/_16sdp">
+                        android:layout_marginTop="@dimen/_8sdp">
 
                         <com.fidilaundry.app.util.FontEditText
                             android:id="@+id/etDesc"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:afterTextChanged="@{vm::onUsernameText}"
+                            android:paddingVertical="@dimen/_12sdp"
+                            android:paddingHorizontal="@dimen/_16sdp"
                             android:background="@null"
                             android:hint="Masukkan keluhan Anda ..."
                             android:inputType="text|textMultiLine"
                             android:gravity="top"
-                            android:text="@{vm.loginUsername}"
+                            android:text="@={vm.loginUsername}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />

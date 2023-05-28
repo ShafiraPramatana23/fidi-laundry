@@ -66,7 +66,6 @@
                     android:background="@drawable/bg_input_text"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp">
 
                     <ImageView
@@ -79,6 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
+                        android:paddingVertical="@dimen/_12sdp"
                         android:background="@null"
                         android:hint="Nama Lengkap"
                         android:inputType="text"
@@ -97,7 +97,6 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp">
 
                     <ImageView
@@ -110,6 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
+                        android:paddingVertical="@dimen/_12sdp"
                         android:background="@null"
                         android:hint="Email"
                         android:inputType="text"
@@ -128,7 +128,6 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp">
 
                     <ImageView
@@ -141,6 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_8sdp"
+                        android:paddingVertical="@dimen/_12sdp"
                         android:background="@null"
                         android:hint="Telepon"
                         android:inputType="text"
@@ -159,7 +159,6 @@
                     android:background="@drawable/bg_input_text"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp">
 
                     <ImageView
@@ -177,6 +176,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:hint="Kata Sandi"
                             android:inputType="text"
@@ -190,6 +190,7 @@
                             android:id="@+id/ivPassword"
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="@dimen/_15sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_eye" />
                     </RelativeLayout>
@@ -203,7 +204,6 @@
                     android:background="@drawable/bg_input_text"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp">
 
                     <ImageView
@@ -221,6 +221,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:background="@null"
                             android:hint="Konfirmasi Kata Sandi"
                             android:inputType="text"
@@ -234,6 +235,7 @@
                             android:id="@+id/ivConfirmPassword"
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="@dimen/_15sdp"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/ic_eye" />
                     </RelativeLayout>

@@ -26,8 +26,9 @@ import javax.net.ssl.X509TrustManager
 
 val networkingModule = module {
 
-
     single<Endpoints> { get<Retrofit>(named(baseRetrofitName)).create(Endpoints::class.java) }
+
+    single<EndpointsNoAuth> { get<Retrofit>(named(baseNoAuth)).create(EndpointsNoAuth::class.java) }
 
     single<Resources> { androidContext().resources }
 
@@ -53,31 +54,6 @@ val networkingModule = module {
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(get()))
             .build()
-    }
-
-    single<Retrofit>(named(baseGTMtName)) {
-        Retrofit.Builder()
-            .baseUrl(MainApplicationContract.API_GTM)
-            .client(get<OkHttpClient>(named(withAuth)))
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(get()))
-            .build()
-    }
-
-    single<Retrofit>(named(baseDistrict)) {
-        Retrofit.Builder()
-            .baseUrl(MainApplicationContract.API_DISTRICT)
-            .client(get<OkHttpClient>(named(noAuth)))
-            .addConverterFactory(GsonConverterFactory.create(get()))
-            .build()
-    }
-
-    single<Retrofit>(named(baseGeo)) {
-        Retrofit.Builder()
-                .baseUrl(MainApplicationContract.API_GEO)
-                .client(get<OkHttpClient>(named(noAuth)))
-                .addConverterFactory(GsonConverterFactory.create(get()))
-                .build()
     }
 
     single<OkHttpClient>(named(withAuth)) {

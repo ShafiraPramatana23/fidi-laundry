@@ -45,10 +45,10 @@ object KeyStore {
 }
 
 object Url {
-    const val apiBaseDev = "https://api2-dev.abicommodity.co.id/v1/"
-    const val apiBaseProd = "https://api2.abicommodity.co.id/v1/"
-    const val urlDev = "https://api2-dev.abicommodity.co.id"
-    const val urlProd = "https://api2.abicommodity.co.id"
+    const val apiBaseDev = "https://fira.itpohgero.com/"
+    const val apiBaseProd = "https://fira.itpohgero.com/"
+    const val urlDev = "https://fira.itpohgero.com/"
+    const val urlProd = "https://fira.itpohgero.com/"
     const val apiGtm = "https://api1.goldtomecca.com/v1/"
     const val apiDistrict = "https://dev.farizdotid.com/api/"
     const val apiGeo = "https://asia-southeast1-quiet-stacker-245710.cloudfunctions.net/"
