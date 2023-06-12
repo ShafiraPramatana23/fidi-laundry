@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
 
     </data>
 
@@ -90,6 +90,7 @@
                     android:paddingBottom="@dimen/_16sdp">
 
                     <androidx.cardview.widget.CardView
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
@@ -112,7 +113,6 @@
                                 android:hint="Masukkan nama"
                                 android:inputType="text"
                                 android:maxLines="1"
-                                android:text="@{vm.loginUsername}"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 app:fontName="@string/font_name_dmsans" />
@@ -131,7 +131,6 @@
                         android:id="@+id/rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginHorizontal="@dimen/_16sdp" />
 
                 </LinearLayout>

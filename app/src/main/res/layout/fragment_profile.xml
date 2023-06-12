@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.ProfileViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:background="@color/colorPrimary"
+            android:paddingVertical="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_12sdp">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:id="@+id/tvCashBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="Akun"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cvProfile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:cardCornerRadius="@dimen/_8sdp"
+                                    app:cardBackgroundColor="@color/blue_light_EEF7FF"
+                                    android:elevation="@dimen/_1sdp">
+
+                                    <ImageView
+                                        android:id="@+id/ivProfile"
+                                        android:layout_width="@dimen/_32sdp"
+                                        android:layout_height="@dimen/_32sdp"
+                                        android:padding="@dimen/_4sdp"
+                                        android:src="@drawable/ic_people"
+                                        android:background="@color/white"
+                                        android:scaleType="centerCrop" />
+                                </androidx.cardview.widget.CardView>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:orientation="vertical">
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_semibold" />
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvEmail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:text="email@g.co"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_reguler" />
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvPhone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:text="08100000"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_reguler" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_50sdp"
+                            android:background="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            android:background="@drawable/bg_rounded_bottom_sheet"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_marginBottom="@dimen/_8sdp"
+                                android:clipToPadding="false"
+                                android:nestedScrollingEnabled="false" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

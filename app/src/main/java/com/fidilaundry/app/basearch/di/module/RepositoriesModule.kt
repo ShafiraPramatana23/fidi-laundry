@@ -33,4 +33,18 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<CustomerRepository> {
+        CustomerRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
+
+    single<ComplaintRepository> {
+        ComplaintRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

@@ -13,7 +13,10 @@ import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.MasterViewModel
 import com.fidilaundry.app.databinding.FragmentComplaintInprogressBinding
+import com.fidilaundry.app.ui.complaint.adapter.ComplaintListAdapter
+import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
+import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -46,9 +49,25 @@ class InProgressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadingDialog = LoadingDialog()
-        paperPrefs = PaperPrefs(requireContext())
 
+        var adapter = ComplaintListAdapter(context)
+        binding.rv.layoutManager =
+            ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 5000)
+        binding.rv.adapter = adapter
+        binding.rv.addItemDecoration(ListDivideritemDecoration(requireContext()))
+        adapter.updateList(appList)
+
+        println("wkwkkw: "+appList.size)
     }
+
+    private val appList: List<String>
+        get() {
+            val appList: MutableList<String> = java.util.ArrayList()
+            appList.add("")
+            appList.add("")
+            appList.add("")
+            return appList
+        }
 
     companion object {
         fun newInstance(title: String): Fragment {

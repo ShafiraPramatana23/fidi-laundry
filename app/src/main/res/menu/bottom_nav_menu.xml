@@ -11,9 +11,9 @@
         android:icon="@drawable/mn_ic_history"
         android:title="Riwayat" />
 
-<!--    <item-->
-<!--        android:id="@+id/trade"-->
-<!--        android:title="" />-->
+    <item
+        android:id="@+id/scan"
+        android:title="" />
 
     <item
         android:id="@+id/notif"

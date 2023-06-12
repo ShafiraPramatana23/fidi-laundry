@@ -21,6 +21,7 @@
             android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
             android:outlineAmbientShadowColor="#9e9e9e"
             android:outlineSpotShadowColor="#9e9e9e"
             app:cardCornerRadius="@dimen/_15sdp"
@@ -50,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
                     android:layout_marginTop="@dimen/_6sdp"
-                    android:text="Rp 100.000"
+                    android:text="Rp 0"
                     android:textColor="@color/blackHistory"
                     android:textSize="@dimen/_18sdp"
                     app:fontName="@string/font_name_dmsans"
@@ -85,7 +86,7 @@
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/blackHistory"
                             android:textSize="@dimen/_14sdp"
                             app:fontName="@string/font_name_dmsans"
@@ -116,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="@color/blackHistory"
                             android:textSize="@dimen/_14sdp"
                             app:fontName="@string/font_name_dmsans"
@@ -142,10 +143,10 @@
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Aktivitas"
                 android:textColor="@color/blackHistory"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
                 app:fontName="@string/font_name_dmsans"
                 app:textStyle="@integer/font_style_semibold" />
 
@@ -294,7 +295,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -308,7 +310,7 @@
                         android:includeFontPadding="false"
                         android:text="Pesanan Aktif"
                         android:textColor="@color/blackHistory"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_semibold" />
 
@@ -320,13 +322,13 @@
                         android:includeFontPadding="false"
                         android:text="Lihat Semua"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_bold" />
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvActive"
+                    android:id="@+id/rvActiveOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

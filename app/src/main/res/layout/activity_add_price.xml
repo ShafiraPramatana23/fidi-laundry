@@ -136,48 +136,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_18sdp"
                         android:includeFontPadding="false"
-                        android:text="Barang"
-                        android:textColor="@color/blackHistory"
-                        android:textSize="@dimen/_10sdp"
-                        app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text">
-
-                        <com.fidilaundry.app.util.FontEditText
-                            android:id="@+id/etBarang"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/_16sdp"
-                            android:paddingVertical="@dimen/_12sdp"
-                            android:background="@null"
-                            android:layout_centerVertical="true"
-                            android:hint="Pilih salah satu"
-                            android:inputType="text"
-                            android:text="@={vm.itemsValue}"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            app:fontName="@string/font_name_dmsans" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_16sdp"
-                            android:layout_height="@dimen/_16sdp"
-                            android:layout_marginRight="@dimen/_16sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow" />
-
-                    </RelativeLayout>
-
-                    <com.fidilaundry.app.util.FontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:includeFontPadding="false"
                         android:text="Layanan Cuci"
                         android:textColor="@color/blackHistory"
                         android:textSize="@dimen/_10sdp"
@@ -206,6 +164,49 @@
                             app:fontName="@string/font_name_dmsans" />
 
                         <ImageView
+                            android:layout_width="@dimen/_16sdp"
+                            android:layout_height="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow" />
+
+                    </RelativeLayout>
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:includeFontPadding="false"
+                        android:text="Barang"
+                        android:textColor="@color/blackHistory"
+                        android:textSize="@dimen/_10sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_semibold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@drawable/bg_input_text">
+
+                        <com.fidilaundry.app.util.FontEditText
+                            android:id="@+id/etBarang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
+                            android:background="@null"
+                            android:layout_centerVertical="true"
+                            android:hint="Masukkan nama barang"
+                            android:inputType="text"
+                            android:text="@={vm.itemsValue}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans" />
+
+                        <ImageView
+                            android:visibility="gone"
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
                             android:layout_marginRight="@dimen/_16sdp"

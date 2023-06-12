@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:includeFontPadding="false"
-                        android:text="Kelola Data"
+                        android:text="Scan Pelanggan"
                         android:textColor="@color/blackHistory"
                         android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"

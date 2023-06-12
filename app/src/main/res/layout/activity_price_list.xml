@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
 
     </data>
 

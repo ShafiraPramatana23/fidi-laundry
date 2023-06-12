@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
 
     </data>
 
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:includeFontPadding="false"
-                        android:text="Data"
+                        android:text="Data Master"
                         android:textColor="@color/blackHistory"
                         android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
@@ -89,11 +89,48 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_16sdp">
 
+                    <androidx.cardview.widget.CardView
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true"
+                        app:contentPadding="0.1dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_12sdp">
+
+                            <com.fidilaundry.app.util.FontEditText
+                                android:id="@+id/etSearch"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="Masukkan nama"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:fontName="@string/font_name_dmsans" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_13sdp"
+                                android:layout_height="@dimen/_13sdp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_search"
+                                app:tint="@color/grey_text" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginHorizontal="@dimen/_16sdp" />
 
                 </LinearLayout>
@@ -101,6 +138,7 @@
             </androidx.core.widget.NestedScrollView>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:visibility="gone"
                 android:id="@+id/extended_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

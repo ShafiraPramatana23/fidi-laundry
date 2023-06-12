@@ -9,6 +9,9 @@ val viewModelsModule = module {
     viewModel { LoginViewModel(authRepository = get(), profileRepository = get()) }
     viewModel { RegisterViewModel(authRepository = get()) }
     viewModel { HomeViewModel(authRepository = get()) }
+    viewModel { ProfileViewModel(authRepository = get()) }
     viewModel { OrderViewModel(orderRepository = get()) }
     viewModel { MasterViewModel(masterRepository = get()) }
+    viewModel { CustomerViewModel(customerRepository = get()) }
+    viewModel { ComplaintViewModel(complaintRepository = get()) }
 }

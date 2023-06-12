@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
+import com.fidilaundry.app.basearch.viewmodel.MasterViewModel
 import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityUserListBinding
 import com.fidilaundry.app.ui.base.BaseActivity
@@ -26,8 +27,8 @@ class UserListActivity : BaseActivity() {
 
     private val binding: ActivityUserListBinding by binding(R.layout.activity_user_list)
 
-    private val viewModel: HomeViewModel by lazy {
-        getViewModel(HomeViewModel::class)
+    private val viewModel: MasterViewModel by lazy {
+        getViewModel(MasterViewModel::class)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

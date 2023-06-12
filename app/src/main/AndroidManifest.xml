@@ -94,6 +94,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.fidilaundry.app.ui.complaint.ComplaintActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.fidilaundry.app.ui.scanner.ScannerActivity"
             android:screenOrientation="portrait" />
 

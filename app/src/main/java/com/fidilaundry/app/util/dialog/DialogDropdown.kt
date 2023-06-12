@@ -9,6 +9,7 @@ import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.MasterViewModel
 import com.fidilaundry.app.basearch.viewmodel.OrderViewModel
 import com.fidilaundry.app.databinding.DialogDropdownBinding
+import com.fidilaundry.app.model.response.ResultData
 import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.master.adapter.DropdownAdapter
 import com.fidilaundry.app.ui.home.master.model.DropdownItem
@@ -18,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DialogDropdown(
     private var type: Int,
-    private var list: List<DropdownItem>,
+    private var list: List<ResultData>,
     private var inf: IFItemClick
 ) : BaseDialogFragment(), IFItemClick {
 
