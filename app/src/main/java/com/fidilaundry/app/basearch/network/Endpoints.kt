@@ -28,6 +28,12 @@ interface Endpoints {
     @GET("master/item/list-all")
     suspend fun getItemList(@Header("Authorization") auth: String): ItemListResponse
 
+    @GET("master/item/search-by-service-id/{id}")
+    suspend fun getItemListByService(
+        @Header("Authorization") auth: String,
+        @Path("id") id: String
+    ): ItemListResponse
+
     @POST("master/item/create")
     suspend fun addItem(
         @Header("Authorization") auth: String,

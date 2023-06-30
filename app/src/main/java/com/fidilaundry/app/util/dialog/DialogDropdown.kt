@@ -65,6 +65,10 @@ class DialogDropdown(
         }
     }
 
+    override fun onItemClick() {
+
+    }
+
     override fun onItemSelected(value: String?, id: String) {
         println("huhuy: "+ value)
         inf.onItemSelected(value, id)

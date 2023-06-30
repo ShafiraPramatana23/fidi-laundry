@@ -11,12 +11,12 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:background="@color/white"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -69,9 +69,9 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <RelativeLayout
-                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"/>
+                android:layout_height="@dimen/_50sdp"
+                android:background="@color/colorPrimary" />
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
@@ -83,9 +83,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:padding="@dimen/_16sdp"
                     android:background="@drawable/bg_rounded_bottom_sheet"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="@dimen/_16sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                                 android:layout_height="@dimen/_15sdp"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_cusek"/>
+                                android:src="@drawable/ic_cusek" />
                         </RelativeLayout>
 
                         <LinearLayout
@@ -113,7 +113,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:orientation="vertical">
-                            
+
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
@@ -122,8 +122,8 @@
                                     android:id="@+id/tvName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_toLeftOf="@+id/tvDate"
                                     android:layout_alignParentLeft="true"
+                                    android:layout_toLeftOf="@+id/tvDate"
                                     android:text="Shafira P"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp"
@@ -175,13 +175,13 @@
                             android:id="@+id/etCategory"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_12sdp"
-                            android:paddingHorizontal="@dimen/_16sdp"
                             android:layout_centerVertical="true"
                             android:background="@null"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
                             android:maxLines="1"
+                            android:paddingHorizontal="@dimen/_16sdp"
+                            android:paddingVertical="@dimen/_12sdp"
                             android:text="@={vm.category}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
@@ -191,9 +191,9 @@
                             android:id="@+id/ivArrow"
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
-                            android:layout_marginRight="@dimen/_16sdp"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_16sdp"
                             android:src="@drawable/ic_down_arrow" />
 
                     </RelativeLayout>
@@ -201,7 +201,7 @@
                     <com.fidilaundry.app.util.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:text="Item Satuan"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
@@ -211,19 +211,19 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvSatuan"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:orientation="horizontal">
 
                         <com.fidilaundry.app.util.FontTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
                             android:layout_gravity="center"
+                            android:layout_weight="0.5"
                             android:text="Item Kiloan (kg)"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
@@ -231,71 +231,59 @@
                             app:textStyle="@integer/font_style_semibold" />
 
                         <RelativeLayout
-                            android:layout_width="@dimen/_100sdp"
+                            android:layout_width="@dimen/_80sdp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_input_text">
 
-                        <com.fidilaundry.app.util.FontEditText
-                            android:id="@+id/etQtyKiloan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/_16sdp"
-                            android:paddingVertical="@dimen/_12sdp"
-                            android:background="@null"
-                            android:textAlignment="center"
-                            android:hint="0"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:text="@={vm.kiloan}"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            app:fontName="@string/font_name_dmsans" />
+                            <com.fidilaundry.app.util.FontEditText
+                                android:id="@+id/etQtyKiloan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="0"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:paddingHorizontal="@dimen/_16sdp"
+                                android:paddingVertical="@dimen/_8sdp"
+                                android:text="@={vm.kiloan}"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:fontName="@string/font_name_dmsans" />
 
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <com.fidilaundry.app.util.FontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:text="Layanan"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_150sdp"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        android:background="@drawable/bg_input_text">
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="horizontal">
 
-                        <com.fidilaundry.app.util.FontEditText
-                            android:id="@+id/etService"
-                            android:layout_width="match_parent"
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_12sdp"
-                            android:paddingHorizontal="@dimen/_16sdp"
-                            android:layout_centerVertical="true"
-                            android:background="@null"
-                            android:hint="Pilih salah satu"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:text="@={vm.service}"
+                            android:layout_weight="0.5"
+                            android:text="Layanan"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            app:fontName="@string/font_name_dmsans" />
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold" />
 
-                        <ImageView
-                            android:layout_width="@dimen/_16sdp"
-                            android:layout_height="@dimen/_16sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_16sdp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow" />
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvLayanan"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Antar - Jemput"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
 
-                    </RelativeLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
@@ -304,11 +292,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:paddingHorizontal="@dimen/_16sdp"
-                android:paddingBottom="@dimen/_14sdp"
-                android:paddingTop="@dimen/_16sdp"
                 android:background="@drawable/bg_rounded_bottom_sheet_grey"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_16sdp"
+                android:paddingTop="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_14sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -335,7 +323,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="Layanan"
+                            android:text="0 item"
                             android:textColor="@color/blackHistory"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
@@ -364,7 +352,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:text="Layanan"
+                            android:text="Rp 0"
                             android:textColor="@color/blackHistory"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"

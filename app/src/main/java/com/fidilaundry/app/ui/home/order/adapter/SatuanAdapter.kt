@@ -1,13 +1,13 @@
-package com.fidilaundry.app.ui.home.order
+package com.fidilaundry.app.ui.home.order.adapter
 
 import android.content.Context
 import android.text.InputType
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemSatuanBinding
+import com.fidilaundry.app.model.response.ItemListResponse
 import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
 import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
 import java.util.ArrayList
@@ -17,10 +17,10 @@ class SatuanAdapter(
     private val inf: IFSatuan
 ) : RecyclerView.Adapter<SatuanAdapter.ViewHolder>() {
 
-    private var appList: List<String>
+    private var appList: List<ItemListResponse.Result>
     lateinit var paperPrefs: PaperPrefs
 
-    fun updateList(appList: List<String>) {
+    fun updateList(appList: List<ItemListResponse.Result>) {
         this.appList = appList
         notifyDataSetChanged()
     }
@@ -45,7 +45,8 @@ class SatuanAdapter(
             val app = appList[position]
 
             binding.etQty.inputType = InputType.TYPE_NULL
-            binding.tvName.text = app
+            binding.tvName.text = app.title
+            binding.tvPrice.text = app.price.toString()
 
             var count = 0
             binding.layInc.setOnClickListener {
@@ -62,10 +63,10 @@ class SatuanAdapter(
         }
     }
 
-    private fun setData(app: String, count: Int) {
+    private fun setData(app: ItemListResponse.Result, count: Int) {
         inf.onItemSelected(
             SelectedSatuanItem(
-                "", "", count,
+                app.id!!, app.title!!, app.price!!, count
             )
         )
     }
