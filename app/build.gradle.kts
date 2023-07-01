@@ -213,6 +213,12 @@ dependencies {
     /* Scanner */
     implementation(Libraries.scanner)
 
+    /* Timelineview */
+    implementation(Libraries.timelineView)
+
+    /* QR Generator */
+    implementation(Libraries.qrGenerator)
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)

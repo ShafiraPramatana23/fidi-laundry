@@ -17,6 +17,7 @@ import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.ui.home.master.MasterActivity
 import com.fidilaundry.app.ui.home.order.AdminOrderActivity
+import com.fidilaundry.app.ui.home.order.OrderDetailActivity
 import com.fidilaundry.app.ui.home.order.OrderListActivity
 import com.fidilaundry.app.ui.home.order.UserOrderActivity
 import com.fidilaundry.app.ui.scanner.ScannerActivity
@@ -92,7 +93,7 @@ class HomeFragment : BaseFragment() {
         }
 
         layAdmin.btnConfirm.setSafeOnClickListener {
-            activity?.intent = Intent(activity, OrderListActivity::class.java)
+            activity?.intent = Intent(activity, OrderDetailActivity::class.java) //OrderListActivity
             startActivity(activity?.intent)
         }
 

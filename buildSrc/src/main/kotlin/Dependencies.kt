@@ -96,6 +96,8 @@ object Libraries {
         const val shimmer = "0.5.0"
         const val preference = "1.1.1"
         const val scanner = "2.3.2"
+        const val timeline = "1.1.3"
+        const val qrGenerate = "1.0.1"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -148,6 +150,8 @@ object Libraries {
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
     const val preferenceKtx = "androidx.preference:preference-ktx:${Versions.preference}"
     const val scanner = "com.github.yuriy-budiyev:code-scanner:${Versions.scanner}"
+    const val timelineView = "com.github.vipulasri:timelineview:${Versions.timeline}"
+    const val qrGenerator = "com.github.androidmads:QRGenerator:${Versions.qrGenerate}"
 }
 
 object TestLibraries {

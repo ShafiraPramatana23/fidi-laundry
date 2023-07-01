@@ -1,9 +1,13 @@
 package com.fidilaundry.app.util.dialog
 
+import android.content.Context
+import android.graphics.Point
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import android.widget.ImageView
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
@@ -17,6 +21,7 @@ import com.fidilaundry.app.ui.home.order.adapter.ServiceCategoryAdapter
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.setSafeOnClickListener
+import com.google.zxing.WriterException
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DialogShowQR : BaseDialogFragment() {
@@ -46,8 +51,29 @@ class DialogShowQR : BaseDialogFragment() {
         loadingDialog = LoadingDialog()
         paperPrefs = PaperPrefs(requireActivity())
 
+        generateQr("huhuy", binding.ivQr)
+
         binding.btnClose.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun generateQr(inputValue: String, ivQrCode: ImageView) {
+        val manager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
+        val display: Display = manager!!.defaultDisplay
+        val point = Point()
+        display.getSize(point)
+        val width: Int = point.x
+        val height: Int = point.y
+
+        var dimen = if (width < height) width else height
+        dimen = dimen * 3 / 4
+        val qrgEncoder = QRGEncoder(inputValue, null, QRGContents.Type.TEXT, dimen)
+        try {
+            var bitmap = qrgEncoder.getBitmap(0)
+            ivQrCode.setImageBitmap(bitmap)
+        } catch (e: WriterException) {
+            Log.v("ERR_GENERATE", e.toString())
         }
     }
 }
