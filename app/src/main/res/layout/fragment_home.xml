@@ -271,10 +271,48 @@
                                 app:textStyle="@integer/font_style_bold" />
                         </RelativeLayout>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvActive"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="match_parent">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvActive"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:id="@+id/llEmpty"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:id="@+id/lav"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_90sdp"
+                                    android:layout_centerInParent="true"
+                                    app:lottie_autoPlay="true"
+                                    app:lottie_fileName="lottiefiles/empty_data.json"
+                                    app:lottie_loop="true"
+                                    app:lottie_speed="1" />
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvEmpty"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:text="Belum ada transaksi"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/dark_grey_color"
+                                    android:textSize="@dimen/_10sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_bold" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

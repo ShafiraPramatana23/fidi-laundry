@@ -51,6 +51,7 @@ class UserListActivity : BaseActivity() {
 
         binding.extendedFab.setSafeOnClickListener {
             val intent = Intent(this, AddUserActivity::class.java)
+            intent.putExtra("type", "1")
             startActivity(intent)
         }
     }

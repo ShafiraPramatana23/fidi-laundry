@@ -1,7 +1,6 @@
 package com.fidilaundry.app.basearch.network
 
-import com.fidilaundry.app.model.request.AddCustomerRequest
-import com.fidilaundry.app.model.request.AddItemRequest
+import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
 import retrofit2.http.*
 
@@ -31,7 +30,7 @@ interface Endpoints {
     @GET("master/item/search-by-service-id/{id}")
     suspend fun getItemListByService(
         @Header("Authorization") auth: String,
-        @Path("id") id: String
+        @Path("id") id: Int
     ): ItemListResponse
 
     @POST("master/item/create")
@@ -39,5 +38,26 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: AddItemRequest
+    ): BaseObjResponse
+
+    @POST("master/item/update")
+    suspend fun updateItem(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: UpdateItemRequest
+    ): BaseObjResponse
+
+    @POST("master/item/delete")
+    suspend fun deleteItem(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: DeleteItemRequest
+    ): BaseObjResponse
+
+    @POST("order/create")
+    suspend fun requestOrder(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: OrderRequest
     ): BaseObjResponse
 }

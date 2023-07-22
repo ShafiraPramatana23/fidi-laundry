@@ -8,6 +8,8 @@ import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.AddCustomerRequest
 import com.fidilaundry.app.model.request.AddItemRequest
+import com.fidilaundry.app.model.request.DeleteItemRequest
+import com.fidilaundry.app.model.request.UpdateItemRequest
 import com.fidilaundry.app.model.response.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,9 +22,8 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
 
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
     val itemsAddResponse = SingleLiveEvent<BaseObjResponse>()
-
-    val itemsUpdateResponse = SingleLiveEvent<BaseResponse>()
-    val itemsDeleteResponse = SingleLiveEvent<BaseResponse>()
+    val itemsUpdateResponse = SingleLiveEvent<BaseObjResponse>()
+    val itemsDeleteResponse = SingleLiveEvent<BaseObjResponse>()
 
     val isEnableButton = NonNullMutableLiveData(false)
 
@@ -101,6 +102,44 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> itemsAddResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun updateItems(req: UpdateItemRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                masterRepository.updateItem(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> itemsUpdateResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun deleteItems(req: DeleteItemRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                masterRepository.deleteItem(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> itemsDeleteResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =

@@ -273,8 +273,8 @@
                 app:textStyle="@integer/font_style_bold" />
 
             <LinearLayout
-                android:id="@+id/llUpDel"
                 android:visibility="gone"
+                android:id="@+id/llUpDel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"

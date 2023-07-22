@@ -32,7 +32,7 @@ object BuildPlugins {
 object AndroidSdk {
     const val minSdk = 21
     const val compile = 31
-    const val target = compile
+    const val target = 30
     const val versionCode = 21
     const val versionName = "0.22"
 }
@@ -99,6 +99,8 @@ object Libraries {
         const val timeline = "1.1.3"
         const val qrGenerate = "1.0.1"
         const val mapbox = "10.14.1"
+        const val mapboxMapSdk = "9.7.0"
+        const val mapboxJavaSdk = "5.5.0"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -153,7 +155,10 @@ object Libraries {
     const val scanner = "com.github.yuriy-budiyev:code-scanner:${Versions.scanner}"
     const val timelineView = "com.github.vipulasri:timelineview:${Versions.timeline}"
     const val qrGenerator = "com.github.androidmads:QRGenerator:${Versions.qrGenerate}"
-    const val mapbox = "com.mapbox.maps:android:${Versions.mapbox}"
+//    const val mapbox = "com.mapbox.maps:android:${Versions.mapbox}"
+//    const val mapboxSdk = "com.mapbox.mapboxsdk:DESIRED_JAVA_SDK_PACKAGE:${Versions.mapboxSdk}"
+    const val mapboxMapSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:${Versions.mapboxMapSdk}"
+    const val mapboxService = "com.mapbox.mapboxsdk:mapbox-sdk-services:${Versions.mapboxJavaSdk}"
 }
 
 object TestLibraries {

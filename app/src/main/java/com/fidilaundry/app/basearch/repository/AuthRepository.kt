@@ -25,7 +25,7 @@ class AuthRepositoryImpl(private val api: EndpointsNoAuth, private val paperPref
                     UseCaseResult.Success(result)
                 }
                 else -> {
-                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                    result.results?.message?.let { UseCaseResult.Failed(it) }
                 }
             }
         }

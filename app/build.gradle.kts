@@ -70,7 +70,7 @@ android {
 
             defaultConfig {
                 manifestPlaceholders.putAll(mapOf(
-                    "onesignal_app_id" to "58841145-2ef1-4393-852a-dfdae61205ee",
+                    "onesignal_app_id" to "c158a527-d10e-4544-b9e8-ae1d579d3b25",
                     "onesignal_google_project_number" to "331937417858"
                 ))
             }
@@ -220,7 +220,9 @@ dependencies {
     implementation(Libraries.qrGenerator)
 
     /* Mapbox */
-    implementation(Libraries.mapbox)
+//    implementation(Libraries.mapbox)
+    implementation(Libraries.mapboxMapSdk)
+    implementation(Libraries.mapboxService)
 
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)

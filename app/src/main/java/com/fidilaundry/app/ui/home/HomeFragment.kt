@@ -129,17 +129,26 @@ class HomeFragment : BaseFragment() {
 
         binding.btnSetrika.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserOrderActivity::class.java)
+            activity?.intent?.putExtra("idService", 4)
             startActivity(activity?.intent)
         }
 
         binding.btnCusek.setSafeOnClickListener {
-            activity?.intent = Intent(activity, UserComplaintActivity::class.java)
+            activity?.intent = Intent(activity, UserOrderActivity::class.java)
+            activity?.intent?.putExtra("idService", 3)
             startActivity(activity?.intent)
         }
 
         binding.btnCuba.setSafeOnClickListener {
-            binding.layoutAdmin.visibility = View.GONE
-            binding.layoutUser.visibility = View.VISIBLE
+            activity?.intent = Intent(activity, UserOrderActivity::class.java)
+            activity?.intent?.putExtra("idService", 2)
+            startActivity(activity?.intent)
+        }
+
+        binding.btnCuker.setSafeOnClickListener {
+            activity?.intent = Intent(activity, UserOrderActivity::class.java)
+            activity?.intent?.putExtra("idService", 1)
+            startActivity(activity?.intent)
         }
     }
 
