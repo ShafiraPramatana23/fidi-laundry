@@ -31,7 +31,7 @@ object BuildPlugins {
 
 object AndroidSdk {
     const val minSdk = 21
-    const val compile = 30
+    const val compile = 31
     const val target = compile
     const val versionCode = 21
     const val versionName = "0.22"
@@ -98,6 +98,7 @@ object Libraries {
         const val scanner = "2.3.2"
         const val timeline = "1.1.3"
         const val qrGenerate = "1.0.1"
+        const val mapbox = "10.14.1"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -152,6 +153,7 @@ object Libraries {
     const val scanner = "com.github.yuriy-budiyev:code-scanner:${Versions.scanner}"
     const val timelineView = "com.github.vipulasri:timelineview:${Versions.timeline}"
     const val qrGenerator = "com.github.androidmads:QRGenerator:${Versions.qrGenerate}"
+    const val mapbox = "com.mapbox.maps:android:${Versions.mapbox}"
 }
 
 object TestLibraries {

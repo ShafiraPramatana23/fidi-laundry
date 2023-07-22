@@ -9,4 +9,7 @@
     <integer name="font_style_bold">13</integer>
 
     <string name="loadingWithThreeDots">Loading…</string>
+
+<!--    Key-->
+    <string name="mapbox_access_token">pk.eyJ1Ijoia2xlbnRpbmdyIiwiYSI6ImNrcTFhMmEwYzA4MGYydXFzdzRocnVxZm4ifQ.2BaSyLr8v05mNtGEumIDQQ</string>
 </resources>

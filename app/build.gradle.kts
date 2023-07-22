@@ -219,6 +219,9 @@ dependencies {
     /* QR Generator */
     implementation(Libraries.qrGenerator)
 
+    /* Mapbox */
+    implementation(Libraries.mapbox)
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)
