@@ -1,9 +1,9 @@
 package com.fidilaundry.app.model.request
 
 class UpdateItemRequest (
-        var id: String,
+        var id: Int,
         var title: String,
         var category_id: String,
         var service_id: String,
-        var price: Double
+        var price: Int
 )

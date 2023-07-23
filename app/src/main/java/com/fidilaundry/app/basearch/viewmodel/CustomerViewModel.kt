@@ -10,6 +10,7 @@ import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.AddCustomerRequest
 import com.fidilaundry.app.model.request.RegisterRequest
 import com.fidilaundry.app.model.response.BaseResponse
+import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.model.response.LoginResponse
 import com.fidilaundry.app.util.TextCheckerFormater
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
@@ -20,6 +21,7 @@ import kotlinx.coroutines.withContext
 class CustomerViewModel(private val customerRepository: CustomerRepository) : BaseViewModel() {
 
     val addResponse = SingleLiveEvent<BaseResponse>()
+    val custResponse = SingleLiveEvent<CustomerListResponse>()
 
     val fullname = NonNullMutableLiveData("")
     val email = NonNullMutableLiveData("")
@@ -43,6 +45,25 @@ class CustomerViewModel(private val customerRepository: CustomerRepository) : Ba
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> addResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getCustomer() {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                customerRepository.getCustomer()
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> custResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =

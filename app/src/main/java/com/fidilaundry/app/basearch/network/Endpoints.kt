@@ -15,8 +15,8 @@ interface Endpoints {
         @Body req: AddCustomerRequest
     ): BaseResponse
 
-//    @POST("master/category/list-all")
-//    suspend fun getCustomerList(@Header("Authorization") auth: String): ProfileResponse
+    @POST("customer/list")
+    suspend fun getCustomerList(@Header("Authorization") auth: String): CustomerListResponse
 
     @GET("master/service/list-all")
     suspend fun getServiceList(@Header("Authorization") auth: String): ServiceListResponse
