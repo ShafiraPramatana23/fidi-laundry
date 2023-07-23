@@ -63,7 +63,6 @@
                 android:hint="Masukkan item"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={vm.loginUsername}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
                 app:fontName="@string/font_name_dmsans" />

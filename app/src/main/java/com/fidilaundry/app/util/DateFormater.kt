@@ -140,26 +140,26 @@ fun DateFormaterFromMonthName(string: String): String {
     return utcTime.toString()
 }
 
-fun DateTimeFormater(string: String): String {
-    val dateFormat =
-        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    dateFormat.timeZone = TimeZone.getTimeZone("Etc/GMT")
-    var convertedDate: Date? = Date()
-    try {
-        convertedDate = dateFormat.parse(string)
-    } catch (e: ParseException) {
-        e.printStackTrace()
-    }
-
-    val calendar = Calendar.getInstance()
-    calendar.time = convertedDate
-    val time = calendar.time
-    val outputFmt =
-        SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-    val utcTime = outputFmt.format(time)
-
-    return utcTime.toString()
-}
+//fun DateTimeFormater(string: String): String {
+//    val dateFormat =
+//        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+//    dateFormat.timeZone = TimeZone.getTimeZone("Etc/GMT")
+//    var convertedDate: Date? = Date()
+//    try {
+//        convertedDate = dateFormat.parse(string)
+//    } catch (e: ParseException) {
+//        e.printStackTrace()
+//    }
+//
+//    val calendar = Calendar.getInstance()
+//    calendar.time = convertedDate
+//    val time = calendar.time
+//    val outputFmt =
+//        SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//    val utcTime = outputFmt.format(time)
+//
+//    return utcTime.toString()
+//}
 
 fun DateTimeValidityFormater(string: String): String {
     val dateFormat =
@@ -336,7 +336,7 @@ fun MatahariFormater(string: String): String {
     return output.toString()
 }
 
-fun DateTimeNotifFormater(string: String): String {
+fun DateTimeFormater(string: String): String {
     val dateFormat =
         SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     dateFormat.timeZone = TimeZone.getTimeZone("Etc/GMT")

@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.home.order.interfacesimport com.fidilaundry.app.model.response.OrderListResponseinterface IFOrder {    fun onItemClick(data: OrderListResponse.Result)    fun onDialogDismiss()}

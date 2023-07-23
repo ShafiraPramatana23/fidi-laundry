@@ -58,6 +58,15 @@
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_semibold" />
 
+                    <ImageView
+                        android:id="@+id/ivSearch"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_baseline_search_24"
+                        app:tint="@color/black" />
+
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>

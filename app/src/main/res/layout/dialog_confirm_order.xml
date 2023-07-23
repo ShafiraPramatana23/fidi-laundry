@@ -133,7 +133,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
                 android:clipChildren="false"
-                android:text="Konfirm"
+                android:text="Konfirmasi"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"

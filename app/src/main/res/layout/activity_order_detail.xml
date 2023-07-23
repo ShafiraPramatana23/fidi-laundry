@@ -141,6 +141,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvOrderId"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -171,6 +172,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvDate"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -202,6 +204,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvName"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -233,6 +236,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvAddress"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -264,6 +268,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvService"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -295,6 +300,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvType"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -423,6 +429,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvSubTotal"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -437,6 +444,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/llFee"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_6sdp"
@@ -454,6 +462,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvFee"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -485,6 +494,7 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvTotal"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"

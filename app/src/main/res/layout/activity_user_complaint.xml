@@ -114,7 +114,6 @@
                             android:hint="Pilih salah satu"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:text="@={vm.loginUsername}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
@@ -157,7 +156,6 @@
                             android:hint="Masukkan keluhan Anda ..."
                             android:inputType="text|textMultiLine"
                             android:gravity="top"
-                            android:text="@={vm.loginUsername}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />

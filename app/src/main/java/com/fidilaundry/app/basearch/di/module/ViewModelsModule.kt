@@ -8,7 +8,7 @@ import org.koin.dsl.module
 val viewModelsModule = module {
     viewModel { LoginViewModel(authRepository = get(), profileRepository = get()) }
     viewModel { RegisterViewModel(authRepository = get()) }
-    viewModel { HomeViewModel(authRepository = get()) }
+    viewModel { HomeViewModel(authRepository = get(), orderRepository = get()) }
     viewModel { ProfileViewModel(authRepository = get()) }
     viewModel { OrderViewModel(orderRepository = get()) }
     viewModel { MasterViewModel(masterRepository = get()) }

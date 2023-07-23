@@ -9,9 +9,13 @@ import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemConfirmOrderBinding
 import com.fidilaundry.app.databinding.ItemSatuanBinding
 import com.fidilaundry.app.model.response.ItemListResponse
+import com.fidilaundry.app.model.response.OrderListResponse
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
+import com.fidilaundry.app.ui.home.order.interfaces.IFOrder
 import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
 import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
+import com.fidilaundry.app.util.DateFormater
+import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.dialog.DialogConfirmOrder
 import com.fidilaundry.app.util.dialog.DialogDropdown
 import com.fidilaundry.app.util.setSafeOnClickListener
@@ -19,13 +23,13 @@ import java.util.ArrayList
 
 class ConfirmOrderAdapter(
     private val context: Context?,
-    private val inf: IFItemClick
+    private val inf: IFOrder
 ) : RecyclerView.Adapter<ConfirmOrderAdapter.ViewHolder>() {
 
-    private var appList: List<String>
+    private var appList: List<OrderListResponse.Result>
     lateinit var paperPrefs: PaperPrefs
 
-    fun updateList(appList: List<String>) {
+    fun updateList(appList: List<OrderListResponse.Result>) {
         this.appList = appList
         notifyDataSetChanged()
     }
@@ -48,9 +52,12 @@ class ConfirmOrderAdapter(
     inner class ViewHolder(private val binding: ItemConfirmOrderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             val app = appList[position]
+            binding.tvTitle.text = "Order - "
+            binding.tvName.text = app.serviceID.toString()
+            binding.tvDate.text = DateTimeFormater(app.createdAt!!)
 
             itemView.setSafeOnClickListener {
-                inf.onItemClick()
+                inf.onItemClick(app)
             }
         }
     }

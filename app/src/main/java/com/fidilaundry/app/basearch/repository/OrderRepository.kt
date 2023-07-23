@@ -5,14 +5,16 @@ import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.network.Endpoints
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.model.request.OrderRequest
-import com.fidilaundry.app.model.response.BaseObjResponse
-import com.fidilaundry.app.model.response.BaseResponse
-import com.fidilaundry.app.model.response.ItemListResponse
+import com.fidilaundry.app.model.request.UpdateOrderRequest
+import com.fidilaundry.app.model.response.*
 import com.fidilaundry.app.util.Constant
 
 interface OrderRepository {
     suspend fun getItemByService(id: Int): UseCaseResult<ItemListResponse>
     suspend fun requestOrder(req: OrderRequest): UseCaseResult<BaseObjResponse>
+    suspend fun updateOrder(req: UpdateOrderRequest): UseCaseResult<BaseResponse>
+    suspend fun getOrderList(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
+    suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse>
 }
 
 class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: PaperPrefs) :
@@ -52,4 +54,62 @@ class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: Pa
             UseCaseResult.Error(ex)
         }!!
     }
+
+    override suspend fun updateOrder(req: UpdateOrderRequest): UseCaseResult<BaseResponse> {
+        return try {
+            val contentType = "application/json"
+            val result = api.updateOrder(paperPrefs.getToken(), contentType, req)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
+    override suspend fun getOrderList(
+        custId: String,
+        serviceId: String,
+        step: String,
+        status: String
+    ): UseCaseResult<OrderListResponse> {
+        return try {
+            val result = api.getOrderList(paperPrefs.getToken(), custId, serviceId, step, status)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
+    override suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse> {
+        return try {
+            val result = api.getOrderDetail(paperPrefs.getToken(), id)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
 }

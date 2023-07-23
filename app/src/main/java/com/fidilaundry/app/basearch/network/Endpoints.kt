@@ -60,4 +60,26 @@ interface Endpoints {
         @Header("Content-Type") contentType: String,
         @Body req: OrderRequest
     ): BaseObjResponse
+
+    @POST("order/update")
+    suspend fun updateOrder(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: UpdateOrderRequest
+    ): BaseResponse
+
+    @GET("order/list-all?")
+    suspend fun getOrderList(
+        @Header("Authorization") auth: String,
+        @Query("cust_id") custItem: String,
+        @Query("service_id") serviceId: String,
+        @Query("step") step: String,
+        @Query("status") status: String
+    ): OrderListResponse
+
+    @GET("order/show/{id}")
+    suspend fun getOrderDetail(
+        @Header("Authorization") auth: String,
+        @Path("id") id: String
+    ): OrderDetailResponse
 }

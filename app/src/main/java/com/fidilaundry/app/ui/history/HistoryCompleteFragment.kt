@@ -56,7 +56,7 @@ class HistoryCompleteFragment : BaseFragment() {
         binding.rv.layoutManager =
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 0)
         binding.rv.addItemDecoration(ListDivideritemDecoration(requireContext()))
-        adapter?.updateList(historyList)
+//        adapter?.updateList(historyList)
     }
 
     private val historyList: List<HistoryData>

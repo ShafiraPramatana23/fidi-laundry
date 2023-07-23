@@ -11,13 +11,15 @@ import com.bumptech.glide.Glide
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.R
 import com.fidilaundry.app.databinding.ItemHistoryBinding
+import com.fidilaundry.app.model.response.OrderListResponse
+import com.fidilaundry.app.util.DateTimeFormater
 import kotlin.math.roundToInt
 
 class HistoryAdapter(private val context: Context?) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
-    private var appList: List<HistoryData>
+    private var appList: List<OrderListResponse.Result>
 
-    fun updateList(appList: List<HistoryData>) {
+    fun updateList(appList: List<OrderListResponse.Result>) {
         this.appList = appList
         notifyDataSetChanged()
     }
@@ -39,13 +41,11 @@ class HistoryAdapter(private val context: Context?) :
         fun onBind(position: Int) {
             val app = appList[position]
 
-            binding.tvType.text = app.title
-            binding.tvDate.text = app.date
-            binding.tvTotal.text = app.total.toString()
+            binding.tvType.text = app.serviceID.toString()
+            binding.tvDate.text = DateTimeFormater(app.createdAt!!)
+            binding.tvStatus.text = app.status
+//            binding.tvTotal.text = app.total.toString()
 
-            /*Glide.with(context!!)
-                .load(app.iconNotif)
-                .into(binding.ivIcon)*/
         }
     }
 
