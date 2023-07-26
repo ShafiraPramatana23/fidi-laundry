@@ -14,6 +14,7 @@ interface OrderRepository {
     suspend fun requestOrder(req: OrderRequest): UseCaseResult<BaseObjResponse>
     suspend fun updateOrder(req: UpdateOrderRequest): UseCaseResult<BaseResponse>
     suspend fun getOrderList(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
+    suspend fun getOrderListCust(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
     suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse>
 }
 
@@ -81,6 +82,28 @@ class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: Pa
     ): UseCaseResult<OrderListResponse> {
         return try {
             val result = api.getOrderList(paperPrefs.getToken(), custId, serviceId, step, status)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
+    override suspend fun getOrderListCust(
+        custId: String,
+        serviceId: String,
+        step: String,
+        status: String
+    ): UseCaseResult<OrderListResponse> {
+        return try {
+            val result = api.getOrderListCust(paperPrefs.getToken())
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

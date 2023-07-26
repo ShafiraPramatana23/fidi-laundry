@@ -77,6 +77,15 @@ interface Endpoints {
         @Query("status") status: String
     ): OrderListResponse
 
+    @GET("order/auth-user")
+    suspend fun getOrderListCust(
+        @Header("Authorization") auth: String
+//        @Query("cust_id") custItem: String,
+//        @Query("service_id") serviceId: String,
+//        @Query("step") step: String,
+//        @Query("status") status: String
+    ): OrderListResponse
+
     @GET("order/show/{id}")
     suspend fun getOrderDetail(
         @Header("Authorization") auth: String,

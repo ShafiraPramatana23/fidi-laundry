@@ -15,6 +15,7 @@ import kotlinx.coroutines.withContext
 class HomeViewModel(private val authRepository: AuthRepository, private val orderRepository: OrderRepository) : BaseViewModel() {
 
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
+    val orderListCustResponse = SingleLiveEvent<OrderListResponse>()
 
     fun getOrderList(custId: String, serviceId: String, step: String, status: String) {
         showProgressLiveData.postValue(true)
@@ -27,6 +28,25 @@ class HomeViewModel(private val authRepository: AuthRepository, private val orde
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> orderListResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getOrderListCust(custId: String, serviceId: String, step: String, status: String) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                orderRepository.getOrderListCust(custId, serviceId, step, status)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> orderListCustResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =

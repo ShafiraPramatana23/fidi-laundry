@@ -3,6 +3,7 @@ package com.fidilaundry.app.model.response
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
 class OrderListResponse {
     @SerializedName("Results")
     @Expose
@@ -56,6 +57,10 @@ class OrderListResponse {
         @SerializedName("Stepping")
         @Expose
         var stepping: String? = null
+
+        @SerializedName("User")
+        @Expose
+        var user: User? = null
     }
 
     class Status {
@@ -66,5 +71,35 @@ class OrderListResponse {
         @SerializedName("Message")
         @Expose
         var message: String? = null
+    }
+
+    class User {
+        @SerializedName("ID")
+        @Expose
+        var id: Int? = null
+
+        @SerializedName("CreatedAt")
+        @Expose
+        var createdAt: String? = null
+
+        @SerializedName("Name")
+        @Expose
+        var name: String? = null
+
+        @SerializedName("Uniq")
+        @Expose
+        var uniq: String? = null
+
+        @SerializedName("Email")
+        @Expose
+        var email: String? = null
+
+        @SerializedName("Phone")
+        @Expose
+        var phone: String? = null
+
+        @SerializedName("Role")
+        @Expose
+        var role: String? = null
     }
 }

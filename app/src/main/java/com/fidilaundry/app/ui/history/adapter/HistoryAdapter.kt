@@ -13,6 +13,7 @@ import com.fidilaundry.app.R
 import com.fidilaundry.app.databinding.ItemHistoryBinding
 import com.fidilaundry.app.model.response.OrderListResponse
 import com.fidilaundry.app.util.DateTimeFormater
+import com.fidilaundry.app.util.ServiceCtgHelper
 import kotlin.math.roundToInt
 
 class HistoryAdapter(private val context: Context?) :
@@ -41,7 +42,7 @@ class HistoryAdapter(private val context: Context?) :
         fun onBind(position: Int) {
             val app = appList[position]
 
-            binding.tvType.text = app.serviceID.toString()
+            binding.tvType.text = ServiceCtgHelper().getServiceName(app.serviceID.toString())
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
             binding.tvStatus.text = app.status
 //            binding.tvTotal.text = app.total.toString()

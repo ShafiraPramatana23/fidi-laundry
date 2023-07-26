@@ -109,8 +109,8 @@ class HomeFragment : BaseFragment() {
         }
 
         layAdmin.tvSeeAllAdmin.setSafeOnClickListener {
-//            layAdmin.visibility = View.GONE
-//            binding.layoutUser.visibility = View.VISIBLE
+            activity?.intent = Intent(activity, OrderListActivity::class.java)
+            startActivity(activity?.intent)
         }
 
         layAdmin.tvOrder.setSafeOnClickListener {
@@ -138,7 +138,7 @@ class HomeFragment : BaseFragment() {
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 0)
         rvActive.addItemDecoration(ListDivideritemDecoration(requireContext()))
 
-        viewModel.getOrderList("", "", "", "")
+        viewModel.getOrderListCust("", "", "", "")
 
         binding.btnSetrika.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserOrderActivity::class.java)
@@ -170,6 +170,10 @@ class HomeFragment : BaseFragment() {
             handleWhenListSuccess(it)
         })
 
+        viewModel.orderListCustResponse.observe(this, Observer {
+            handleWhenListCustSuccess(it)
+        })
+
         viewModel.showProgressLiveData.observe(this, Observer { showLoading ->
             if (showLoading) {
                 if(loadingDialog != null){
@@ -188,6 +192,16 @@ class HomeFragment : BaseFragment() {
         viewModel.showError.observe(this, Observer { showError ->
             ErrorMessage(requireActivity(), "", showError)
         })
+    }
+
+    private fun handleWhenListCustSuccess(it: OrderListResponse?) {
+        historyAdapter?.updateList(it?.results!!)
+
+        if (it?.results?.size != 0) {
+            binding.llEmpty .visibility = View.GONE
+        } else {
+            binding.llEmpty.visibility = View.VISIBLE
+        }
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {

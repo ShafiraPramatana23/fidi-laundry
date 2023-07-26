@@ -16,6 +16,7 @@ import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
 import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
 import com.fidilaundry.app.util.DateFormater
 import com.fidilaundry.app.util.DateTimeFormater
+import com.fidilaundry.app.util.ServiceCtgHelper
 import com.fidilaundry.app.util.dialog.DialogConfirmOrder
 import com.fidilaundry.app.util.dialog.DialogDropdown
 import com.fidilaundry.app.util.setSafeOnClickListener
@@ -52,8 +53,8 @@ class ConfirmOrderAdapter(
     inner class ViewHolder(private val binding: ItemConfirmOrderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             val app = appList[position]
-            binding.tvTitle.text = "Order - "
-            binding.tvName.text = app.serviceID.toString()
+            binding.tvTitle.text = "Order - ${ServiceCtgHelper().getServiceName(app.serviceID.toString())}"
+            binding.tvName.text = app.user?.name
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
 
             itemView.setSafeOnClickListener {
