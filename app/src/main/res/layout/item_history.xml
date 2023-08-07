@@ -19,7 +19,6 @@
             <RelativeLayout
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="center"
                 android:background="@drawable/rounded_green_10">
 
                 <ImageView
@@ -49,7 +48,7 @@
                         android:includeFontPadding="false"
                         android:text="Cuci Setrika"
                         android:textColor="@color/blackHistory"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_11sdp"
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_semibold" />
 
@@ -61,7 +60,7 @@
                         android:includeFontPadding="false"
                         android:text="15 Jun 2022 11:11"
                         android:textColor="@color/grey_text"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_9sdp"
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_reguler" />
 
@@ -73,7 +72,7 @@
                         android:includeFontPadding="false"
                         android:text="Status : Setrika"
                         android:textColor="@color/grey_text"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_9sdp"
                         app:fontName="@string/font_name_dmsans"
                         app:textStyle="@integer/font_style_reguler" />
 
@@ -87,7 +86,7 @@
                     android:includeFontPadding="false"
                     android:text="Rp 0"
                     android:textColor="@color/blackHistory"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_11sdp"
                     app:fontName="@string/font_name_dmsans"
                     app:textStyle="@integer/font_style_semibold" />
             </RelativeLayout>

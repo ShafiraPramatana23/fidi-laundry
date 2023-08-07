@@ -1,5 +1,6 @@
 package com.fidilaundry.app.basearch.viewmodel
 
+import android.text.Editable
 import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.basearch.repository.OrderRepository
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
@@ -7,6 +8,7 @@ import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.model.request.UpdateOrderRequest
+import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.*
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +18,9 @@ import kotlinx.coroutines.withContext
 class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewModel() {
 
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
-    val orderResponse = SingleLiveEvent<BaseObjResponse>()
+    val orderResponse = SingleLiveEvent<BaseResponse>()
     val updateOrderResponse = SingleLiveEvent<BaseResponse>()
+    val updateOrderStatusResponse = SingleLiveEvent<BaseResponse>()
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
     val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
 
@@ -66,6 +69,8 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     }
 
     fun updateOrder(req: UpdateOrderRequest) {
+        println("hahahaaa: "+req.toString())
+
         showProgressLiveData.postValue(true)
 
         scope.launch {
@@ -76,6 +81,28 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> updateOrderResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> {
+                    println("huhuy what: "+response.exception.message)
+                    showError.value =
+                        Utils.handleException(response.exception)
+                }
+            }
+        }
+    }
+
+    fun updateOrderStatus(req: UpdateOrderStatusRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                orderRepository.updateOrderStatus(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> updateOrderStatusResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> {
@@ -122,6 +149,14 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Error -> showError.value =
                     Utils.handleException(response.exception)
             }
+        }
+    }
+
+    fun onKiloan(e: Editable) {
+        if (e.toString() == "") {
+            kiloan.value = "0"
+        } else {
+            kiloan.value = e.toString()
         }
     }
 }

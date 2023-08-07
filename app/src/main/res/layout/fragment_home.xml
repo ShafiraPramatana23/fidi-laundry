@@ -254,7 +254,7 @@
                                 android:includeFontPadding="false"
                                 android:text="Pesanan Aktif"
                                 android:textColor="@color/blackHistory"
-                                android:textSize="@dimen/_10sdp"
+                                android:textSize="@dimen/_12sdp"
                                 app:fontName="@string/font_name_dmsans"
                                 app:textStyle="@integer/font_style_semibold" />
 
@@ -266,7 +266,7 @@
                                 android:includeFontPadding="false"
                                 android:text="Lihat Semua"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="@dimen/_10sdp"
+                                android:textSize="@dimen/_12sdp"
                                 app:fontName="@string/font_name_dmsans"
                                 app:textStyle="@integer/font_style_bold" />
                         </RelativeLayout>

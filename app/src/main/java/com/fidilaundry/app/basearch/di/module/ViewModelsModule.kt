@@ -14,4 +14,5 @@ val viewModelsModule = module {
     viewModel { MasterViewModel(masterRepository = get()) }
     viewModel { CustomerViewModel(customerRepository = get()) }
     viewModel { ComplaintViewModel(complaintRepository = get()) }
+    viewModel { HistoryViewModel(historyRepository = get()) }
 }

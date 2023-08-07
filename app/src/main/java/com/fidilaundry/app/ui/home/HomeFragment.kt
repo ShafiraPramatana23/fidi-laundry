@@ -18,10 +18,7 @@ import com.fidilaundry.app.ui.complaint.UserComplaintActivity
 import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.ui.home.master.MasterActivity
-import com.fidilaundry.app.ui.home.order.AdminOrderActivity
-import com.fidilaundry.app.ui.home.order.OrderDetailActivity
-import com.fidilaundry.app.ui.home.order.OrderListActivity
-import com.fidilaundry.app.ui.home.order.UserOrderActivity
+import com.fidilaundry.app.ui.home.order.*
 import com.fidilaundry.app.ui.scanner.ScannerActivity
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
@@ -153,8 +150,8 @@ class HomeFragment : BaseFragment() {
         }
 
         binding.btnCuba.setSafeOnClickListener {
-            activity?.intent = Intent(activity, UserOrderActivity::class.java)
-            activity?.intent?.putExtra("idService", 2)
+            activity?.intent = Intent(activity, AdminOrderMapsActivity::class.java)
+//            activity?.intent?.putExtra("idService", 2)
             startActivity(activity?.intent)
         }
 

@@ -47,4 +47,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<HistoryRepository> {
+        HistoryRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

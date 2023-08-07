@@ -13,6 +13,7 @@ import com.fidilaundry.app.databinding.DialogAddDataBinding
 import com.fidilaundry.app.databinding.DialogConfirmOrderBinding
 import com.fidilaundry.app.databinding.DialogServiceBinding
 import com.fidilaundry.app.model.request.UpdateOrderRequest
+import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.BaseObjResponse
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.OrderListResponse
@@ -22,6 +23,7 @@ import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.ui.home.order.interfaces.IFOrder
 import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.LoadingDialog
+import com.fidilaundry.app.util.StatusHelper
 import com.fidilaundry.app.util.fdialog.ErrorMessage
 import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -67,14 +69,17 @@ class DialogConfirmOrder(
         }
 
         binding.btnConfirm.setSafeOnClickListener {
-            viewModel.updateOrder(UpdateOrderRequest(
-                data.code!!, "penjemputan", data.latitude!!, data.longitude!!, "penjemputan"
+            viewModel.updateOrderStatus(UpdateOrderStatusRequest(
+                data.code!!, StatusHelper.setStatus("pending")
             ))
+//            viewModel.updateOrder(UpdateOrderRequest(
+//                data.code!!, "penjemputan", data.latitude!!, data.longitude!!, "penjemputan"
+//            ))
         }
     }
 
     private fun initViewModel() {
-        viewModel.updateOrderResponse.observe(this, Observer {
+        viewModel.updateOrderStatusResponse.observe(this, Observer {
             handleWhenUpdateSuccess(it)
         })
 

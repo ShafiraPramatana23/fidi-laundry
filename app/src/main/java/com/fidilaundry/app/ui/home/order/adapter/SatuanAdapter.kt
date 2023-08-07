@@ -3,6 +3,7 @@ package com.fidilaundry.app.ui.home.order.adapter
 import android.content.Context
 import android.text.InputType
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
@@ -43,6 +44,17 @@ class SatuanAdapter(
     inner class ViewHolder(private val binding: ItemSatuanBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             val app = appList[position]
+
+            if (app.categoryID == "2") {
+                itemView.visibility = View.GONE
+                itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
+            } else {
+                itemView.visibility = View.VISIBLE
+                itemView.layoutParams = RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
 
             binding.etQty.inputType = InputType.TYPE_NULL
             binding.tvName.text = app.title

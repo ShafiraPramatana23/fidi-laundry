@@ -1,6 +1,7 @@
 package com.fidilaundry.app.ui.history.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +11,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.R
+import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemHistoryBinding
 import com.fidilaundry.app.model.response.OrderListResponse
+import com.fidilaundry.app.model.response.ProfileResponse
+import com.fidilaundry.app.ui.home.order.AdminOrderActivity
+import com.fidilaundry.app.ui.home.order.OrderDetailActivity
 import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.ServiceCtgHelper
+import com.fidilaundry.app.util.setSafeOnClickListener
 import kotlin.math.roundToInt
 
 class HistoryAdapter(private val context: Context?) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     private var appList: List<OrderListResponse.Result>
+
+    lateinit var paperPref: PaperPrefs
+    private var profileData: ProfileResponse.Results? = null
 
     fun updateList(appList: List<OrderListResponse.Result>) {
         this.appList = appList
@@ -27,6 +36,10 @@ class HistoryAdapter(private val context: Context?) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        paperPref = PaperPrefs(context!!)
+        profileData = paperPref.getDataProfile()
+
         return ViewHolder(binding)
     }
 
@@ -47,6 +60,22 @@ class HistoryAdapter(private val context: Context?) :
             binding.tvStatus.text = app.status
 //            binding.tvTotal.text = app.total.toString()
 
+            itemView.setSafeOnClickListener {
+                if (profileData?.role == "customer" || profileData?.role == "member") {
+                    val intent = Intent(context, OrderDetailActivity::class.java)
+                    intent.putExtra("transId", app.code)
+                    context!!.startActivity(intent)
+                } else {
+                    if (app.status == "pending") {
+
+                    } else {
+                        val intent = Intent(context, AdminOrderActivity::class.java)
+                        intent.putExtra("transId", app.code)
+                        intent.putExtra("serviceId", app.serviceID)
+                        context!!.startActivity(intent)
+                    }
+                }
+            }
         }
     }
 

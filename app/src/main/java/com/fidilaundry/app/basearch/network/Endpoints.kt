@@ -59,13 +59,20 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: OrderRequest
-    ): BaseObjResponse
+    ): BaseResponse
 
     @POST("order/update")
     suspend fun updateOrder(
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: UpdateOrderRequest
+    ): BaseResponse
+
+    @POST("order/update/status")
+    suspend fun updateOrderStatus(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: UpdateOrderStatusRequest
     ): BaseResponse
 
     @GET("order/list-all?")

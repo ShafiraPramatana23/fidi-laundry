@@ -144,6 +144,7 @@
                             </RelativeLayout>
 
                             <com.fidilaundry.app.util.FontTextView
+                                android:id="@+id/tvAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lorem ipsum blabla"
@@ -155,20 +156,40 @@
 
                     </LinearLayout>
 
-                    <com.fidilaundry.app.util.FontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:text="Kategori Cuci"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="horizontal">
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Kategori Cuci"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold" />
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvService"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Cuba"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/bg_input_text">
 
                         <com.fidilaundry.app.util.FontEditText
@@ -245,7 +266,8 @@
                                 android:maxLines="1"
                                 android:paddingHorizontal="@dimen/_16sdp"
                                 android:paddingVertical="@dimen/_8sdp"
-                                android:text="@={vm.kiloan}"
+                                android:text="@{vm.kiloan}"
+                                android:afterTextChanged="@{vm::onKiloan}"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
@@ -254,21 +276,21 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <LinearLayout
+                    <com.fidilaundry.app.util.FontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
-                        android:orientation="horizontal">
+                        android:text="Layanan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_semibold" />
 
-                        <com.fidilaundry.app.util.FontTextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:text="Layanan"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:fontName="@string/font_name_dmsans"
-                            app:textStyle="@integer/font_style_semibold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:orientation="horizontal">
 
                         <com.fidilaundry.app.util.FontTextView
                             android:id="@+id/tvLayanan"
@@ -276,6 +298,17 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
                             android:text="Antar - Jemput"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold" />
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvLayananVal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Rp 5000"
                             android:textAlignment="textEnd"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
