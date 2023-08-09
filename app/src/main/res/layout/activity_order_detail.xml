@@ -146,7 +146,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="12356"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -177,7 +177,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="13 Oktober 2023 11:11"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -209,7 +209,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Shafira"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -241,7 +241,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Melian"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -273,7 +273,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Cuci Kering"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -305,7 +305,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Antar - Jemput"
+                                    android:text="-"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -357,7 +357,7 @@
                                 android:textColor="@color/blackHistory"
                                 android:textSize="@dimen/_10sdp"
                                 app:fontName="@string/font_name_dmsans"
-                                app:textStyle="@integer/font_style_reguler" />
+                                app:textStyle="@integer/font_style_semibold" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -366,6 +366,7 @@
                                 android:orientation="horizontal">
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvValKiloan"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -377,11 +378,12 @@
                                     app:textStyle="@integer/font_style_semibold" />
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvTotalKiloan"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Rp 20.000"
+                                    android:text="Rp 0"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -398,8 +400,7 @@
                                 android:textColor="@color/blackHistory"
                                 android:textSize="@dimen/_10sdp"
                                 app:fontName="@string/font_name_dmsans"
-                                app:textStyle="@integer/font_style_reguler" />
-
+                                app:textStyle="@integer/font_style_semibold" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvSatuan"
@@ -434,7 +435,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Rp 47.000"
+                                    android:text="Rp 0"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"
@@ -451,6 +452,7 @@
                                 android:orientation="horizontal">
 
                                 <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvLayanan"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
@@ -462,12 +464,12 @@
                                     app:textStyle="@integer/font_style_reguler" />
 
                                 <com.fidilaundry.app.util.FontTextView
-                                    android:id="@+id/tvFee"
+                                    android:id="@+id/tvValLayanan"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5"
                                     android:includeFontPadding="false"
-                                    android:text="Rp 5.000"
+                                    android:text="Rp 0"
                                     android:textAlignment="textEnd"
                                     android:textColor="@color/blackHistory"
                                     android:textSize="@dimen/_10sdp"

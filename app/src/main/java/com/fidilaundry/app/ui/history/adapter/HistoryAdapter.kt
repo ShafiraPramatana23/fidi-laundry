@@ -57,7 +57,7 @@ class HistoryAdapter(private val context: Context?) :
 
             binding.tvType.text = ServiceCtgHelper().getServiceName(app.serviceID.toString())
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
-            binding.tvStatus.text = app.status
+            binding.tvStatus.text = app.status?.capitalize()
 //            binding.tvTotal.text = app.total.toString()
 
             itemView.setSafeOnClickListener {
@@ -68,6 +68,10 @@ class HistoryAdapter(private val context: Context?) :
                 } else {
                     if (app.status == "pending") {
 
+                    } else if (app.status == "pengerjaan") {
+                        val intent = Intent(context, OrderDetailActivity::class.java)
+                        intent.putExtra("transId", app.code)
+                        context!!.startActivity(intent)
                     } else {
                         val intent = Intent(context, AdminOrderActivity::class.java)
                         intent.putExtra("transId", app.code)

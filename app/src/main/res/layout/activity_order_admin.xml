@@ -170,7 +170,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
-                            app:textStyle="@integer/font_style_semibold" />
+                            app:textStyle="@integer/font_style_reguler" />
 
                         <com.fidilaundry.app.util.FontTextView
                             android:id="@+id/tvService"
@@ -182,7 +182,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
-                            app:textStyle="@integer/font_style_reguler" />
+                            app:textStyle="@integer/font_style_semibold" />
 
                     </LinearLayout>
 
@@ -222,12 +222,12 @@
                     <com.fidilaundry.app.util.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:text="Item Satuan"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
+                        app:textStyle="@integer/font_style_reguler" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvSatuan"
@@ -237,7 +237,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:orientation="horizontal">
 
                         <com.fidilaundry.app.util.FontTextView
@@ -249,7 +249,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
-                            app:textStyle="@integer/font_style_semibold" />
+                            app:textStyle="@integer/font_style_reguler" />
 
                         <RelativeLayout
                             android:layout_width="@dimen/_80sdp"
@@ -276,20 +276,50 @@
                         </RelativeLayout>
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:orientation="horizontal">
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Sub Total"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_reguler" />
+
+                        <com.fidilaundry.app.util.FontTextView
+                            android:id="@+id/tvSubTotal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="Rp 0"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_semibold" />
+
+                    </LinearLayout>
+
                     <com.fidilaundry.app.util.FontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:text="Layanan"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
+                        app:textStyle="@integer/font_style_reguler" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:orientation="horizontal">
 
                         <com.fidilaundry.app.util.FontTextView
@@ -313,7 +343,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
-                            app:textStyle="@integer/font_style_reguler" />
+                            app:textStyle="@integer/font_style_semibold" />
 
                     </LinearLayout>
 

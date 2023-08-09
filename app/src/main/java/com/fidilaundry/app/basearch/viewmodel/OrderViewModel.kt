@@ -69,8 +69,6 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     }
 
     fun updateOrder(req: UpdateOrderRequest) {
-        println("hahahaaa: "+req.toString())
-
         showProgressLiveData.postValue(true)
 
         scope.launch {
@@ -153,10 +151,11 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     }
 
     fun onKiloan(e: Editable) {
-        if (e.toString() == "") {
-            kiloan.value = "0"
-        } else {
-            kiloan.value = e.toString()
-        }
+        kiloan.value = e.toString()
+//        if (e.toString() == "") {
+//            kiloan.value = "0"
+//        } else {
+//            kiloan.value = e.toString()
+//        }
     }
 }

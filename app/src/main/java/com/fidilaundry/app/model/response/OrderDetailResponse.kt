@@ -71,6 +71,10 @@ class OrderDetailResponse {
         @Expose
         var user: User? = null
 
+        @SerializedName("OrderFor")
+        @Expose
+        var orderFor: OrderFor? = null
+
         @SerializedName("Tracking")
         @Expose
         var tracking: List<Any>? = null
@@ -156,5 +160,39 @@ class OrderDetailResponse {
         @SerializedName("Price")
         @Expose
         var price: Int? = null
+    }
+
+    class OrderFor {
+        @SerializedName("ID")
+        @Expose
+        var id: Int? = null
+
+        @SerializedName("CreatedAt")
+        @Expose
+        var createdAt: String? = null
+
+        @SerializedName("Name")
+        @Expose
+        var name: String? = null
+
+        @SerializedName("Uniq")
+        @Expose
+        var uniq: String? = null
+
+        @SerializedName("Email")
+        @Expose
+        var email: String? = null
+
+        @SerializedName("Phone")
+        @Expose
+        var phone: String? = null
+
+        @SerializedName("Role")
+        @Expose
+        var role: String? = null
+
+        @SerializedName("DeviceID")
+        @Expose
+        var deviceID: String? = null
     }
 }
