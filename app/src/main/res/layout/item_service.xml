@@ -14,13 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_8sdp"
             android:includeFontPadding="false"
             android:text="Cuci Setrika"
             android:textColor="@color/blackHistory"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             app:fontName="@string/font_name_dmsans"
-            app:textStyle="@integer/font_style_semibold" />
+            app:textStyle="@integer/font_style_reguler" />
 
         <ImageView
             android:id="@+id/ivCheck"

@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.scanner.interfacesinterface IFClick {    fun onUserClick(id: Int)    fun onSubmitClick()}

@@ -1,5 +1,6 @@
 package com.fidilaundry.app.ui.scanner
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +22,7 @@ import com.fidilaundry.app.ui.base.BaseActivity
 import com.fidilaundry.app.ui.home.master.adapter.MasterMenuAdapter
 import com.fidilaundry.app.ui.home.master.adapter.PriceListAdapter
 import com.fidilaundry.app.ui.home.master.model.MasterMenu
+import com.fidilaundry.app.ui.home.order.OrderMapsActivity
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
@@ -55,6 +57,12 @@ class ScannerActivity : BaseActivity() {
         }
 
         binding.ivBack.setSafeOnClickListener {
+            finish()
+        }
+
+        binding.ivSearch.setSafeOnClickListener {
+            val intent = Intent(baseContext, SearchUserActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

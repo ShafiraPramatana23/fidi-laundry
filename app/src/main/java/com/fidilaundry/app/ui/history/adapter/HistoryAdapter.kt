@@ -68,14 +68,14 @@ class HistoryAdapter(private val context: Context?) :
                 } else {
                     if (app.status == "pending") {
 
-                    } else if (app.status == "pengerjaan") {
-                        val intent = Intent(context, OrderDetailActivity::class.java)
-                        intent.putExtra("transId", app.code)
-                        context!!.startActivity(intent)
-                    } else {
+                    } else if (app.status == "cek item") {
                         val intent = Intent(context, AdminOrderActivity::class.java)
                         intent.putExtra("transId", app.code)
                         intent.putExtra("serviceId", app.serviceID)
+                        context!!.startActivity(intent)
+                    } else {
+                        val intent = Intent(context, OrderDetailActivity::class.java)
+                        intent.putExtra("transId", app.code)
                         context!!.startActivity(intent)
                     }
                 }

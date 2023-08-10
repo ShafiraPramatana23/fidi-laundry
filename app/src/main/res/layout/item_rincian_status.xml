@@ -17,22 +17,23 @@
             android:layout_marginRight="@dimen/_5sdp"
             app:markerInCenter="false"
             app:markerPaddingTop="@dimen/_15sdp"
-            app:endLineColor="@color/colorGreyC4"
+            app:endLineColor="@color/colorGrey300"
             app:lineStyle="normal"
             app:lineWidth="@dimen/_1sdp"
             app:markerSize="@dimen/_10sdp"
-            app:startLineColor="@color/colorGreyC4" />
+            app:startLineColor="@color/colorGrey300" />
 
         <com.fidilaundry.app.util.FontTextView
             android:id="@+id/tvStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
             android:includeFontPadding="false"
             android:text="Pesanan Dijemput"
             android:textColor="@color/blackHistory"
             android:textSize="@dimen/_10sdp"
             app:fontName="@string/font_name_dmsans"
-            app:textStyle="@integer/font_style_semibold" />
+            app:textStyle="@integer/font_style_reguler" />
 
     </LinearLayout>
 </RelativeLayout>

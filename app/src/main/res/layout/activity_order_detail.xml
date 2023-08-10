@@ -405,7 +405,8 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvSatuan"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -526,7 +527,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvStatus"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
 
                         <com.fidilaundry.app.util.FontButton
                             android:id="@+id/btnUpdateStatus"

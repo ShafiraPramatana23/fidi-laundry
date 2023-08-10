@@ -63,16 +63,24 @@ class StatusOrderAdapter(
             when (position) {
                 0 -> binding.timeline.setStartLineColor(ContextCompat.getColor(context!!, R.color.float_transparent), itemViewType)
                 appList.size - 1 -> binding.timeline.setEndLineColor(ContextCompat.getColor(context!!, R.color.float_transparent), itemViewType)
-                else -> binding.timeline.setStartLineColor(ContextCompat.getColor(context!!, R.color.colorGreyC4), itemViewType)
+                else -> binding.timeline.setStartLineColor(ContextCompat.getColor(context!!, R.color.colorGrey300), itemViewType)
             }
 
             binding.timeline.marker = VectorDrawableUtils.getDrawable(
                 context!!,
                 R.drawable.ic_marker_timeline,
-                ContextCompat.getColor(context!!, R.color.colorGreyC4)
+                ContextCompat.getColor(context!!, R.color.colorGrey300)
             )
 
+            if (app.title == "Selesai") {
+                setMarker(binding, R.drawable.ic_marker_timeline, R.color.colorPrimaryDark)
+            }
+
         }
+    }
+
+    private fun setMarker(binding: ItemRincianStatusBinding, drawableResId: Int, colorFilter: Int) {
+        binding.timeline.marker = VectorDrawableUtils.getDrawable(context!!, drawableResId, ContextCompat.getColor(context, colorFilter))
     }
 
     init {

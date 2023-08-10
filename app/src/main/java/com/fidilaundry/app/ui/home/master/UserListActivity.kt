@@ -15,6 +15,7 @@ import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.ui.base.BaseActivity
 import com.fidilaundry.app.ui.home.master.adapter.PriceListAdapter
 import com.fidilaundry.app.ui.home.master.adapter.UserListAdapter
+import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
@@ -25,7 +26,7 @@ import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.ArrayList
 
-class UserListActivity : BaseActivity() {
+class UserListActivity : BaseActivity(), IFClick {
 
     lateinit var loadingDialog: LoadingDialog
 
@@ -48,7 +49,7 @@ class UserListActivity : BaseActivity() {
 
         initViewModel()
 
-        adapter = UserListAdapter(this)
+        adapter = UserListAdapter(this, 2, this)
         binding.rv.layoutManager =
             ScrollingLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false, 5000)
         binding.rv.adapter = adapter
@@ -97,5 +98,11 @@ class UserListActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.getCustomer()
+    }
+
+    override fun onUserClick(id: Int) {
+    }
+
+    override fun onSubmitClick() {
     }
 }

@@ -1,35 +1,31 @@
 package com.fidilaundry.app.util.dialog
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
-import com.fidilaundry.app.basearch.viewmodel.OrderViewModel
 import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.DialogAddDataBinding
-import com.fidilaundry.app.databinding.DialogServiceBinding
+import com.fidilaundry.app.databinding.DialogOrderAdminBinding
 import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.master.model.DropdownItem
-import com.fidilaundry.app.ui.home.order.adapter.ServiceCategoryAdapter
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
+import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.util.ArrayList
 
-class DialogService(
-    private var type: Int,
-    private var items: List<DropdownItem>,
-    private var inf: IFItemClick
-) : BaseDialogFragment(), IFItemClick {
+class DialogOrderAdmin(private var inf: IFClick) : BaseDialogFragment(), IFItemClick {
 
     lateinit var paperPrefs: PaperPrefs
     lateinit var loadingDialog: LoadingDialog
 
     val viewModel by sharedViewModel<ScannerViewModel>()
-    private var _binding: DialogServiceBinding? = null
+    private var _binding: DialogOrderAdminBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,10 +33,10 @@ class DialogService(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DialogServiceBinding.inflate(inflater, container, false)
+        _binding = DialogOrderAdminBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.vm = viewModel
-        binding.lifecycleOwner =  this@DialogService
+        binding.lifecycleOwner =  this@DialogOrderAdmin
         return view
     }
 
@@ -50,23 +46,40 @@ class DialogService(
         loadingDialog = LoadingDialog()
         paperPrefs = PaperPrefs(requireActivity())
 
-        var adapter = ServiceCategoryAdapter(activity, this)
-        binding.rv.layoutManager = LinearLayoutManager(activity)
-        binding.rv.adapter = adapter
-        adapter.updateList(items, viewModel.service.value)
+        binding.etService.inputType = InputType.TYPE_NULL
 
         binding.btnClose.setOnClickListener {
             dismiss()
         }
+
+        binding.btnSubmit.setSafeOnClickListener {
+            dismiss()
+            inf.onSubmitClick()
+        }
+
+        binding.etService.setSafeOnClickListener {
+            val myRoundedBottomSheet = DialogService(1,  serviceList, this)
+            myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
+        }
     }
+
+    private val serviceList: List<DropdownItem>
+        get() {
+            val appList: MutableList<DropdownItem> = ArrayList()
+            appList.add(DropdownItem(1, "Cuci Kering"))
+            appList.add(DropdownItem(2, "Cuci Basah"))
+            appList.add(DropdownItem(3, "Cuci Setrika"))
+            appList.add(DropdownItem(4, "Setrika"))
+            return appList
+        }
 
     override fun onItemClick() {
 
     }
 
     override fun onItemSelected(value: String?, id: String) {
-        inf.onItemSelected(value, id)
-        dismiss()
+        viewModel.serviceId.value = id
+        viewModel.service.value = value!!
     }
 
     override fun onItemSelected(value: String?, id: String, type: Int) {

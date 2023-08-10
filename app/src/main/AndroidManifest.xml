@@ -120,6 +120,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.fidilaundry.app.ui.scanner.SearchUserActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.fidilaundry.app.ui.home.order.AdminOrderActivity"
             android:screenOrientation="portrait" />
 
