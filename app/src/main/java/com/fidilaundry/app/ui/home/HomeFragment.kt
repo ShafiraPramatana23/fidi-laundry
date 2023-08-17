@@ -225,6 +225,11 @@ class HomeFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getOrderList("", "", "", "")
+    }
+
     companion object {
         fun newInstance(title: String): Fragment {
             val fragment = HomeFragment()

@@ -17,6 +17,7 @@ import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.BaseObjResponse
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.OrderListResponse
+import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.order.adapter.ServiceCategoryAdapter
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
@@ -103,7 +104,7 @@ class DialogConfirmOrder(
         })
     }
 
-    private fun handleWhenUpdateSuccess(it: BaseResponse?) {
+    private fun handleWhenUpdateSuccess(it: UpdateStatusResponse?) {
         inf.onDialogDismiss()
         dismiss()
         // redirect to maps

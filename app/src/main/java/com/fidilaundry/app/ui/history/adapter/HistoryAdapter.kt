@@ -16,7 +16,9 @@ import com.fidilaundry.app.databinding.ItemHistoryBinding
 import com.fidilaundry.app.model.response.OrderListResponse
 import com.fidilaundry.app.model.response.ProfileResponse
 import com.fidilaundry.app.ui.home.order.AdminOrderActivity
+import com.fidilaundry.app.ui.home.order.AdminOrderMapsActivity
 import com.fidilaundry.app.ui.home.order.OrderDetailActivity
+import com.fidilaundry.app.ui.home.order.OrderMapsActivity
 import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.ServiceCtgHelper
 import com.fidilaundry.app.util.setSafeOnClickListener
@@ -62,9 +64,15 @@ class HistoryAdapter(private val context: Context?) :
 
             itemView.setSafeOnClickListener {
                 if (profileData?.role == "customer" || profileData?.role == "member") {
-                    val intent = Intent(context, OrderDetailActivity::class.java)
-                    intent.putExtra("transId", app.code)
-                    context!!.startActivity(intent)
+                    if (app.status == "dijemput") {
+                        val intent = Intent(context, OrderMapsActivity::class.java)
+                        intent.putExtra("orderId", app.id)
+                        context!!.startActivity(intent)
+                    } else {
+                        val intent = Intent(context, OrderDetailActivity::class.java)
+                        intent.putExtra("transId", app.code)
+                        context!!.startActivity(intent)
+                    }
                 } else {
                     if (app.status == "pending") {
 
@@ -72,6 +80,12 @@ class HistoryAdapter(private val context: Context?) :
                         val intent = Intent(context, AdminOrderActivity::class.java)
                         intent.putExtra("transId", app.code)
                         intent.putExtra("serviceId", app.serviceID)
+                        context!!.startActivity(intent)
+                    } else if (app.status == "dijemput") {
+                        val intent = Intent(context, AdminOrderMapsActivity::class.java)
+//                        intent.putExtra("orderId", app.id)
+//                        intent.putExtra("code", app.code)
+                        intent.putExtra("data", app)
                         context!!.startActivity(intent)
                     } else {
                         val intent = Intent(context, OrderDetailActivity::class.java)

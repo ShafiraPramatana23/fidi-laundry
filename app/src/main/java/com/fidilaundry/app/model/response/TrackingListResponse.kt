@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class TrackingListResponse {
     @SerializedName("Results")
     @Expose
-    var results: List<ResultData>? = null
+    var results: List<Result>? = null
 
     @SerializedName("Status")
     @Expose

@@ -14,7 +14,7 @@ interface OrderRepository {
     suspend fun getItemByService(id: Int): UseCaseResult<ItemListResponse>
     suspend fun requestOrder(req: OrderRequest): UseCaseResult<BaseResponse>
     suspend fun updateOrder(req: UpdateOrderRequest): UseCaseResult<BaseResponse>
-    suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<BaseResponse>
+    suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<UpdateStatusResponse>
     suspend fun getOrderList(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
     suspend fun getOrderListCust(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
     suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse>
@@ -76,7 +76,7 @@ class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: Pa
         }!!
     }
 
-    override suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<BaseResponse> {
+    override suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<UpdateStatusResponse> {
         return try {
             val contentType = "application/json"
             val result = api.updateOrderStatus(paperPrefs.getToken(), contentType, req)

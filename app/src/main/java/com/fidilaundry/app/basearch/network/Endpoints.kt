@@ -74,7 +74,7 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: UpdateOrderStatusRequest
-    ): BaseResponse
+    ): UpdateStatusResponse
 
     @GET("order/list-all?")
     suspend fun getOrderList(

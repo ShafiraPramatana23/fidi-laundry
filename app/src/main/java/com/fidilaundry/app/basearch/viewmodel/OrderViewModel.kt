@@ -20,7 +20,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
     val orderResponse = SingleLiveEvent<BaseResponse>()
     val updateOrderResponse = SingleLiveEvent<BaseResponse>()
-    val updateOrderStatusResponse = SingleLiveEvent<BaseResponse>()
+    val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
     val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
 

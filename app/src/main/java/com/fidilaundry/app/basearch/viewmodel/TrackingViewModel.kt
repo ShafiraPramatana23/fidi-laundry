@@ -9,6 +9,7 @@ import com.fidilaundry.app.model.request.AddTrackingRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.TrackingListResponse
+import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ class TrackingViewModel(
 
     val addTrackResponse = SingleLiveEvent<BaseResponse>()
     val trackResponse = SingleLiveEvent<TrackingListResponse>()
-    val updateOrderStatusResponse = SingleLiveEvent<BaseResponse>()
+    val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
 
     val desc = NonNullMutableLiveData("")
 
@@ -58,7 +59,6 @@ class TrackingViewModel(
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> {
-                    println("huhuy what: " + response.exception.message)
                     showError.value =
                         Utils.handleException(response.exception)
                 }
