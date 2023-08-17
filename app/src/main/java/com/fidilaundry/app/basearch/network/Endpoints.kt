@@ -2,6 +2,7 @@ package com.fidilaundry.app.basearch.network
 
 import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface Endpoints {
@@ -87,10 +88,6 @@ interface Endpoints {
     @GET("order/auth-user")
     suspend fun getOrderListCust(
         @Header("Authorization") auth: String
-//        @Query("cust_id") custItem: String,
-//        @Query("service_id") serviceId: String,
-//        @Query("step") step: String,
-//        @Query("status") status: String
     ): OrderListResponse
 
     @GET("order/show/{id}")
@@ -98,4 +95,32 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Path("id") id: String
     ): OrderDetailResponse
+
+    @POST("tracking/create")
+    suspend fun addTracking(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: AddTrackingRequest
+    ): BaseResponse
+
+    @POST("tracking/show/{id}")
+    suspend fun getTrackingList(
+        @Header("Authorization") auth: String,
+        @Path("id") id: Int
+    ): TrackingListResponse
+
+    @POST("ticket/create")
+    suspend fun createComplaint(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: AddTrackingRequest
+    ): TrackingListResponse
+
+    @Multipart
+    @POST("files/upload")
+    suspend fun uploadFile(
+        @Header("Authorization") auth: String,
+        @Body req: AddTrackingRequest,
+        @Part file: MultipartBody.Part
+    ): BaseResponse
 }

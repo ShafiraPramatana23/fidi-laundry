@@ -16,4 +16,5 @@ val viewModelsModule = module {
     viewModel { ComplaintViewModel(complaintRepository = get()) }
     viewModel { HistoryViewModel(historyRepository = get()) }
     viewModel { ScannerViewModel(customerRepository = get(), orderRepository = get()) }
+    viewModel { TrackingViewModel(trackingRepository = get(), orderRepository = get()) }
 }

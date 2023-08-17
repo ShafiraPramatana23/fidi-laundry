@@ -54,4 +54,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<TrackingRepository> {
+        TrackingRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

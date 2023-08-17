@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.OrderViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.TrackingViewModel" />
 
     </data>
 
@@ -262,7 +262,7 @@
                                     android:maxLines="1"
                                     android:paddingHorizontal="@dimen/_16sdp"
                                     android:paddingVertical="@dimen/_12sdp"
-                                    android:text="@={vm.category}"
+                                    android:text="@={vm.desc}"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_10sdp"
                                     app:fontName="@string/font_name_dmsans" />
