@@ -55,7 +55,7 @@ class InProgressFragment : Fragment() {
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 5000)
         binding.rv.adapter = adapter
         binding.rv.addItemDecoration(ListDivideritemDecoration(requireContext()))
-        adapter.updateList(appList)
+//        adapter.updateList(appList)
 
         println("wkwkkw: "+appList.size)
     }

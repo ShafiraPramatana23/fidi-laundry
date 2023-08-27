@@ -54,7 +54,7 @@ class ConfirmOrderAdapter(
         fun onBind(position: Int) {
             val app = appList[position]
             binding.tvTitle.text = "Order - ${ServiceCtgHelper().getServiceName(app.serviceID.toString())}"
-            binding.tvName.text = app.user?.name
+            binding.tvName.text = app.orderFor?.name
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
 
             itemView.setSafeOnClickListener {

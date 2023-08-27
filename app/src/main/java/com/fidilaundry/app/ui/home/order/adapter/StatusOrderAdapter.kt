@@ -29,9 +29,11 @@ class StatusOrderAdapter(
 
     private var appList: List<StatusItem>
     lateinit var paperPrefs: PaperPrefs
+    private var stepping: String = ""
 
-    fun updateList(appList: List<StatusItem>) {
+    fun updateList(appList: List<StatusItem>, stepping: String) {
         this.appList = appList
+        this.stepping = stepping
         notifyDataSetChanged()
     }
 
@@ -58,7 +60,11 @@ class StatusOrderAdapter(
         fun onBind(position: Int) {
             val app = appList[position]
 
-            binding.tvStatus.text = app.title
+            if (stepping != "" && app.title == "Pengerjaan") {
+                binding.tvStatus.text = app.title + " (" + stepping + ")"
+            } else {
+                binding.tvStatus.text = app.title
+            }
 
             when (position) {
                 0 -> binding.timeline.setStartLineColor(ContextCompat.getColor(context!!, R.color.float_transparent), itemViewType)
@@ -72,8 +78,10 @@ class StatusOrderAdapter(
                 ContextCompat.getColor(context!!, R.color.colorGrey300)
             )
 
-            if (app.title == "Selesai") {
+            if (app.selected) {
                 setMarker(binding, R.drawable.ic_marker_timeline, R.color.colorPrimaryDark)
+            } else {
+                setMarker(binding, R.drawable.ic_marker_timeline, R.color.colorGrey300)
             }
 
         }

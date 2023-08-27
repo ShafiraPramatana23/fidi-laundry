@@ -351,7 +351,7 @@ fun DateTimeFormater(string: String): String {
     calendar.time = convertedDate
     val time = calendar.time
     val outputFmt =
-        SimpleDateFormat("dd MMM yyyy HH:mm:ss")
+        SimpleDateFormat("dd MMM yyyy HH:mm")
     val utcTime = outputFmt.format(time)
 
     return utcTime.toString()

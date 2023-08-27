@@ -181,7 +181,7 @@
                                 android:layout_width="@dimen/_21sdp"
                                 android:layout_height="@dimen/_24sdp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_cuba" />
+                                android:src="@drawable/ic_setting" />
 
                         </RelativeLayout>
 
@@ -225,7 +225,7 @@
                                 android:layout_width="@dimen/_22sdp"
                                 android:layout_height="@dimen/_24sdp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_cuba" />
+                                android:src="@drawable/ic_incoming" />
 
                         </RelativeLayout>
 
@@ -269,7 +269,7 @@
                                 android:layout_width="@dimen/_22sdp"
                                 android:layout_height="@dimen/_24sdp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_cuba" />
+                                android:src="@drawable/ic_complaint" />
 
                         </RelativeLayout>
 

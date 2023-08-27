@@ -13,6 +13,7 @@ import com.fidilaundry.app.databinding.ActivitySearchUserBinding
 import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.CustomerListResponse
+import com.fidilaundry.app.model.response.RequestOrderResponse
 import com.fidilaundry.app.ui.base.BaseActivity
 import com.fidilaundry.app.ui.home.master.adapter.UserListAdapter
 import com.fidilaundry.app.ui.home.order.AdminOrderActivity
@@ -114,12 +115,12 @@ class SearchUserActivity : BaseActivity(), IFClick {
         })
     }
 
-    private fun handleWhenRequestOrderSuccess(it: BaseResponse?) {
+    private fun handleWhenRequestOrderSuccess(it: RequestOrderResponse?) {
         SuccessMessage(this, "Sukses", "Pesanan berhasil ditambahkan!", object : FGCallback {
             override fun onCallback() {
                 val intent = Intent(this@SearchUserActivity, AdminOrderActivity::class.java)
-//                intent.putExtra("transId", app.code)
-//                intent.putExtra("serviceId", app.serviceID)
+                intent.putExtra("transId", it?.results?.orderCode)
+                intent.putExtra("serviceId", it?.results?.serviceID)
                 startActivity(intent)
             }
         })

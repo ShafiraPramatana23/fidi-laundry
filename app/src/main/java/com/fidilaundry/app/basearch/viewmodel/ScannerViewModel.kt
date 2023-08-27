@@ -8,6 +8,7 @@ import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.CustomerListResponse
+import com.fidilaundry.app.model.response.RequestOrderResponse
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -20,7 +21,7 @@ import kotlinx.coroutines.withContext
 class ScannerViewModel(private val customerRepository: CustomerRepository, private val orderRepository: OrderRepository) : BaseViewModel() {
 
     val custResponse = SingleLiveEvent<CustomerListResponse>()
-    val orderResponse = SingleLiveEvent<BaseResponse>()
+    val orderResponse = SingleLiveEvent<RequestOrderResponse>()
 
     val service = NonNullMutableLiveData("")
     val serviceId = NonNullMutableLiveData("")

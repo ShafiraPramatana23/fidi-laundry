@@ -19,9 +19,7 @@ import com.fidilaundry.app.ui.home.order.AdminOrderActivity
 import com.fidilaundry.app.ui.home.order.AdminOrderMapsActivity
 import com.fidilaundry.app.ui.home.order.OrderDetailActivity
 import com.fidilaundry.app.ui.home.order.OrderMapsActivity
-import com.fidilaundry.app.util.DateTimeFormater
-import com.fidilaundry.app.util.ServiceCtgHelper
-import com.fidilaundry.app.util.setSafeOnClickListener
+import com.fidilaundry.app.util.*
 import kotlin.math.roundToInt
 
 class HistoryAdapter(private val context: Context?) :
@@ -59,8 +57,8 @@ class HistoryAdapter(private val context: Context?) :
 
             binding.tvType.text = ServiceCtgHelper().getServiceName(app.serviceID.toString())
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
-            binding.tvStatus.text = app.status?.capitalize()
-//            binding.tvTotal.text = app.total.toString()
+            binding.tvStatus.text = StatusHelper.setStatusName(app.status.toString())
+            binding.tvTotal.text = RupiahCurrency.Converter(app.total?.toDouble())
 
             itemView.setSafeOnClickListener {
                 if (profileData?.role == "customer" || profileData?.role == "member") {

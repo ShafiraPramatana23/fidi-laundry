@@ -19,6 +19,7 @@ import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.ui.home.master.MasterActivity
 import com.fidilaundry.app.ui.home.order.*
+import com.fidilaundry.app.ui.profile.model.ProfileMenu
 import com.fidilaundry.app.ui.scanner.ScannerActivity
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
@@ -86,7 +87,6 @@ class HomeFragment : BaseFragment() {
         layAdmin.rvActiveOrder.layoutManager =
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 0)
         layAdmin.rvActiveOrder.addItemDecoration(ListDivideritemDecoration(requireContext()))
-//        historyAdapter?.updateList(historyList)
 
         viewModel.getOrderList("", "", "", "")
 
@@ -96,7 +96,7 @@ class HomeFragment : BaseFragment() {
         }
 
         layAdmin.btnConfirm.setSafeOnClickListener {
-            activity?.intent = Intent(activity, OrderListActivity::class.java)
+            activity?.intent = Intent(activity, ConfirmOrderListActivity::class.java)
             startActivity(activity?.intent)
         }
 
@@ -150,14 +150,19 @@ class HomeFragment : BaseFragment() {
         }
 
         binding.btnCuba.setSafeOnClickListener {
-            activity?.intent = Intent(activity, AdminOrderMapsActivity::class.java)
-//            activity?.intent?.putExtra("idService", 2)
+            activity?.intent = Intent(activity, UserOrderActivity::class.java)
+            activity?.intent?.putExtra("idService", 2)
             startActivity(activity?.intent)
         }
 
         binding.btnCuker.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserOrderActivity::class.java)
             activity?.intent?.putExtra("idService", 1)
+            startActivity(activity?.intent)
+        }
+
+        binding.tvSeeAll.setSafeOnClickListener {
+            activity?.intent = Intent(activity, OrderListActivity::class.java)
             startActivity(activity?.intent)
         }
     }
@@ -202,7 +207,16 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
-        historyAdapter?.updateList(it?.results!!)
+        var dt = it?.results?.sortedWith(compareByDescending { it.createdAt })
+        var appList: MutableList<OrderListResponse.Result> = ArrayList()
+        for (i in dt?.indices!!) {
+            if (appList.size < 3) {
+                appList.add(dt[i])
+            } else {
+                break
+            }
+        }
+        historyAdapter?.updateList(appList)
 
         if (profileData?.role == "customer" || profileData?.role == "member") {
             if (it?.results?.size != 0) {
@@ -227,7 +241,12 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getOrderList("", "", "", "")
+
+        if (profileData?.role == "customer") {
+            viewModel.getOrderListCust("", "", "", "")
+        } else {
+            viewModel.getOrderList("", "", "", "")
+        }
     }
 
     companion object {

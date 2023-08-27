@@ -1,7 +1,6 @@
 package com.fidilaundry.app.basearch.viewmodel
 
 import android.text.Editable
-import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.basearch.repository.OrderRepository
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
@@ -18,7 +17,7 @@ import kotlinx.coroutines.withContext
 class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewModel() {
 
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
-    val orderResponse = SingleLiveEvent<BaseResponse>()
+    val orderResponse = SingleLiveEvent<RequestOrderResponse>()
     val updateOrderResponse = SingleLiveEvent<BaseResponse>()
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
@@ -29,6 +28,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     val service = NonNullMutableLiveData("")
     val serviceId = NonNullMutableLiveData("")
     val kiloan = NonNullMutableLiveData("")
+    val stepping = NonNullMutableLiveData("")
 
     fun getItemsByService(id: Int) {
         showProgressLiveData.postValue(true)

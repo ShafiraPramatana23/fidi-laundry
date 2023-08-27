@@ -55,8 +55,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lav"
@@ -73,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="No data"
+                    android:text="Belum ada pengaduan"
                     android:textAlignment="center"
                     android:textColor="@color/dark_grey_color"
                     android:textSize="@dimen/_16sdp"

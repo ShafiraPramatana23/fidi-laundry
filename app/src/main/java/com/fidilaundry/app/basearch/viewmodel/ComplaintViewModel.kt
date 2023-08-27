@@ -1,41 +1,63 @@
 package com.fidilaundry.app.basearch.viewmodel
 
 import com.fidilaundry.app.basearch.repository.ComplaintRepository
-import com.fidilaundry.app.basearch.repository.MasterRepository
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
+import com.fidilaundry.app.basearch.util.UseCaseResult
+import com.fidilaundry.app.basearch.util.Utils
+import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
+import com.fidilaundry.app.model.request.UserComplaintRequest
 import com.fidilaundry.app.model.response.BaseResponse
+import com.fidilaundry.app.model.response.UpdateStatusResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ComplaintViewModel(private val complaintRepository: ComplaintRepository) : BaseViewModel() {
 
-    val priceListResponse = SingleLiveEvent<BaseResponse>()
-    val priceAddResponse = SingleLiveEvent<BaseResponse>()
-    val priceUpdateResponse = SingleLiveEvent<BaseResponse>()
-    val priceDeleteResponse = SingleLiveEvent<BaseResponse>()
-
-    val itemsListResponse = SingleLiveEvent<BaseResponse>()
-    val itemsAddResponse = SingleLiveEvent<BaseResponse>()
-    val itemsUpdateResponse = SingleLiveEvent<BaseResponse>()
-    val itemsDeleteResponse = SingleLiveEvent<BaseResponse>()
-
-    val isEnableButton = NonNullMutableLiveData(false)
+    val addUserComplaint = SingleLiveEvent<BaseResponse>()
+    val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
 
     val ctgValue = NonNullMutableLiveData("")
-    val itemsValue = NonNullMutableLiveData("")
-    val itemsIdValue = NonNullMutableLiveData(0)
-    val serviceValue = NonNullMutableLiveData("")
-    val priceValue = NonNullMutableLiveData("")
+    val desc = NonNullMutableLiveData("")
 
-//    fun onUsernameText(e: Editable) {
-//        checkInput()
-//    }
-//
-//    fun onPassword(e: Editable) {
-//        checkInput()
-//    }
+    fun addUserComplaint(req: UserComplaintRequest) {
+        showProgressLiveData.postValue(true)
 
-//    fun checkInput() {
-//        isEnableButton.value =
-//                (!TextUtils.isEmpty(loginPassword.value) && !TextUtils.isEmpty(loginUsername.value))
-//    }
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                complaintRepository.addUserComplaint(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> addUserComplaint.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> {
+                    showError.value =
+                        Utils.handleException(response.exception)
+                }
+            }
+        }
+    }
+
+    fun updateOrderStatus(req: UpdateOrderStatusRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                complaintRepository.updateOrderStatus(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> updateOrderStatusResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                        Utils.handleException(response.exception)
+            }
+        }
+    }
 }

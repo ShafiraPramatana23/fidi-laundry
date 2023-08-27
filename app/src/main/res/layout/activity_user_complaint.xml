@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.HomeViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.ComplaintViewModel" />
 
     </data>
 
@@ -111,6 +111,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingHorizontal="@dimen/_16sdp"
                             android:background="@null"
+                            android:text="@={vm.ctgValue}"
                             android:hint="Pilih salah satu"
                             android:inputType="text"
                             android:maxLines="1"
@@ -153,6 +154,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingHorizontal="@dimen/_16sdp"
                             android:background="@null"
+                            android:text="@={vm.desc}"
                             android:hint="Masukkan keluhan Anda ..."
                             android:inputType="text|textMultiLine"
                             android:gravity="top"

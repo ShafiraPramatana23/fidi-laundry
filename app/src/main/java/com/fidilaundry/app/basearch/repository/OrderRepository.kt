@@ -1,6 +1,5 @@
 package com.fidilaundry.app.basearch.repository
 
-import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.network.Endpoints
 import com.fidilaundry.app.basearch.util.UseCaseResult
@@ -12,7 +11,7 @@ import com.fidilaundry.app.util.Constant
 
 interface OrderRepository {
     suspend fun getItemByService(id: Int): UseCaseResult<ItemListResponse>
-    suspend fun requestOrder(req: OrderRequest): UseCaseResult<BaseResponse>
+    suspend fun requestOrder(req: OrderRequest): UseCaseResult<RequestOrderResponse>
     suspend fun updateOrder(req: UpdateOrderRequest): UseCaseResult<BaseResponse>
     suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<UpdateStatusResponse>
     suspend fun getOrderList(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
@@ -40,7 +39,7 @@ class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: Pa
         }!!
     }
 
-    override suspend fun requestOrder(req: OrderRequest): UseCaseResult<BaseResponse> {
+    override suspend fun requestOrder(req: OrderRequest): UseCaseResult<RequestOrderResponse> {
         return try {
             val contentType = "application/json"
             val result = api.requestOrder(paperPrefs.getToken(), contentType, req)

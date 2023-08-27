@@ -17,4 +17,5 @@ val viewModelsModule = module {
     viewModel { HistoryViewModel(historyRepository = get()) }
     viewModel { ScannerViewModel(customerRepository = get(), orderRepository = get()) }
     viewModel { TrackingViewModel(trackingRepository = get(), orderRepository = get()) }
+    viewModel { SteppingViewModel(orderRepository = get()) }
 }

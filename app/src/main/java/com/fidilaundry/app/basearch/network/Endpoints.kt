@@ -60,7 +60,7 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: OrderRequest
-    ): BaseResponse
+    ): RequestOrderResponse
 
     @POST("order/update")
     suspend fun updateOrder(
@@ -113,8 +113,8 @@ interface Endpoints {
     suspend fun createComplaint(
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
-        @Body req: AddTrackingRequest
-    ): TrackingListResponse
+        @Body req: UserComplaintRequest
+    ): BaseResponse
 
     @Multipart
     @POST("files/upload")
