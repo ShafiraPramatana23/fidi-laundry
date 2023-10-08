@@ -116,6 +116,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.fidilaundry.app.ui.complaint.AdminComplaintActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.fidilaundry.app.ui.scanner.ScannerActivity"
             android:screenOrientation="portrait" />
 
@@ -133,6 +137,22 @@
 
         <activity
             android:name="com.fidilaundry.app.ui.home.order.ConfirmOrderListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.home.order.PaymentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.home.report.ReportActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.profile.ChangePassActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.fidilaundry.app.ui.profile.ChangeProfileActivity"
             android:screenOrientation="portrait" />
 
     </application>

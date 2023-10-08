@@ -1,5 +1,6 @@
 package com.fidilaundry.app.basearch.network
 
+import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
 import okhttp3.MultipartBody
@@ -8,6 +9,18 @@ import retrofit2.http.*
 interface Endpoints {
     @POST("auth/profile")
     suspend fun profile(@Header("Authorization") auth: String): ProfileResponse
+
+    @POST("auth/change-profile")
+    suspend fun changeProfile(
+        @Header("Authorization") auth: String,
+        @Body req: ChangeProfileRequest
+    ): BaseObjResponse
+
+    @POST("auth/change-password")
+    suspend fun changePass(
+        @Header("Authorization") auth: String,
+        @Body req: ChangePassRequest
+    ): BaseObjResponse
 
     @POST("customer/add")
     suspend fun addCustomer(
@@ -96,6 +109,14 @@ interface Endpoints {
         @Path("id") id: String
     ): OrderDetailResponse
 
+    @GET("order/report?")
+    suspend fun getReport(
+        @Header("Authorization") auth: String,
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("year") year: String
+    ): OrderListResponse
+
     @POST("tracking/create")
     suspend fun addTracking(
         @Header("Authorization") auth: String,
@@ -123,4 +144,17 @@ interface Endpoints {
         @Body req: AddTrackingRequest,
         @Part file: MultipartBody.Part
     ): BaseResponse
+
+    @GET("ticket/report")
+    suspend fun getComplaintList(
+        @Header("Authorization") auth: String
+    ): ComplaintListResponse
+
+    @POST("ticket/create")
+    suspend fun feedbackComplaint(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: ComplaintFeedbackRequest
+    ): BaseResponse
+
 }

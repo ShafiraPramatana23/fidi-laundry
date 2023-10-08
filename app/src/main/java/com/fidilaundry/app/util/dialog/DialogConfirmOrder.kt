@@ -22,11 +22,8 @@ import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.order.adapter.ServiceCategoryAdapter
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.ui.home.order.interfaces.IFOrder
-import com.fidilaundry.app.util.DateTimeFormater
-import com.fidilaundry.app.util.LoadingDialog
-import com.fidilaundry.app.util.StatusHelper
+import com.fidilaundry.app.util.*
 import com.fidilaundry.app.util.fdialog.ErrorMessage
-import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DialogConfirmOrder(
@@ -62,7 +59,8 @@ class DialogConfirmOrder(
         initViewModel()
 
         binding.tvDate.text = DateTimeFormater(data.createdAt!!)
-//        binding.tvName.text = ""
+        binding.tvDesc.text = ServiceCtgHelper().getServiceName(data.serviceID.toString())
+        binding.tvName.text = data.orderFor?.name
 //        binding.tvTitle.text = ""
 
         binding.btnCancel.setOnClickListener {

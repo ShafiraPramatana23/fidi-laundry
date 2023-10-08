@@ -67,13 +67,7 @@ android {
             buildConfigField("String", "API_DISTRICT", "\"${Url.apiDistrict}\"")
             buildConfigField("String", "API_GEO", "\"${Url.apiGeo}\"")
             buildConfigField("String", "DB_NAME", "\"${Url.dbName}\"")
-
-            defaultConfig {
-                manifestPlaceholders.putAll(mapOf(
-                    "onesignal_app_id" to "c158a527-d10e-4544-b9e8-ae1d579d3b25",
-                    "onesignal_google_project_number" to "331937417858"
-                ))
-            }
+            buildConfigField("String", "ONESIGNAL_APP_ID", "\"${OneSignal.appId}\"")
 
 //            signingConfig = signingConfigs.getByName("debug")
         }
@@ -95,13 +89,8 @@ android {
             buildConfigField("String", "API_DISTRICT", "\"${Url.apiDistrict}\"")
             buildConfigField("String", "API_GEO", "\"${Url.apiGeo}\"")
             buildConfigField("String", "DB_NAME", "\"${Url.dbName}\"")
+            buildConfigField("String", "ONESIGNAL_APP_ID", "\"${OneSignal.appId}\"")
 
-            defaultConfig {
-                manifestPlaceholders.putAll(mapOf(
-                    "onesignal_app_id" to "58841145-2ef1-4393-852a-dfdae61205ee",
-                    "onesignal_google_project_number" to "331937417858"
-                ))
-            }
         }
     }
 

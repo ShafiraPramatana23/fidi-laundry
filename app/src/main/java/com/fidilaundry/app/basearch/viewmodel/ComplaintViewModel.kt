@@ -5,9 +5,11 @@ import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
+import com.fidilaundry.app.model.request.ComplaintFeedbackRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.request.UserComplaintRequest
 import com.fidilaundry.app.model.response.BaseResponse
+import com.fidilaundry.app.model.response.ComplaintListResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,9 +19,12 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
 
     val addUserComplaint = SingleLiveEvent<BaseResponse>()
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
+    val feedbackComplaintRes = SingleLiveEvent<BaseResponse>()
+    val complaintRes = SingleLiveEvent<ComplaintListResponse>()
 
     val ctgValue = NonNullMutableLiveData("")
     val desc = NonNullMutableLiveData("")
+    val descFeedback = NonNullMutableLiveData("")
 
     fun addUserComplaint(req: UserComplaintRequest) {
         showProgressLiveData.postValue(true)
@@ -57,6 +62,44 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
                         Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun feedbackComplaint(req: ComplaintFeedbackRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                complaintRepository.feedbackComplaint(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> feedbackComplaintRes.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                        Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getComplaintList() {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                complaintRepository.getComplaint()
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> complaintRes.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
             }
         }
     }

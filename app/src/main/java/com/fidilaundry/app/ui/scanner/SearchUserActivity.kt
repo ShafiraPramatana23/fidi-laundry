@@ -11,9 +11,11 @@ import com.fidilaundry.app.basearch.viewmodel.CustomerViewModel
 import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivitySearchUserBinding
 import com.fidilaundry.app.model.request.OrderRequest
+import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.model.response.RequestOrderResponse
+import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.ui.base.BaseActivity
 import com.fidilaundry.app.ui.home.master.adapter.UserListAdapter
 import com.fidilaundry.app.ui.home.order.AdminOrderActivity
@@ -39,6 +41,9 @@ class SearchUserActivity : BaseActivity(), IFClick {
     private var data: List<CustomerListResponse.Result> = ArrayList()
 
     private val binding: ActivitySearchUserBinding by binding(R.layout.activity_search_user)
+
+    private var transId: String = ""
+    private var serviceId: Int = 0
 
     private val viewModel: ScannerViewModel by lazy {
         getViewModel(ScannerViewModel::class)
@@ -95,6 +100,10 @@ class SearchUserActivity : BaseActivity(), IFClick {
             handleWhenRequestOrderSuccess(it)
         })
 
+        viewModel.updateOrderStatusResponse.observe(this, Observer {
+            handleWhenUpdateSuccess(it)
+        })
+
         viewModel.showProgressLiveData.observe(this, Observer { showLoading ->
             if (showLoading) {
                 if(loadingDialog != null){
@@ -115,7 +124,7 @@ class SearchUserActivity : BaseActivity(), IFClick {
         })
     }
 
-    private fun handleWhenRequestOrderSuccess(it: RequestOrderResponse?) {
+    private fun handleWhenUpdateSuccess(it: UpdateStatusResponse?) {
         SuccessMessage(this, "Sukses", "Pesanan berhasil ditambahkan!", object : FGCallback {
             override fun onCallback() {
                 val intent = Intent(this@SearchUserActivity, AdminOrderActivity::class.java)
@@ -124,6 +133,15 @@ class SearchUserActivity : BaseActivity(), IFClick {
                 startActivity(intent)
             }
         })
+    }
+
+    private fun handleWhenRequestOrderSuccess(it: RequestOrderResponse?) {
+        transId = it?.results?.orderCode!!
+        serviceId = it?.results?.serviceID!!
+
+        viewModel.updateOrderStatus(UpdateOrderStatusRequest(
+            transId, "cek item", ""
+        ))
     }
 
     private fun handleWhenListSuccess(it: CustomerListResponse?) {
@@ -150,7 +168,7 @@ class SearchUserActivity : BaseActivity(), IFClick {
                 override fun onCallback() {
                     viewModel.requestOrder(OrderRequest(
                         viewModel.serviceId.value.toInt(), "-7.5629624", "112.6794581",
-                        "mana aja", "Antar Jemput", viewModel.custId.value.toInt()
+                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt()
                     ))
                 }
             }

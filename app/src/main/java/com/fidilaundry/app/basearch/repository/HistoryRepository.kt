@@ -13,6 +13,7 @@ interface HistoryRepository {
     suspend fun getOrderList(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
     suspend fun getOrderListCust(custId: String, serviceId: String, step: String, status: String): UseCaseResult<OrderListResponse>
     suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse>
+    suspend fun getReport(startDate: String, endDate: String, year: String): UseCaseResult<OrderListResponse>
 }
 
 class HistoryRepositoryImpl(private val api: Endpoints, private val paperPrefs: PaperPrefs) :
@@ -65,6 +66,27 @@ class HistoryRepositoryImpl(private val api: Endpoints, private val paperPrefs: 
     override suspend fun getOrderDetail(id: String): UseCaseResult<OrderDetailResponse> {
         return try {
             val result = api.getOrderDetail(paperPrefs.getToken(), id)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
+    override suspend fun getReport(
+        startDate: String,
+        endDate: String,
+        year: String
+    ): UseCaseResult<OrderListResponse> {
+        return try {
+            val result = api.getReport(paperPrefs.getToken(), startDate, endDate, year)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

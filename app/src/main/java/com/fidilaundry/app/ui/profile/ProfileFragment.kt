@@ -33,8 +33,6 @@ import java.util.ArrayList
 class ProfileFragment : BaseFragment(), IProfile {
     lateinit var loadingDialog: LoadingDialog
 
-//    private var adapter: NotifListAdapter? = null
-
     private val viewModel: ProfileViewModel by lazy {
         getViewModel(ProfileViewModel::class)
     }

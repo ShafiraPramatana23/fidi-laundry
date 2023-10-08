@@ -11,6 +11,7 @@ import com.fidilaundry.app.databinding.ItemSatuanBinding
 import com.fidilaundry.app.model.response.ItemListResponse
 import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
 import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
+import com.fidilaundry.app.util.RupiahCurrency
 import java.util.ArrayList
 
 class SatuanAdapter(
@@ -58,7 +59,7 @@ class SatuanAdapter(
 
             binding.etQty.inputType = InputType.TYPE_NULL
             binding.tvName.text = app.title
-            binding.tvPrice.text = app.price.toString()
+            binding.tvPrice.text = RupiahCurrency.Converter(app.price?.toDouble())
 
             var count = 0
             binding.layInc.setOnClickListener {

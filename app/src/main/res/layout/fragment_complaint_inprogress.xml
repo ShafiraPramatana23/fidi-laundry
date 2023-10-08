@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.fidilaundry.app.basearch.viewmodel.MasterViewModel" />
+            type="com.fidilaundry.app.basearch.viewmodel.ComplaintViewModel" />
     </data>
 
 
@@ -75,7 +75,7 @@
                     android:text="Belum ada pengaduan"
                     android:textAlignment="center"
                     android:textColor="@color/dark_grey_color"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     app:fontName="@string/font_name_dmsans"
                     app:textStyle="@integer/font_style_bold" />
             </LinearLayout>

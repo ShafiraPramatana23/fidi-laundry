@@ -16,6 +16,8 @@ import com.fidilaundry.app.databinding.ItemProfileMenuBinding
 import com.fidilaundry.app.ui.MainActivity
 import com.fidilaundry.app.ui.complaint.ComplaintActivity
 import com.fidilaundry.app.ui.complaint.UserComplaintActivity
+import com.fidilaundry.app.ui.profile.ChangePassActivity
+import com.fidilaundry.app.ui.profile.ChangeProfileActivity
 import com.fidilaundry.app.ui.profile.interfaces.IProfile
 import com.fidilaundry.app.ui.profile.model.ProfileMenu
 import com.fidilaundry.app.util.setSafeOnClickListener
@@ -55,6 +57,8 @@ class ProfileMenuAdapter(private val context: Context?, private val inf: IProfil
             itemView.setSafeOnClickListener {
                 var intent: Intent? = null
                 when (app.id) {
+                    1 -> intent = Intent(context, ChangeProfileActivity::class.java)
+                    2 -> intent = Intent(context, ChangePassActivity::class.java)
                     3 -> intent = Intent(context, ComplaintActivity::class.java)
                     4 -> inf.onLogout()
                     else -> intent = Intent(context, UserComplaintActivity::class.java)

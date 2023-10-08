@@ -45,8 +45,9 @@ object KeyStore {
 }
 
 object Url {
-    const val apiBaseDev = "https://fira.itpohgero.com/"
-//    const val apiBaseDev = "http://192.168.0.105:3030/"
+//    const val apiBaseDev = "https://fira.itpohgero.com/"
+    const val apiBaseDev = "http://192.168.0.105:3030/"
+//    const val apiBaseDev = "http://192.168.31.190:3030/"
     const val apiBaseProd = "https://fira.itpohgero.com/"
     const val urlDev = "https://fira.itpohgero.com/"
     const val urlProd = "https://fira.itpohgero.com/"
@@ -54,6 +55,10 @@ object Url {
     const val apiDistrict = "https://dev.farizdotid.com/api/"
     const val apiGeo = "https://asia-southeast1-quiet-stacker-245710.cloudfunctions.net/"
     const val dbName = "appDb"
+}
+
+object OneSignal {
+    const val appId = "c158a527-d10e-4544-b9e8-ae1d579d3b25"
 }
 
 object Libraries {
@@ -77,7 +82,8 @@ object Libraries {
         const val kotlin = "1.4.0"
         const val crashlytics = "17.3.0"
         const val analytics = "18.0.1"
-        const val onesignal = "3.13.1"
+        const val onesignal = "4.8.2"
+//        const val onesignal = "[5.0.0, 5.99.99]"
         const val coroutines = "1.4.1"
         const val lifecycle23 = "2.3.0-alpha07"
         const val koin = "2.1.6"

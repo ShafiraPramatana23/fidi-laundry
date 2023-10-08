@@ -559,6 +559,22 @@
                             android:textSize="@dimen/_12sdp"
                             app:fontName="@string/font_name_dmsans"
                             app:textStyle="@integer/font_style_bold" />
+
+                        <com.fidilaundry.app.util.FontButton
+                            android:visibility="gone"
+                            android:id="@+id/btnPay"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_38sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_26sdp"
+                            android:background="@drawable/rounded_button"
+                            android:clipChildren="false"
+                            android:text="Payment"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"
+                            app:fontName="@string/font_name_dmsans"
+                            app:textStyle="@integer/font_style_bold" />
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
             </LinearLayout>

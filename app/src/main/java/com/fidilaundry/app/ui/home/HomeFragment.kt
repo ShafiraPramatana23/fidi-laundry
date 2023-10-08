@@ -19,13 +19,11 @@ import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
 import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.ui.home.master.MasterActivity
 import com.fidilaundry.app.ui.home.order.*
+import com.fidilaundry.app.ui.home.report.ReportActivity
 import com.fidilaundry.app.ui.profile.model.ProfileMenu
 import com.fidilaundry.app.ui.scanner.ScannerActivity
-import com.fidilaundry.app.util.ListDivideritemDecoration
-import com.fidilaundry.app.util.LoadingDialog
-import com.fidilaundry.app.util.ScrollingLinearLayoutManager
+import com.fidilaundry.app.util.*
 import com.fidilaundry.app.util.fdialog.ErrorMessage
-import com.fidilaundry.app.util.setSafeOnClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_home_admin.view.*
@@ -89,6 +87,7 @@ class HomeFragment : BaseFragment() {
         layAdmin.rvActiveOrder.addItemDecoration(ListDivideritemDecoration(requireContext()))
 
         viewModel.getOrderList("", "", "", "")
+//        viewModel.getReport("", "", "")
 
         layAdmin.btnMaster.setSafeOnClickListener {
             activity?.intent = Intent(activity, MasterActivity::class.java)
@@ -102,6 +101,11 @@ class HomeFragment : BaseFragment() {
 
         layAdmin.btnComplaint.setSafeOnClickListener {
             activity?.intent = Intent(activity, ComplaintActivity::class.java)
+            startActivity(activity?.intent)
+        }
+
+        layAdmin.btnReport.setSafeOnClickListener {
+            activity?.intent = Intent(activity, ReportActivity::class.java)
             startActivity(activity?.intent)
         }
 
@@ -135,7 +139,8 @@ class HomeFragment : BaseFragment() {
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 0)
         rvActive.addItemDecoration(ListDivideritemDecoration(requireContext()))
 
-        viewModel.getOrderListCust("", "", "", "")
+//        viewModel.getOrderListCust(profileData?.id.toString(), "", "", "")
+        viewModel.getOrderList(profileData?.id.toString(), "", "", "")
 
         binding.btnSetrika.setSafeOnClickListener {
             activity?.intent = Intent(activity, UserOrderActivity::class.java)
@@ -176,6 +181,10 @@ class HomeFragment : BaseFragment() {
             handleWhenListCustSuccess(it)
         })
 
+        viewModel.reportResponse.observe(this, Observer {
+            handleWhenListReportSuccess(it)
+        })
+
         viewModel.showProgressLiveData.observe(this, Observer { showLoading ->
             if (showLoading) {
                 if(loadingDialog != null){
@@ -194,6 +203,29 @@ class HomeFragment : BaseFragment() {
         viewModel.showError.observe(this, Observer { showError ->
             ErrorMessage(requireActivity(), "", showError)
         })
+    }
+
+    private fun handleWhenListReportSuccess(it: OrderListResponse?) {
+        var countOnline: Int = 0
+        var countOffline: Int = 0
+        var qtyTrans: Int = 0
+        var totalTrans: Double = 0.0
+
+        for (i in it?.results?.indices!!) {
+            var dt = it.results!![i]
+            qtyTrans += 1
+            totalTrans += dt.total!!
+
+            if (dt.transferMethod == "Datang Langsung") {
+                countOffline += 1
+            } else {
+                countOnline += 1
+            }
+        }
+
+        binding.layoutAdmin.tvTotal.text = "${RupiahCurrency.Converter(totalTrans)}"
+        binding.layoutAdmin.tvOffline.text = "$countOffline"
+        binding.layoutAdmin.tvOnline.text = "$countOnline"
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {

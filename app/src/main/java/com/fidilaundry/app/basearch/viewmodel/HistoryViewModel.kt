@@ -17,6 +17,12 @@ class HistoryViewModel(private val historyRepository: HistoryRepository) : BaseV
 
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
     val orderListCustResponse = SingleLiveEvent<OrderListResponse>()
+    val reportResponse = SingleLiveEvent<OrderListResponse>()
+
+    val typeFilter = NonNullMutableLiveData("")
+    val year = NonNullMutableLiveData("")
+    val startDate = NonNullMutableLiveData("")
+    val endDate = NonNullMutableLiveData("")
 
     fun getOrderList(custId: String, serviceId: String, step: String, status: String) {
         showProgressLiveData.postValue(true)
@@ -48,6 +54,25 @@ class HistoryViewModel(private val historyRepository: HistoryRepository) : BaseV
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> orderListCustResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getReport(start: String, end: String, year: String) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                historyRepository.getReport(start, end, year)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> reportResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
