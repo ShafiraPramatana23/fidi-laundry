@@ -30,7 +30,7 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
     val loginPassword = NonNullMutableLiveData("")
     val loginUsername = NonNullMutableLiveData("")
 
-    fun loginInit() {
+    fun loginInit(deviceId: String) {
         showProgressLiveData.postValue(true)
 
         launch {
@@ -50,7 +50,7 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
                     authRepository.login(
                         LoginRequest(
                             if (vEmail.isNotEmpty()) vEmail else vPhoneNumber,
-                            loginPassword.value
+                            loginPassword.value, deviceId
                         )
                     )
                 }

@@ -6,5 +6,6 @@ class OrderRequest (
         var longitude: String,
         var addressDescription: String,
         var transferMethod: String,
-        var order_for: Int
+        var order_for: Int,
+        var user_id: Int
 )

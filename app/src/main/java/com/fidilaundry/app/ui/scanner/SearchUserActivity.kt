@@ -167,7 +167,8 @@ class SearchUserActivity : BaseActivity(), IFClick {
                 override fun onCallback() {
                     viewModel.requestOrder(OrderRequest(
                         viewModel.serviceId.value.toInt(), "-7.5629624", "112.6794581",
-                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt()
+                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt(),
+                        viewModel.custId.value.toInt()
                     ))
                 }
             }
