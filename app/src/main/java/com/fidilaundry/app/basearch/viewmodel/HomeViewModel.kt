@@ -57,22 +57,22 @@ class HomeViewModel(private val historyRepository: HistoryRepository, private va
         }
     }
 
-    fun getReport(start: String, end: String, year: String) {
-        showProgressLiveData.postValue(true)
-
-        scope.launch {
-            val response = withContext(Dispatchers.IO) {
-                historyRepository.getReport(start, end, year)
-            }
-
-            showProgressLiveData.postValue(false)
-            when (response) {
-                is UseCaseResult.Success -> reportResponse.value = response.data
-                is UseCaseResult.Failed -> showError.value = response.errorMessage
-                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
-            }
-        }
-    }
+//    fun getReport(start: String, end: String, year: String) {
+//        showProgressLiveData.postValue(true)
+//
+//        scope.launch {
+//            val response = withContext(Dispatchers.IO) {
+//                historyRepository.getReport(start, end, year)
+//            }
+//
+//            showProgressLiveData.postValue(false)
+//            when (response) {
+//                is UseCaseResult.Success -> reportResponse.value = response.data
+//                is UseCaseResult.Failed -> showError.value = response.errorMessage
+//                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+//                is UseCaseResult.Error -> showError.value =
+//                    Utils.handleException(response.exception)
+//            }
+//        }
+//    }
 }

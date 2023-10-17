@@ -114,7 +114,8 @@ interface Endpoints {
         @Header("Authorization") auth: String,
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
-        @Query("year") year: String
+        @Query("year") year: String,
+        @Query("status") status: String
     ): OrderListResponse
 
     @POST("tracking/create")

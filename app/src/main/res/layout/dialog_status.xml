@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:includeFontPadding="false"
-                android:text="Pilih Layanan"
+                android:text="Pilih Status"
                 android:textColor="@color/blackHistory"
                 android:textSize="@dimen/_13sdp"
                 app:fontName="@string/font_name_dmsans"

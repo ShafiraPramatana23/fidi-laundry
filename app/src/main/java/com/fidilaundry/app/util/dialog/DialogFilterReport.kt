@@ -15,6 +15,7 @@ import com.fidilaundry.app.databinding.DialogFilterRepotBinding
 import com.fidilaundry.app.databinding.DialogOrderAdminBinding
 import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.master.model.DropdownItem
+import com.fidilaundry.app.ui.home.report.model.Status
 import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.LoadingDialog
@@ -37,6 +38,7 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
     private var isChange = false
     private var selectedDate = ""
     private var dateFilter: MutableList<String> = ArrayList()
+    private var isStatus = false
 
     val viewModel by sharedViewModel<HistoryViewModel>()
     private var _binding: DialogFilterRepotBinding? = null
@@ -77,7 +79,14 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
         }
 
         binding.etType.setSafeOnClickListener {
+            isStatus = false
             val myRoundedBottomSheet = DialogService(1,  serviceList, this)
+            myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
+        }
+
+        binding.etStatus.setSafeOnClickListener {
+            isStatus = true
+            val myRoundedBottomSheet = DialogStatus(1,  statusList, this)
             myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
         }
     }
@@ -221,6 +230,24 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
             return appList
         }
 
+    private val statusList: List<Status>
+        get() {
+            val appList: MutableList<Status> = ArrayList()
+            appList.add(Status(1, "Pending", "pending"))
+            appList.add(Status(1, "Dijemput", "dijemput"))
+            appList.add(Status(1, "Pengecekan Baju", "cek item"))
+            appList.add(Status(1, "Pengerjaan", "pengerjaan"))
+            appList.add(Status(1, "Pengerjaan Selesai", "selesai-pengerjaan"))
+            appList.add(Status(1, "Diantar", "antar"))
+            appList.add(Status(1, "Selesai", "selesai"))
+            appList.add(Status(1, "Menunggu Pembayaran", "menunggu-pembayaran"))
+            appList.add(Status(1, "Pembayaran Selesai", "pembayaran-sukses"))
+            appList.add(Status(1, "Komplain", "komplain"))
+            appList.add(Status(1, "Komplain Terselesaikan", "solve"))
+//            appList.add(Status(1, "", ""))
+            return appList
+        }
+
     override fun onItemClick() {
 
     }
@@ -238,6 +265,8 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
         }
     }
 
-    override fun onItemSelected(value: String?, id: String, type: Int) {
+    override fun onItemSelected(title: String?, value: String, id: Int) {
+        viewModel.status.value = value
+        viewModel.statusTitle.value = title.toString()
     }
 }

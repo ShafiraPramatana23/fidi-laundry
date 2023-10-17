@@ -24,7 +24,6 @@ import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import com.fidilaundry.app.util.dialog.DialogOrderAdmin
-import com.fidilaundry.app.util.dialog.DialogService
 import com.fidilaundry.app.util.fdialog.ConfirmMessage
 import com.fidilaundry.app.util.fdialog.ErrorMessage
 import com.fidilaundry.app.util.fdialog.FGCallback

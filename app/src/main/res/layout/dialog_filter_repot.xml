@@ -91,6 +91,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/llYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,6 +142,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/llDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -247,6 +249,56 @@
 
                 </RelativeLayout>
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:includeFontPadding="false"
+                android:text="Status"
+                android:textColor="@color/blackHistory"
+                android:textSize="@dimen/_10sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_input_text">
+
+                <com.fidilaundry.app.util.FontEditText
+                    android:id="@+id/etStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:background="@null"
+                    android:hint="Pilih salah satu"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={vm.statusTitle}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:fontName="@string/font_name_dmsans" />
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_down_arrow"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

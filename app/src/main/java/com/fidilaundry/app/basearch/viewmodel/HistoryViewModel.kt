@@ -23,6 +23,8 @@ class HistoryViewModel(private val historyRepository: HistoryRepository) : BaseV
     val year = NonNullMutableLiveData("")
     val startDate = NonNullMutableLiveData("")
     val endDate = NonNullMutableLiveData("")
+    val status = NonNullMutableLiveData("")
+    val statusTitle = NonNullMutableLiveData("")
 
     fun getOrderList(custId: String, serviceId: String, step: String, status: String) {
         showProgressLiveData.postValue(true)
@@ -62,12 +64,15 @@ class HistoryViewModel(private val historyRepository: HistoryRepository) : BaseV
         }
     }
 
-    fun getReport(start: String, end: String, year: String) {
+    fun getReport() {
         showProgressLiveData.postValue(true)
 
         scope.launch {
             val response = withContext(Dispatchers.IO) {
-                historyRepository.getReport(start, end, year)
+                historyRepository.getReport(
+                    startDate.value, endDate.value ,
+                    year.value, status.value
+                )
             }
 
             showProgressLiveData.postValue(false)
