@@ -108,6 +108,8 @@ object Libraries {
         const val mapbox = "10.14.1"
         const val mapboxMapSdk = "9.7.0"
         const val mapboxJavaSdk = "5.5.0"
+        const val easyPermission = "1.0.0"
+        const val gmsLocation = "21.0.1"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -166,6 +168,8 @@ object Libraries {
 //    const val mapboxSdk = "com.mapbox.mapboxsdk:DESIRED_JAVA_SDK_PACKAGE:${Versions.mapboxSdk}"
     const val mapboxMapSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:${Versions.mapboxMapSdk}"
     const val mapboxService = "com.mapbox.mapboxsdk:mapbox-sdk-services:${Versions.mapboxJavaSdk}"
+    const val easyPermission = "com.vmadalin:easypermissions-ktx:${Versions.easyPermission}"
+    const val gmsLocation = "com.google.android.gms:play-services-location:${Versions.gmsLocation}"
 }
 
 object TestLibraries {

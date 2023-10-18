@@ -16,6 +16,7 @@ class SteppingViewModel(private val orderRepository: OrderRepository) : BaseView
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
 
     val stepping = NonNullMutableLiveData("")
+//    val steppingTitle = NonNullMutableLiveData("")
 
     fun updateOrderStatus(req: UpdateOrderStatusRequest) {
         showProgressLiveData.postValue(true)

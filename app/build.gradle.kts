@@ -213,6 +213,9 @@ dependencies {
     implementation(Libraries.mapboxMapSdk)
     implementation(Libraries.mapboxService)
 
+    implementation(Libraries.easyPermission)
+    implementation(Libraries.gmsLocation)
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)

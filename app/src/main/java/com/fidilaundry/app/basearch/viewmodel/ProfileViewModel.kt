@@ -11,6 +11,7 @@ import com.fidilaundry.app.model.request.ChangeProfileRequest
 import com.fidilaundry.app.model.request.UserComplaintRequest
 import com.fidilaundry.app.model.response.BaseObjResponse
 import com.fidilaundry.app.model.response.BaseResponse
+import com.fidilaundry.app.model.response.ProfileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,7 +19,8 @@ import kotlinx.coroutines.withContext
 class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseViewModel() {
 
     val passResponse = SingleLiveEvent<BaseObjResponse>()
-    val profileResponse = SingleLiveEvent<BaseObjResponse>()
+    val changeProfileResponse = SingleLiveEvent<BaseObjResponse>()
+    val profileResponse = SingleLiveEvent<ProfileResponse>()
 
     val isEnableButton = NonNullMutableLiveData(false)
 
@@ -28,6 +30,16 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
     val name = NonNullMutableLiveData("")
     val phone = NonNullMutableLiveData("")
 
+    fun getProfile() {
+        launch {
+            val response = withContext(Dispatchers.IO) { profileRepository.profile() }
+            when (response) {
+                is UseCaseResult.Success -> profileResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
     fun changeProfile() {
         showProgressLiveData.postValue(true)
 
@@ -42,7 +54,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
 
             showProgressLiveData.postValue(false)
             when (response) {
-                is UseCaseResult.Success -> profileResponse.value = response.data
+                is UseCaseResult.Success -> changeProfileResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> {

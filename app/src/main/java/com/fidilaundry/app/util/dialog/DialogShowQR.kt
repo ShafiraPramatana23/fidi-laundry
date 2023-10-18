@@ -51,7 +51,8 @@ class DialogShowQR : BaseDialogFragment() {
         loadingDialog = LoadingDialog()
         paperPrefs = PaperPrefs(requireActivity())
 
-        generateQr("huhuy", binding.ivQr)
+        var profileData = paperPref.getDataProfile()
+        generateQr(profileData?.id.toString(), binding.ivQr)
 
         binding.btnClose.setOnClickListener {
             dismiss()

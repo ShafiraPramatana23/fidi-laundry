@@ -16,21 +16,27 @@ import com.budiyev.android.codescanner.ScanMode
 import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
+import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityScannerBinding
+import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.ui.base.BaseActivity
 import com.fidilaundry.app.ui.home.master.adapter.MasterMenuAdapter
 import com.fidilaundry.app.ui.home.master.adapter.PriceListAdapter
 import com.fidilaundry.app.ui.home.master.model.MasterMenu
 import com.fidilaundry.app.ui.home.order.OrderMapsActivity
+import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
+import com.fidilaundry.app.util.dialog.DialogOrderAdmin
+import com.fidilaundry.app.util.fdialog.ConfirmMessage
+import com.fidilaundry.app.util.fdialog.FGCallback
 import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.ArrayList
 
-class ScannerActivity : BaseActivity() {
+class ScannerActivity : BaseActivity(), IFClick {
 
     lateinit var paperPrefs: PaperPrefs
     lateinit var loadingDialog: LoadingDialog
@@ -38,8 +44,8 @@ class ScannerActivity : BaseActivity() {
 
     private val binding: ActivityScannerBinding by binding(R.layout.activity_scanner)
 
-    private val viewModel: HomeViewModel by lazy {
-        getViewModel(HomeViewModel::class)
+    private val viewModel: ScannerViewModel by lazy {
+        getViewModel(ScannerViewModel::class)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +86,10 @@ class ScannerActivity : BaseActivity() {
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+
+                viewModel.custId.value = it.text
+                val myRoundedBottomSheet = DialogOrderAdmin(this)
+                myRoundedBottomSheet.show(supportFragmentManager, myRoundedBottomSheet.tag)
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
@@ -125,5 +135,25 @@ class ScannerActivity : BaseActivity() {
     override fun onPause() {
         codeScanner.releaseResources()
         super.onPause()
+    }
+
+    override fun onUserClick(id: Int) {
+
+    }
+
+    override fun onSubmitClick() {
+        ConfirmMessage(
+            this, "Apakah pelanggan yakin untuk memesan?",
+            "", "", "Ya, lanjutkan", "Batal",
+            object : FGCallback {
+                override fun onCallback() {
+                    viewModel.requestOrder(OrderRequest(
+                        viewModel.serviceId.value.toInt(), "-7.5629624", "112.6794581",
+                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt(),
+                        viewModel.custId.value.toInt()
+                    ))
+                }
+            }
+        )
     }
 }

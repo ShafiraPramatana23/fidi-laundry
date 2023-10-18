@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/tools">
 
     <data>
 
@@ -260,11 +261,14 @@ setelah menimbang dan menyortir baju."
                                 app:textStyle="@integer/font_style_semibold" />
                         </LinearLayout>
 
-                        <ImageView
+                        <com.mapbox.mapboxsdk.maps.MapView
+                            android:id="@+id/mapView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_map"/>
+                            android:layout_height="@dimen/_200sdp"
+                            mapbox:mapbox_cameraTargetLat="40.7128"
+                            mapbox:mapbox_cameraTargetLng="-74.0060"
+                            mapbox:mapbox_cameraZoom="9.0" />
+
                     </LinearLayout>
 
                 </LinearLayout>

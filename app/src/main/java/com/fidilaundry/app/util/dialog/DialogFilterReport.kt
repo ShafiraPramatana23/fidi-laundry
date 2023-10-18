@@ -38,7 +38,6 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
     private var isChange = false
     private var selectedDate = ""
     private var dateFilter: MutableList<String> = ArrayList()
-    private var isStatus = false
 
     val viewModel by sharedViewModel<HistoryViewModel>()
     private var _binding: DialogFilterRepotBinding? = null
@@ -79,13 +78,11 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
         }
 
         binding.etType.setSafeOnClickListener {
-            isStatus = false
             val myRoundedBottomSheet = DialogService(1,  serviceList, this)
             myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
         }
 
         binding.etStatus.setSafeOnClickListener {
-            isStatus = true
             val myRoundedBottomSheet = DialogStatus(1,  statusList, this)
             myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
         }

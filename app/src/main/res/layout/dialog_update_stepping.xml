@@ -68,6 +68,14 @@
                 android:textSize="@dimen/_10sdp"
                 app:fontName="@string/font_name_dmsans" />
 
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_down_arrow"/>
+
         </RelativeLayout>
 
         <LinearLayout
