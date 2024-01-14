@@ -1,11 +1,11 @@
 object BuildPlugins {
     object Versions {
-        const val kotlinVersion = "1.4.21"
+        const val kotlinVersion = "1.7.10"
         const val buildToolsVersion = "4.1.2"
         const val butterknifeVersion = "10.2.3"
         const val googleService = "4.3.4"
         const val firebase = "2.4.1"
-        const val onesignal = "0.12.6"
+        const val onesignal = "0.14.0"
         const val spotlessPlugin = "3.27.2"
         const val navigationArgsPlugin = "2.3.3"
     }
@@ -31,7 +31,7 @@ object BuildPlugins {
 
 object AndroidSdk {
     const val minSdk = 21
-    const val compile = 31
+    const val compile = 33
     const val target = 30
     const val versionCode = 21
     const val versionName = "0.22"
@@ -110,6 +110,7 @@ object Libraries {
         const val mapboxJavaSdk = "5.5.0"
         const val easyPermission = "1.0.0"
         const val gmsLocation = "21.0.1"
+        const val midtrans = "2.0.0"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -170,6 +171,7 @@ object Libraries {
     const val mapboxService = "com.mapbox.mapboxsdk:mapbox-sdk-services:${Versions.mapboxJavaSdk}"
     const val easyPermission = "com.vmadalin:easypermissions-ktx:${Versions.easyPermission}"
     const val gmsLocation = "com.google.android.gms:play-services-location:${Versions.gmsLocation}"
+    const val midtrans = "com.midtrans:uikit:${Versions.midtrans}-SANDBOX"
 }
 
 object TestLibraries {

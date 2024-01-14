@@ -98,7 +98,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
@@ -215,6 +214,9 @@ dependencies {
 
     implementation(Libraries.easyPermission)
     implementation(Libraries.gmsLocation)
+
+    /* Midtrans */
+    implementation(Libraries.midtrans)
 
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)

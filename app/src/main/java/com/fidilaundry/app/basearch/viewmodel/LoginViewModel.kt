@@ -95,6 +95,7 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
                                 Utils.handleException(response.exception)
                         }
                     }
+                    else -> {}
                 }
             } else {
                 showProgressLiveData.postValue(false)
@@ -117,6 +118,7 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
                 is UseCaseResult.Success -> profileResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+                else -> {}
             }
         }
     }

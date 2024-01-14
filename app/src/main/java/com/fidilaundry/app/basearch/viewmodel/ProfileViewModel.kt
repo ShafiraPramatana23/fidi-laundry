@@ -37,6 +37,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
                 is UseCaseResult.Success -> profileResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+                else -> {}
             }
         }
     }
