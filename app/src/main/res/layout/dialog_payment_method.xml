@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidilaundry.app.basearch.viewmodel.PaymentViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_14sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.fidilaundry.app.util.FontTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="Pilih Metode Pembayaran"
+                android:textColor="@color/blackHistory"
+                android:textSize="@dimen/_13sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold" />
+
+            <RelativeLayout
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/ic_close" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <com.fidilaundry.app.util.FontRadioButton
+                android:textColor="@color/black"
+                android:text="Tunai (Cash)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->vm.setPaymentMethod(&quot;1&quot;)}"
+                android:checked="@{vm.paymentMethod.equals(&quot;1&quot;)}"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold"/>
+
+            <com.fidilaundry.app.util.FontRadioButton
+                android:textColor="@color/black"
+                android:text="Non Tunai (Cashless)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:onClick="@{()->vm.setPaymentMethod(&quot;2&quot;)}"
+                android:checked="@{vm.paymentMethod.equals(&quot;2&quot;)}"
+                app:fontName="@string/font_name_dmsans"
+                app:textStyle="@integer/font_style_semibold"/>
+
+        </LinearLayout>
+
+        <com.fidilaundry.app.util.FontButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_gravity="right"
+            android:background="@drawable/rounded_button"
+            android:clipChildren="false"
+            android:text="Pilih"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:fontName="@string/font_name_dmsans"
+            app:textStyle="@integer/font_style_bold" />
+    </LinearLayout>
+
+</layout>

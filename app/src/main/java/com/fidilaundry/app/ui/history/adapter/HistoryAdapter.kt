@@ -59,6 +59,7 @@ class HistoryAdapter(private val context: Context?) :
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
             binding.tvStatus.text = StatusHelper.setStatusName(app.status.toString())
             binding.tvTotal.text = RupiahCurrency.Converter(app.total?.toDouble())
+            binding.iv.setImageResource(ServiceCtgHelper().getImgService(app.serviceID!!))
 
             itemView.setSafeOnClickListener {
                 if (profileData?.role == "customer" || profileData?.role == "member") {

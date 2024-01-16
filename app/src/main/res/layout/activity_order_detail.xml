@@ -568,7 +568,7 @@
                             android:layout_marginTop="@dimen/_26sdp"
                             android:background="@drawable/rounded_button"
                             android:clipChildren="false"
-                            android:text="Payment"
+                            android:text="Pembayaran"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12sdp"

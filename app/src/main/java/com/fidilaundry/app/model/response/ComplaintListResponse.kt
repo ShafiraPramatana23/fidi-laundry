@@ -3,9 +3,10 @@ package com.fidilaundry.app.model.response
 import com.fidilaundry.app.model.response.OrderListResponse.User
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
-class ComplaintListResponse {
+class ComplaintListResponse: Serializable {
     @SerializedName("Results")
     @Expose
     var results: List<Result>? = null
@@ -14,7 +15,7 @@ class ComplaintListResponse {
     @Expose
     var status: Status? = null
 
-    class Result {
+    class Result: Serializable {
         @SerializedName("ID")
         @Expose
         var id: Int? = null
@@ -52,7 +53,7 @@ class ComplaintListResponse {
         var order: Order? = null
     }
 
-    class Order {
+    class Order: Serializable {
         @SerializedName("ID")
         @Expose
         var id: Int? = null
@@ -126,7 +127,7 @@ class ComplaintListResponse {
         var orderItems: Any? = null
     }
 
-    class OrderFor {
+    class OrderFor: Serializable {
         @SerializedName("ID")
         @Expose
         var id: Int? = null
@@ -160,7 +161,7 @@ class ComplaintListResponse {
         var deviceID: String? = null
     }
 
-    class User {
+    class User: Serializable {
         @SerializedName("ID")
         @Expose
         var id: Int? = null
@@ -194,7 +195,7 @@ class ComplaintListResponse {
         var deviceID: String? = null
     }
 
-    class Status {
+    class Status: Serializable {
         @SerializedName("Code")
         @Expose
         var code: Int? = null

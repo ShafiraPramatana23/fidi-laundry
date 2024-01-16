@@ -61,4 +61,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<PaymentRepository> {
+        PaymentRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

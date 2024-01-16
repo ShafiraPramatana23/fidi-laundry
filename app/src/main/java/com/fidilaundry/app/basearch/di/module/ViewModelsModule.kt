@@ -18,4 +18,5 @@ val viewModelsModule = module {
     viewModel { ScannerViewModel(customerRepository = get(), orderRepository = get()) }
     viewModel { TrackingViewModel(trackingRepository = get(), orderRepository = get()) }
     viewModel { SteppingViewModel(orderRepository = get()) }
+    viewModel { PaymentViewModel(paymentRepository = get(), orderRepository = get()) }
 }

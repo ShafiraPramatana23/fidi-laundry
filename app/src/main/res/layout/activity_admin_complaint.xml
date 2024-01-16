@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:includeFontPadding="false"
-                        android:text="Pengaduan"
+                        android:text="Feedback Pengaduan"
                         android:textColor="@color/blackHistory"
                         android:textSize="@dimen/_12sdp"
                         app:fontName="@string/font_name_dmsans"
@@ -108,7 +108,16 @@
                                 <RelativeLayout
                                     android:layout_width="@dimen/_30sdp"
                                     android:layout_height="@dimen/_30sdp"
-                                    android:background="@drawable/circle_green_light" />
+                                    android:background="@drawable/circle_green_light">
+
+                                    <ImageView
+                                        android:id="@+id/iv"
+                                        android:layout_width="@dimen/_15sdp"
+                                        android:layout_height="@dimen/_15sdp"
+                                        android:layout_centerInParent="true"
+                                        android:src="@drawable/ic_cuba"/>
+
+                                </RelativeLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"

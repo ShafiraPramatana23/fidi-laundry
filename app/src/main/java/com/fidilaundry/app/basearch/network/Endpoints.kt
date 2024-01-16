@@ -151,11 +151,31 @@ interface Endpoints {
         @Header("Authorization") auth: String
     ): ComplaintListResponse
 
-    @POST("ticket/create")
+    @POST("ticket/feedback")
     suspend fun feedbackComplaint(
         @Header("Authorization") auth: String,
         @Header("Content-Type") contentType: String,
         @Body req: ComplaintFeedbackRequest
     ): BaseResponse
 
+    /*@GET("payment?")
+    suspend fun getPaymentMidtrans(
+        @Header("Authorization") auth: String,
+        @Query("order_id") orderId: Integer,
+        @Path("id") id: Int
+    ): ItemListResponse*/
+
+    @POST("payment")
+    suspend fun createPaymentMidtrans(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: CreatePaymentRequest
+    ): CreatePaymentResponse
+
+    @PUT("payment")
+    suspend fun updatePaymentMidtrans(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: UpdatePaymentRequest
+    ): BaseResponse
 }
