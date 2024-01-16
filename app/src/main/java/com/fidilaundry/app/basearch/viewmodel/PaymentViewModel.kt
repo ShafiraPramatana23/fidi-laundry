@@ -6,10 +6,7 @@ import com.fidilaundry.app.basearch.repository.PaymentRepository
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.request.CreatePaymentRequest
-import com.fidilaundry.app.model.request.OrderRequest
-import com.fidilaundry.app.model.request.UpdateOrderRequest
-import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
+import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +17,7 @@ class PaymentViewModel(private val paymentRepository: PaymentRepository, private
 
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val createPaymentResponse = SingleLiveEvent<CreatePaymentResponse>()
+    val updatePaymentResponse = SingleLiveEvent<BaseResponse>()
 
     val paymentMethod = NonNullMutableLiveData("")
 
@@ -52,6 +50,24 @@ class PaymentViewModel(private val paymentRepository: PaymentRepository, private
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> createPaymentResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun updatePayment(req: UpdatePaymentRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                paymentRepository.updatePayment(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> updatePaymentResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
