@@ -18,6 +18,7 @@ class PaymentViewModel(private val paymentRepository: PaymentRepository, private
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val createPaymentResponse = SingleLiveEvent<CreatePaymentResponse>()
     val updatePaymentResponse = SingleLiveEvent<BaseResponse>()
+    val paymentListResponse = SingleLiveEvent<PaymentListResponse>()
 
     val paymentMethod = NonNullMutableLiveData("")
 
@@ -68,6 +69,24 @@ class PaymentViewModel(private val paymentRepository: PaymentRepository, private
             showProgressLiveData.postValue(false)
             when (response) {
                 is UseCaseResult.Success -> updatePaymentResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getPaymentList(orderId: String, custId: String, paymentType: String, status: String) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                paymentRepository.getPaymentList(orderId, custId, paymentType, status)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> paymentListResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)

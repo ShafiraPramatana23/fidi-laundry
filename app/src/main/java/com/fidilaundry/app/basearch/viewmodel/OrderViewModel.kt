@@ -6,6 +6,7 @@ import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.OrderRequest
+import com.fidilaundry.app.model.request.SendNotifRequest
 import com.fidilaundry.app.model.request.UpdateOrderRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.*
@@ -22,6 +23,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
     val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
+    val sendNotifResponse = SingleLiveEvent<BaseObjResponse>()
 
     val category = NonNullMutableLiveData("")
     val categoryId = NonNullMutableLiveData("")
@@ -146,6 +148,24 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
                     Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun sendNotif(req: SendNotifRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                orderRepository.sendNotif(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> sendNotifResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = "errSendNotif"
+                is UseCaseResult.SessionTimeOut -> showError.value = "errSendNotif"
+                is UseCaseResult.Error -> showError.value = "errSendNotif"
             }
         }
     }

@@ -62,7 +62,7 @@ class DialogPaymentMethod(
         }
 
         binding.btnSubmit.setSafeOnClickListener {
-            println("hihihaha: "+viewModel.paymentMethod.value)
+            println("hihihaha: "+dtDetail?.id!!)
             viewModel.createPayment(CreatePaymentRequest(
                 dtDetail?.id!!, viewModel.paymentMethod.value.toInt()
             ))
@@ -122,6 +122,7 @@ class DialogPaymentMethod(
                 dismiss()
                 val intent = Intent(requireActivity(), PaymentActivity::class.java)
                 intent.putExtra("snapToken", it?.results?.snapToken)
+                intent.putExtra("paymentId", it?.results?.paymentId)
                 startActivity(intent)
             }
         }

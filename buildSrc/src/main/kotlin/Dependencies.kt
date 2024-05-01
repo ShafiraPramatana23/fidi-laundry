@@ -47,7 +47,7 @@ object KeyStore {
 object Url {
 //    const val apiBaseDev = "https://fira.itpohgero.com/"
 //    const val apiBaseDev = "http://192.168.0.105:3030/"
-    const val apiBaseDev = "http://192.168.100.44:3030/"
+    const val apiBaseDev = "http://192.168.1.25:3030/"
     const val apiBaseProd = "https://fira.itpohgero.com/"
     const val urlDev = "https://fira.itpohgero.com/"
     const val urlProd = "https://fira.itpohgero.com/"

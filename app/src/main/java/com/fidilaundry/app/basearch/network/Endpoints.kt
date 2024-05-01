@@ -178,4 +178,20 @@ interface Endpoints {
         @Header("Content-Type") contentType: String,
         @Body req: UpdatePaymentRequest
     ): BaseResponse
+
+    @GET("order/list-all?")
+    suspend fun getPaymentList(
+        @Header("Authorization") auth: String,
+        @Query("order_id") orderId: String,
+        @Query("user_id") userId: String,
+        @Query("payment_type") paymentType: String,
+        @Query("status") status: String
+    ): PaymentListResponse
+
+    @POST("one/send-notification")
+    suspend fun sendNotif(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: SendNotifRequest
+    ): BaseObjResponse
 }

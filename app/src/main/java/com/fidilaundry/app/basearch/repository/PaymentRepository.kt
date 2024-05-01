@@ -10,6 +10,12 @@ import com.fidilaundry.app.util.Constant
 interface PaymentRepository {
     suspend fun createPayment(req: CreatePaymentRequest): UseCaseResult<CreatePaymentResponse>
     suspend fun updatePayment(req: UpdatePaymentRequest): UseCaseResult<BaseResponse>
+    suspend fun getPaymentList(
+        orderId: String,
+        custId: String,
+        paymentType: String,
+        status: String
+    ): UseCaseResult<PaymentListResponse>
 }
 
 class PaymentRepositoryImpl(private val api: Endpoints, private val paperPrefs: PaperPrefs) :
@@ -37,6 +43,29 @@ class PaymentRepositoryImpl(private val api: Endpoints, private val paperPrefs: 
         return try {
             val contentType = "application/json"
             val result = api.updatePaymentMidtrans(paperPrefs.getToken(), contentType, req)
+            when (result.status?.code) {
+                Constant.SUCCESSCODE -> {
+                    UseCaseResult.Success(result)
+                }
+                else -> {
+                    result.status?.message?.let { UseCaseResult.Failed(it) }
+                }
+            }
+        }
+        catch (ex: Exception) {
+            UseCaseResult.Error(ex)
+        }!!
+    }
+
+    override suspend fun getPaymentList(
+        orderId: String,
+        custId: String,
+        paymentType: String,
+        status: String
+    ): UseCaseResult<PaymentListResponse> {
+        return try {
+            val contentType = "application/json"
+            val result = api.getPaymentList(paperPrefs.getToken(), orderId, custId, paymentType, status)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

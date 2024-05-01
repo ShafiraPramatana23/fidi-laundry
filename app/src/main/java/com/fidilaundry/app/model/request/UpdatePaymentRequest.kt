@@ -1,7 +1,7 @@
 package com.fidilaundry.app.model.request
 
 class UpdatePaymentRequest (
-        var payment_id: String, //int
+        var payment_id: Int, //int
         var status: String,
         var payment: Double
 )

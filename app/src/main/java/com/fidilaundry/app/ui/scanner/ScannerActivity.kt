@@ -21,14 +21,8 @@ import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityScannerBinding
 import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.ui.base.BaseActivity
-import com.fidilaundry.app.ui.home.master.adapter.MasterMenuAdapter
-import com.fidilaundry.app.ui.home.master.adapter.PriceListAdapter
-import com.fidilaundry.app.ui.home.master.model.MasterMenu
-import com.fidilaundry.app.ui.home.order.OrderMapsActivity
 import com.fidilaundry.app.ui.scanner.interfaces.IFClick
-import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
-import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import com.fidilaundry.app.util.dialog.DialogOrderAdmin
 import com.fidilaundry.app.util.fdialog.ConfirmMessage
 import com.fidilaundry.app.util.fdialog.FGCallback

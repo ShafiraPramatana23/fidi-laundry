@@ -16,6 +16,10 @@ class CreatePaymentResponse {
         @SerializedName("snap_token")
         @Expose
         var snapToken: String? = null
+
+        @SerializedName("payment_id")
+        @Expose
+        var paymentId: Int? = null
     }
 
     class Status {

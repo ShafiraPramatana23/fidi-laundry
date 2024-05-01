@@ -17,6 +17,10 @@ class RequestOrderResponse {
         @Expose
         var orderCode: String? = null
 
+        @SerializedName("OrderID")
+        @Expose
+        var orderId: Int? = null
+
         @SerializedName("ServiceID")
         @Expose
         var serviceID: Int? = null
