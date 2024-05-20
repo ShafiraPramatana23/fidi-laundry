@@ -58,14 +58,13 @@ class InProgressFragment : Fragment() {
 
         initViewModel()
 
-        adapter = ComplaintListAdapter(context)
+        adapter = ComplaintListAdapter(context, 1)
         binding.rv.layoutManager =
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 5000)
         binding.rv.adapter = adapter
         binding.rv.addItemDecoration(ListDivideritemDecoration(requireContext()))
-//        adapter.updateList(appList)
 
-        viewModel.getComplaintList()
+        viewModel.getComplaintList(1)
     }
 
     private fun initViewModel() {
@@ -96,7 +95,14 @@ class InProgressFragment : Fragment() {
     private fun handleWhenListSuccess(it: ComplaintListResponse?) {
         if (it?.results?.size != 0) {
             binding.llEmpty.visibility = View.GONE
-            adapter?.updateList(it?.results!!)
+            val appList: MutableList<ComplaintListResponse.Result> = ArrayList()
+            for (i in 0 until it?.results?.size!!) {
+                if (it?.results?.get(i)?.feedbacks?.isEmpty()!!) {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+
+            adapter?.updateList(appList)
         } else {
             binding.llEmpty.visibility = View.VISIBLE
         }

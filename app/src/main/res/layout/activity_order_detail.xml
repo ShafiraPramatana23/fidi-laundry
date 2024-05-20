@@ -98,6 +98,7 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
+                                android:id="@+id/rlOrderDetail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -112,16 +113,18 @@
                                     app:textStyle="@integer/font_style_semibold" />
 
                                 <ImageView
+                                    android:id="@+id/ivDetailArrow"
                                     android:layout_width="@dimen/_12sdp"
                                     android:layout_height="@dimen/_10sdp"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:rotation="90"
+                                    android:rotation="270"
                                     android:src="@drawable/arrow"
                                     app:tint="@color/colorPrimaryDark" />
                             </RelativeLayout>
 
                             <LinearLayout
+                                android:id="@+id/llDetailOrder"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
@@ -322,6 +325,7 @@
                             </LinearLayout>
 
                             <RelativeLayout
+                                android:id="@+id/rlItemDetail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_14sdp">
@@ -337,16 +341,18 @@
                                     app:textStyle="@integer/font_style_semibold" />
 
                                 <ImageView
+                                    android:id="@+id/ivItemArrow"
                                     android:layout_width="@dimen/_12sdp"
                                     android:layout_height="@dimen/_10sdp"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
-                                    android:rotation="90"
+                                    android:rotation="270"
                                     android:src="@drawable/arrow"
                                     app:tint="@color/colorPrimaryDark" />
                             </RelativeLayout>
 
                             <LinearLayout
+                                android:id="@+id/llItem"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"

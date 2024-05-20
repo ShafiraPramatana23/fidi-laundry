@@ -1,24 +1,15 @@
 package com.fidilaundry.app.ui.home.order.adapter
 
 import android.content.Context
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemConfirmOrderBinding
-import com.fidilaundry.app.databinding.ItemSatuanBinding
-import com.fidilaundry.app.model.response.ItemListResponse
 import com.fidilaundry.app.model.response.OrderListResponse
-import com.fidilaundry.app.ui.home.order.interfaces.IFItemClick
 import com.fidilaundry.app.ui.home.order.interfaces.IFOrder
-import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
-import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
-import com.fidilaundry.app.util.DateFormater
 import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.ServiceCtgHelper
-import com.fidilaundry.app.util.dialog.DialogConfirmOrder
-import com.fidilaundry.app.util.dialog.DialogDropdown
 import com.fidilaundry.app.util.setSafeOnClickListener
 import java.util.ArrayList
 

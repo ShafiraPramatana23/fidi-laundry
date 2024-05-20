@@ -44,6 +44,10 @@ class ComplaintListResponse: Serializable {
         @Expose
         var file: String? = null
 
+        @SerializedName("Feedbacks")
+        @Expose
+        var feedbacks: List<Feedback>? = null
+
         @SerializedName("User")
         @Expose
         var user: User? = null
@@ -51,6 +55,32 @@ class ComplaintListResponse: Serializable {
         @SerializedName("Order")
         @Expose
         var order: Order? = null
+    }
+
+    class Feedback: Serializable {
+        @SerializedName("ID")
+        @Expose
+        var id: Int? = null
+
+        @SerializedName("CreatedAt")
+        @Expose
+        var createdAt: String? = null
+
+        @SerializedName("TicketID")
+        @Expose
+        var ticketID: Int? = null
+
+        @SerializedName("OrderID")
+        @Expose
+        var orderID: Int? = null
+
+        @SerializedName("Description")
+        @Expose
+        var description: String? = null
+
+        @SerializedName("File")
+        @Expose
+        var file: String? = null
     }
 
     class Order: Serializable {

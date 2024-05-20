@@ -21,6 +21,7 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
     val feedbackComplaintRes = SingleLiveEvent<BaseResponse>()
     val complaintRes = SingleLiveEvent<ComplaintListResponse>()
+    val complaintCompleteRes = SingleLiveEvent<ComplaintListResponse>()
 
     val ctgValue = NonNullMutableLiveData("")
     val desc = NonNullMutableLiveData("")
@@ -85,7 +86,7 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
         }
     }
 
-    fun getComplaintList() {
+    fun getComplaintList(type: Int) {
         showProgressLiveData.postValue(true)
 
         scope.launch {
@@ -95,7 +96,12 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
 
             showProgressLiveData.postValue(false)
             when (response) {
-                is UseCaseResult.Success -> complaintRes.value = response.data
+                is UseCaseResult.Success -> {
+                    when (type) {
+                        1 -> complaintRes.value = response.data
+                        2 -> complaintCompleteRes.value = response.data
+                    }
+                }
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
