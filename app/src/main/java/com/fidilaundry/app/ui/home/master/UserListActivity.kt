@@ -5,26 +5,18 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.R
-import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.CustomerViewModel
-import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
-import com.fidilaundry.app.basearch.viewmodel.MasterViewModel
-import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityUserListBinding
 import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.ui.base.BaseActivity
-import com.fidilaundry.app.ui.home.master.adapter.PriceListAdapter
 import com.fidilaundry.app.ui.home.master.adapter.UserListAdapter
 import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
-import com.fidilaundry.app.util.fdialog.ConfirmMessage
 import com.fidilaundry.app.util.fdialog.ErrorMessage
-import com.fidilaundry.app.util.fdialog.FGCallback
 import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import java.util.ArrayList
 
 class UserListActivity : BaseActivity(), IFClick {
 
@@ -100,9 +92,7 @@ class UserListActivity : BaseActivity(), IFClick {
         viewModel.getCustomer()
     }
 
-    override fun onUserClick(id: Int) {
-    }
+    override fun onUserClick(id: Int) {}
 
-    override fun onSubmitClick() {
-    }
+    override fun onSubmitClick() {}
 }

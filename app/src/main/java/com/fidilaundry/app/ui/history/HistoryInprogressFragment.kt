@@ -111,15 +111,6 @@ class HistoryInprogressFragment : BaseFragment() {
         }
     }
 
-    private val historyList: List<HistoryData>
-        get() {
-            val appList: MutableList<HistoryData> = ArrayList()
-            appList.add(HistoryData("Setrika", "15 Jun 2022 11:11", 20000.0))
-            appList.add(HistoryData("Cuci Setrika", "15 Jun 2022 11:11", 20000.0))
-            appList.add(HistoryData("Setrika", "15 Jun 2022 11:11", 20000.0))
-            return appList
-        }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

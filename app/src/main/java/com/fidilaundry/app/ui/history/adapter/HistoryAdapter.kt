@@ -3,14 +3,8 @@ package com.fidilaundry.app.ui.history.adapter
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.fidilaundry.app.ui.history.model.HistoryData
-import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemHistoryBinding
 import com.fidilaundry.app.model.response.OrderListResponse
@@ -20,7 +14,6 @@ import com.fidilaundry.app.ui.home.order.AdminOrderMapsActivity
 import com.fidilaundry.app.ui.home.order.OrderDetailActivity
 import com.fidilaundry.app.ui.home.order.OrderMapsActivity
 import com.fidilaundry.app.util.*
-import kotlin.math.roundToInt
 
 class HistoryAdapter(private val context: Context?) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
@@ -70,6 +63,7 @@ class HistoryAdapter(private val context: Context?) :
                     } else {
                         val intent = Intent(context, OrderDetailActivity::class.java)
                         intent.putExtra("transId", app.code)
+                        intent.putExtra("orderId", app.id)
                         context!!.startActivity(intent)
                     }
                 } else {
@@ -82,13 +76,12 @@ class HistoryAdapter(private val context: Context?) :
                         context!!.startActivity(intent)
                     } else if (app.status == "dijemput") {
                         val intent = Intent(context, AdminOrderMapsActivity::class.java)
-//                        intent.putExtra("orderId", app.id)
-//                        intent.putExtra("code", app.code)
                         intent.putExtra("data", app)
                         context!!.startActivity(intent)
                     } else {
                         val intent = Intent(context, OrderDetailActivity::class.java)
                         intent.putExtra("transId", app.code)
+                        intent.putExtra("orderId", app.id)
                         context!!.startActivity(intent)
                     }
                 }

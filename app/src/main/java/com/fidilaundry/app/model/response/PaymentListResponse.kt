@@ -108,6 +108,44 @@ class PaymentListResponse: Serializable {
         @SerializedName("Stepping")
         @Expose
         var stepping: String? = null
+
+        @SerializedName("OrderFor")
+        @Expose
+        var orderFor: PaymentListResponse.OrderFor? = null
+    }
+
+    class OrderFor: Serializable {
+        @SerializedName("ID")
+        @Expose
+        var id: Int? = null
+
+        @SerializedName("CreatedAt")
+        @Expose
+        var createdAt: String? = null
+
+        @SerializedName("Name")
+        @Expose
+        var name: String? = null
+
+        @SerializedName("Uniq")
+        @Expose
+        var uniq: String? = null
+
+        @SerializedName("Email")
+        @Expose
+        var email: String? = null
+
+        @SerializedName("Phone")
+        @Expose
+        var phone: String? = null
+
+        @SerializedName("Role")
+        @Expose
+        var role: String? = null
+
+        @SerializedName("DeviceID")
+        @Expose
+        var deviceID: String? = null
     }
 
     class Status: Serializable {

@@ -25,7 +25,6 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
 
     private var vEmail = ""
     private var vPhoneNumber = ""
-    private var vUsername = ""
 
     val loginPassword = NonNullMutableLiveData("")
     val loginUsername = NonNullMutableLiveData("")
@@ -59,42 +58,8 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
 
                 when (response) {
                     is UseCaseResult.Success -> loginResponse.value = response.data
-                    is UseCaseResult.Failed -> {
-                        if (response.errorMessage.equals(
-                                "username dan password anda salah",
-                                true
-                            )
-                        ) {
-                            showError.value = "wrong"
-                        } else if (response.errorMessage.equals(
-                                "Username tidak ditemukan",
-                                true
-                            )
-                        ) {
-                            showError.value = "notFound"
-                        } else if (response.errorMessage.equals(
-                                "Email or username not found!",
-                                true
-                            )
-                        ) {
-                            showError.value = "emailUsernameNotFound"
-                        } else {
-                            showError.value = response.errorMessage
-                        }
-                    }
-                    is UseCaseResult.Error -> {
-
-                        if (response.exception.message?.contains("403")!!) {
-                            showError.value = "notActive"
-                        }
-                        else if (response.exception.message?.contains("422")!!) {
-                            showError.value = "wrongFormat"
-                        }
-                        else {
-                            showError.value =
-                                Utils.handleException(response.exception)
-                        }
-                    }
+                    is UseCaseResult.Failed -> showError.value = response.errorMessage
+                    is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
                     else -> {}
                 }
             } else {

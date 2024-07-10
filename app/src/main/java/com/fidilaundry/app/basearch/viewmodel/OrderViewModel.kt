@@ -2,6 +2,7 @@ package com.fidilaundry.app.basearch.viewmodel
 
 import android.text.Editable
 import com.fidilaundry.app.basearch.repository.OrderRepository
+import com.fidilaundry.app.basearch.repository.PaymentRepository
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
@@ -15,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewModel() {
+class OrderViewModel(private val orderRepository: OrderRepository, private val paymentRepository: PaymentRepository) : BaseViewModel() {
 
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
     val orderResponse = SingleLiveEvent<RequestOrderResponse>()
@@ -24,8 +25,8 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
     val orderListResponse = SingleLiveEvent<OrderListResponse>()
     val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
     val sendNotifResponse = SingleLiveEvent<BaseObjResponse>()
+    val paymentResponse = SingleLiveEvent<PaymentListResponse>()
 
-    val category = NonNullMutableLiveData("")
     val categoryId = NonNullMutableLiveData("")
     val service = NonNullMutableLiveData("")
     val serviceId = NonNullMutableLiveData("")
@@ -45,8 +46,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> itemsListResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -64,8 +64,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> orderResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -83,11 +82,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> updateOrderResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> {
-                    println("huhuy what: "+response.exception.message)
-                    showError.value =
-                        Utils.handleException(response.exception)
-                }
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -105,11 +100,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> updateOrderStatusResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> {
-                    println("huhuy what: "+response.exception.message)
-                    showError.value =
-                        Utils.handleException(response.exception)
-                }
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -127,8 +118,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> orderListResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -146,8 +136,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
                 is UseCaseResult.Success -> orderDetailResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -170,12 +159,25 @@ class OrderViewModel(private val orderRepository: OrderRepository) : BaseViewMod
         }
     }
 
+    fun getPayment(orderId: Int) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                paymentRepository.getPaymentList(orderId)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> paymentResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
+
     fun onKiloan(e: Editable) {
         kiloan.value = e.toString()
-//        if (e.toString() == "") {
-//            kiloan.value = "0"
-//        } else {
-//            kiloan.value = e.toString()
-//        }
     }
 }

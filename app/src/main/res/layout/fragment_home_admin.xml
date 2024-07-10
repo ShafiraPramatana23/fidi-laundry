@@ -302,7 +302,7 @@
                                 android:layout_width="@dimen/_22sdp"
                                 android:layout_height="@dimen/_24sdp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_report" />
+                                android:src="@drawable/ic_payment" />
 
                         </RelativeLayout>
 

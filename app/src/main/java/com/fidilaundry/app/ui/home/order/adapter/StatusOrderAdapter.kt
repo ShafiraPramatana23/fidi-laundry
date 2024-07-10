@@ -30,10 +30,12 @@ class StatusOrderAdapter(
     private var appList: List<StatusItem>
     lateinit var paperPrefs: PaperPrefs
     private var stepping: String = ""
+    private var paymentType: String = ""
 
-    fun updateList(appList: List<StatusItem>, stepping: String) {
+    fun updateList(appList: List<StatusItem>, stepping: String, paymentType: String) {
         this.appList = appList
         this.stepping = stepping
+        this.paymentType = paymentType
         notifyDataSetChanged()
     }
 
@@ -62,6 +64,8 @@ class StatusOrderAdapter(
 
             if (stepping != "" && app.title == "Pengerjaan") {
                 binding.tvStatus.text = app.title + " (" + stepping + ")"
+            } else if (paymentType != "" && app.title == "Menunggu Pembayaran") {
+                binding.tvStatus.text = app.title + " (" + paymentType + ")"
             } else {
                 binding.tvStatus.text = app.title
             }

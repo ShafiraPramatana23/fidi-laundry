@@ -11,10 +11,10 @@ interface PaymentRepository {
     suspend fun createPayment(req: CreatePaymentRequest): UseCaseResult<CreatePaymentResponse>
     suspend fun updatePayment(req: UpdatePaymentRequest): UseCaseResult<BaseResponse>
     suspend fun getPaymentList(
-        orderId: String,
-        custId: String,
-        paymentType: String,
-        status: String
+        orderId: Int
+//        custId: Int,
+//        paymentType: Int,
+//        status: String
     ): UseCaseResult<PaymentListResponse>
 }
 
@@ -58,14 +58,14 @@ class PaymentRepositoryImpl(private val api: Endpoints, private val paperPrefs: 
     }
 
     override suspend fun getPaymentList(
-        orderId: String,
-        custId: String,
-        paymentType: String,
-        status: String
+        orderId: Int
+//        userId: Int,
+//        paymentType: Int,
+//        status: String
     ): UseCaseResult<PaymentListResponse> {
         return try {
             val contentType = "application/json"
-            val result = api.getPaymentList(paperPrefs.getToken(), orderId, custId, paymentType, status)
+            val result = api.getPaymentList(paperPrefs.getToken(), orderId)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

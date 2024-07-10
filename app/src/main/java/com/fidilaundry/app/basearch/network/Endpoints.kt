@@ -158,12 +158,14 @@ interface Endpoints {
         @Body req: ComplaintFeedbackRequest
     ): BaseResponse
 
-    /*@GET("payment?")
-    suspend fun getPaymentMidtrans(
+    @GET("payment?")
+    suspend fun getPaymentList(
         @Header("Authorization") auth: String,
-        @Query("order_id") orderId: Integer,
-        @Path("id") id: Int
-    ): ItemListResponse*/
+        @Query("order_id") orderId: Int
+//        @Query("user_id") userId: Int,
+//        @Query("payment_type") paymentType: Int,
+//        @Query("status") status: String,
+    ): PaymentListResponse
 
     @POST("payment")
     suspend fun createPaymentMidtrans(
@@ -179,14 +181,14 @@ interface Endpoints {
         @Body req: UpdatePaymentRequest
     ): BaseResponse
 
-    @GET("order/list-all?")
+    /*@GET("order/list-all?")
     suspend fun getPaymentList(
         @Header("Authorization") auth: String,
         @Query("order_id") orderId: String,
         @Query("user_id") userId: String,
         @Query("payment_type") paymentType: String,
         @Query("status") status: String
-    ): PaymentListResponse
+    ): PaymentListResponse*/
 
     @POST("one/send-notification")
     suspend fun sendNotif(

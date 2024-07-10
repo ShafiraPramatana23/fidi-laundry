@@ -1,10 +1,8 @@
 package com.fidilaundry.app.model.response
 
-import com.fidilaundry.app.model.response.OrderDetailResponse.OrderFor
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-
 
 class OrderListResponse: Serializable {
     @SerializedName("Results")

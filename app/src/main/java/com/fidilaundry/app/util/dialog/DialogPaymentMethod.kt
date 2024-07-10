@@ -18,6 +18,7 @@ import com.fidilaundry.app.model.response.OrderDetailResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.order.PaymentActivity
+import com.fidilaundry.app.ui.home.order.interfaces.IFPayment
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.StatusHelper
 import com.fidilaundry.app.util.fdialog.ErrorMessage
@@ -27,7 +28,8 @@ import com.fidilaundry.app.util.setSafeOnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DialogPaymentMethod(
-    private var dtDetail: OrderDetailResponse.Result?
+    private var dtDetail: OrderDetailResponse.Result?,
+    private var inf: IFPayment
 ) : BaseDialogFragment() {
 
     lateinit var paperPrefs: PaperPrefs
@@ -62,7 +64,6 @@ class DialogPaymentMethod(
         }
 
         binding.btnSubmit.setSafeOnClickListener {
-            println("hihihaha: "+dtDetail?.id!!)
             viewModel.createPayment(CreatePaymentRequest(
                 dtDetail?.id!!, viewModel.paymentMethod.value.toInt()
             ))
@@ -115,6 +116,7 @@ class DialogPaymentMethod(
                 SuccessMessage(requireActivity(), "Pembayaran Tunai (Cash)", "Silahkan datang ke laundry untuk mengambil pesanan Anda", object : FGCallback {
                     override fun onCallback() {
                         dismiss()
+                        inf.onDialogPayment()
                     }
                 })
             }

@@ -1,13 +1,10 @@
 package com.fidilaundry.app.basearch.viewmodel
 
-import com.fidilaundry.app.basearch.repository.AuthRepository
 import com.fidilaundry.app.basearch.repository.HistoryRepository
-import com.fidilaundry.app.basearch.repository.OrderRepository
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.OrderListResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

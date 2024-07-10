@@ -1,12 +1,10 @@
 package com.fidilaundry.app.basearch.viewmodel
 
-import android.app.Service
 import com.fidilaundry.app.basearch.repository.MasterRepository
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.request.AddCustomerRequest
 import com.fidilaundry.app.model.request.AddItemRequest
 import com.fidilaundry.app.model.request.DeleteItemRequest
 import com.fidilaundry.app.model.request.UpdateItemRequest
@@ -19,18 +17,14 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
 
     val serviceResponse = SingleLiveEvent<ServiceListResponse>()
     val categoryResponse = SingleLiveEvent<CategoryListResponse>()
-
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
     val itemsAddResponse = SingleLiveEvent<BaseObjResponse>()
     val itemsUpdateResponse = SingleLiveEvent<BaseObjResponse>()
     val itemsDeleteResponse = SingleLiveEvent<BaseObjResponse>()
 
-    val isEnableButton = NonNullMutableLiveData(false)
-
     val ctgValue = NonNullMutableLiveData("")
     val ctgIdValue = NonNullMutableLiveData("")
     val itemsValue = NonNullMutableLiveData("")
-    val itemsIdValue = NonNullMutableLiveData(0)
     val serviceValue = NonNullMutableLiveData("")
     val serviceIdValue = NonNullMutableLiveData("")
     val priceValue = NonNullMutableLiveData("")
@@ -48,8 +42,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> serviceResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -66,8 +59,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> categoryResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -85,8 +77,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> itemsListResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -104,8 +95,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> itemsAddResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -123,8 +113,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> itemsUpdateResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -142,8 +131,7 @@ class MasterViewModel(private val masterRepository: MasterRepository) : BaseView
                 is UseCaseResult.Success -> itemsDeleteResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> showError.value =
-                    Utils.handleException(response.exception)
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }

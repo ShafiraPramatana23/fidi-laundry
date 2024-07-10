@@ -6,28 +6,20 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fidilaundry.app.R
-import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
 import com.fidilaundry.app.databinding.FragmentHomeBinding
 import com.fidilaundry.app.model.response.OrderListResponse
 import com.fidilaundry.app.model.response.ProfileResponse
 import com.fidilaundry.app.ui.base.BaseFragment
 import com.fidilaundry.app.ui.complaint.ComplaintActivity
-import com.fidilaundry.app.ui.complaint.UserComplaintActivity
 import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
-import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.ui.home.master.MasterActivity
 import com.fidilaundry.app.ui.home.order.*
 import com.fidilaundry.app.ui.home.report.ReportActivity
-import com.fidilaundry.app.ui.profile.model.ProfileMenu
-import com.fidilaundry.app.ui.scanner.ScannerActivity
 import com.fidilaundry.app.util.*
 import com.fidilaundry.app.util.fdialog.ErrorMessage
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_home_admin.view.*
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class HomeFragment : BaseFragment() {
@@ -87,7 +79,6 @@ class HomeFragment : BaseFragment() {
         layAdmin.rvActiveOrder.addItemDecoration(ListDivideritemDecoration(requireContext()))
 
         viewModel.getOrderList("", "", "", "")
-//        viewModel.getReport("", "", "")
 
         layAdmin.btnMaster.setSafeOnClickListener {
             activity?.intent = Intent(activity, MasterActivity::class.java)
@@ -109,6 +100,11 @@ class HomeFragment : BaseFragment() {
             startActivity(activity?.intent)
         }
 
+        layAdmin.btnPayment.setSafeOnClickListener {
+            activity?.intent = Intent(activity, PaymentListActivity::class.java)
+            startActivity(activity?.intent)
+        }
+
         layAdmin.tvSeeAllAdmin.setSafeOnClickListener {
             activity?.intent = Intent(activity, OrderListActivity::class.java)
             startActivity(activity?.intent)
@@ -120,15 +116,6 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private val historyList: List<HistoryData>
-        get() {
-            val appList: MutableList<HistoryData> = ArrayList()
-            appList.add(HistoryData("Setrika", "15 Jun 2022 11:11", 20000.0))
-            appList.add(HistoryData("Cuci Setrika", "15 Jun 2022 11:11", 20000.0))
-            appList.add(HistoryData("Setrika", "15 Jun 2022 11:11", 20000.0))
-            return appList
-        }
-
     // USER
     private fun layoutUser() {
         binding.layoutAdmin.visibility = View.GONE
@@ -139,7 +126,6 @@ class HomeFragment : BaseFragment() {
             ScrollingLinearLayoutManager(context, LinearLayoutManager.VERTICAL, false, 0)
         rvActive.addItemDecoration(ListDivideritemDecoration(requireContext()))
 
-//        viewModel.getOrderListCust(profileData?.id.toString(), "", "", "")
         viewModel.getOrderList(profileData?.id.toString(), "", "", "")
 
         binding.btnSetrika.setSafeOnClickListener {

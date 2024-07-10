@@ -76,12 +76,12 @@ class PaymentViewModel(private val paymentRepository: PaymentRepository, private
         }
     }
 
-    fun getPaymentList(orderId: String, custId: String, paymentType: String, status: String) {
+    fun getPaymentList(orderId: Int, custId: String, paymentType: String, status: String) {
         showProgressLiveData.postValue(true)
 
         scope.launch {
             val response = withContext(Dispatchers.IO) {
-                paymentRepository.getPaymentList(orderId, custId, paymentType, status)
+                paymentRepository.getPaymentList(orderId)
             }
 
             showProgressLiveData.postValue(false)

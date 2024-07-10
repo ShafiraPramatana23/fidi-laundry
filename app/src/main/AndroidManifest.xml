@@ -148,6 +148,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.fidilaundry.app.ui.home.order.PaymentListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.fidilaundry.app.ui.home.report.ReportActivity"
             android:screenOrientation="portrait" />
 

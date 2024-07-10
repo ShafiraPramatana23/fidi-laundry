@@ -7,30 +7,17 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fidilaundry.app.R
-import com.fidilaundry.app.basearch.localpref.PaperPrefs
-import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
 import com.fidilaundry.app.basearch.viewmodel.ProfileViewModel
-import com.fidilaundry.app.databinding.FragmentHomeBinding
 import com.fidilaundry.app.databinding.FragmentProfileBinding
 import com.fidilaundry.app.model.response.ProfileResponse
 import com.fidilaundry.app.ui.auth.LoginActivity
 import com.fidilaundry.app.ui.base.BaseFragment
-import com.fidilaundry.app.ui.complaint.UserComplaintActivity
-import com.fidilaundry.app.ui.history.adapter.HistoryAdapter
-import com.fidilaundry.app.ui.home.master.MasterActivity
-import com.fidilaundry.app.ui.home.order.UserOrderActivity
 import com.fidilaundry.app.ui.profile.adapter.ProfileMenuAdapter
 import com.fidilaundry.app.ui.profile.interfaces.IProfile
 import com.fidilaundry.app.ui.profile.model.ProfileMenu
-import com.fidilaundry.app.ui.scanner.ScannerActivity
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import com.fidilaundry.app.util.fdialog.ErrorMessage
-import com.fidilaundry.app.util.setSafeOnClickListener
-import com.onesignal.OneSignal
-import kotlinx.android.synthetic.main.fragment_home_admin.view.*
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.ArrayList
 
@@ -43,7 +30,6 @@ class ProfileFragment : BaseFragment(), IProfile {
         getViewModel(ProfileViewModel::class)
     }
 
-    private lateinit var vie: View
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -68,8 +54,6 @@ class ProfileFragment : BaseFragment(), IProfile {
         binding.tvName.text = profileData?.name
         binding.tvEmail.text = profileData?.email
         binding.tvPhone.text = profileData?.phone
-
-        println("anjay: "+profileData?.role)
 
         val menuAdapter = ProfileMenuAdapter(context, this)
         binding.rvMenu.adapter = menuAdapter

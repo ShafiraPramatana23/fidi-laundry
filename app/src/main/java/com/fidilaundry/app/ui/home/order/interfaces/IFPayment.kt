@@ -1,0 +1,1 @@
+package com.fidilaundry.app.ui.home.order.interfacesinterface IFPayment {    fun onDialogPayment()}

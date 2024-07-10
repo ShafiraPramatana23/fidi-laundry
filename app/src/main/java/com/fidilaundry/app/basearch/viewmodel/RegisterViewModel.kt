@@ -19,7 +19,6 @@ class RegisterViewModel(private val authRepository: AuthRepository) : BaseViewMo
     val registerResponse = SingleLiveEvent<LoginResponse>()
     val vlPassword = NonNullMutableLiveData("")
     val vlPasswordConfirmation = NonNullMutableLiveData("")
-    val vlUsername = NonNullMutableLiveData("")
     val vlPhoneNumber = NonNullMutableLiveData("")
     val vlEmail = NonNullMutableLiveData("")
     val vlName = NonNullMutableLiveData("")

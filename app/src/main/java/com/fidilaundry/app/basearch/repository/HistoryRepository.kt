@@ -1,11 +1,8 @@
 package com.fidilaundry.app.basearch.repository
 
-import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.network.Endpoints
 import com.fidilaundry.app.basearch.util.UseCaseResult
-import com.fidilaundry.app.model.request.OrderRequest
-import com.fidilaundry.app.model.request.UpdateOrderRequest
 import com.fidilaundry.app.model.response.*
 import com.fidilaundry.app.util.Constant
 

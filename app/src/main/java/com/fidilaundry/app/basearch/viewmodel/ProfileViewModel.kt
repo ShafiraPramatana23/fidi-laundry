@@ -1,6 +1,5 @@
 package com.fidilaundry.app.basearch.viewmodel
 
-import com.fidilaundry.app.basearch.repository.AuthRepository
 import com.fidilaundry.app.basearch.repository.ProfileRepository
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
@@ -8,9 +7,7 @@ import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.ChangePassRequest
 import com.fidilaundry.app.model.request.ChangeProfileRequest
-import com.fidilaundry.app.model.request.UserComplaintRequest
 import com.fidilaundry.app.model.response.BaseObjResponse
-import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.ProfileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,8 +18,6 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
     val passResponse = SingleLiveEvent<BaseObjResponse>()
     val changeProfileResponse = SingleLiveEvent<BaseObjResponse>()
     val profileResponse = SingleLiveEvent<ProfileResponse>()
-
-    val isEnableButton = NonNullMutableLiveData(false)
 
     val oldPass = NonNullMutableLiveData("")
     val newPass = NonNullMutableLiveData("")
@@ -58,10 +53,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
                 is UseCaseResult.Success -> changeProfileResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> {
-                    showError.value =
-                        Utils.handleException(response.exception)
-                }
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
@@ -81,10 +73,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
                 is UseCaseResult.Success -> passResponse.value = response.data
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
-                is UseCaseResult.Error -> {
-                    showError.value =
-                        Utils.handleException(response.exception)
-                }
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }
