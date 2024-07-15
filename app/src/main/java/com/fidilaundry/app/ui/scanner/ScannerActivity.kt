@@ -27,6 +27,7 @@ import com.fidilaundry.app.util.dialog.DialogOrderAdmin
 import com.fidilaundry.app.util.fdialog.ConfirmMessage
 import com.fidilaundry.app.util.fdialog.FGCallback
 import com.fidilaundry.app.util.setSafeOnClickListener
+import com.google.zxing.BarcodeFormat
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.ArrayList
 
@@ -69,24 +70,21 @@ class ScannerActivity : BaseActivity(), IFClick {
 
     private fun initScanner() {
         codeScanner = CodeScanner(this, binding.scanner)
-        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        // ex. listOf(BarcodeFormat.QR_CODE)
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = false // Whether to enable flash or not
+        codeScanner.camera = CodeScanner.CAMERA_BACK
+        codeScanner.formats = listOf(BarcodeFormat.QR_CODE)
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE
+        codeScanner.scanMode = ScanMode.SINGLE
+        codeScanner.isAutoFocusEnabled = true
+        codeScanner.isFlashEnabled = false
 
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-
                 viewModel.custId.value = it.text
                 val myRoundedBottomSheet = DialogOrderAdmin(this)
                 myRoundedBottomSheet.show(supportFragmentManager, myRoundedBottomSheet.tag)
             }
         }
-        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+        codeScanner.errorCallback = ErrorCallback {
             runOnUiThread {
                 Toast.makeText(this, "Camera initialization error: ${it.message}",
                     Toast.LENGTH_LONG).show()
@@ -108,6 +106,7 @@ class ScannerActivity : BaseActivity(), IFClick {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             1 -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {

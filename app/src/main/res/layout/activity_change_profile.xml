@@ -136,6 +136,40 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_18sdp"
                         android:includeFontPadding="false"
+                        android:text="Email"
+                        android:textColor="@color/blackHistory"
+                        android:textSize="@dimen/_10sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_semibold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@drawable/bg_input_text"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:paddingVertical="@dimen/_12sdp">
+
+                        <com.fidilaundry.app.util.FontEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="Masukkan email"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:text="@={vm.email}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:fontName="@string/font_name_dmsans" />
+
+                    </RelativeLayout>
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:includeFontPadding="false"
                         android:text="Nomor Telepon"
                         android:textColor="@color/blackHistory"
                         android:textSize="@dimen/_10sdp"

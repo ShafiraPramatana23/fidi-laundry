@@ -19,6 +19,7 @@ import com.fidilaundry.app.ui.history.model.HistoryData
 import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import com.fidilaundry.app.util.fdialog.ErrorMessage
+import java.util.ArrayList
 
 class HistoryInprogressFragment : BaseFragment() {
     lateinit var loadingDialog: LoadingDialog
@@ -92,7 +93,15 @@ class HistoryInprogressFragment : BaseFragment() {
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {
-        adapter?.updateList(it?.results!!)
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status != "selesai") {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+            adapter?.updateList(appList)
+        }
 
         if (it?.results?.size != 0) {
             binding.llEmpty .visibility = View.GONE
@@ -120,7 +129,7 @@ class HistoryInprogressFragment : BaseFragment() {
         super.onResume()
 
         if (profileData?.role == "customer" || profileData?.role == "member") {
-            viewModel.getOrderListCust("", "", "", "selesai")
+            viewModel.getOrderListCust("", "", "", "")
         } else {
             viewModel.getOrderList("", "", "", "")
         }

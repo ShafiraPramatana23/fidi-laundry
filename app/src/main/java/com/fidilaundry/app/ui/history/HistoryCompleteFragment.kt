@@ -60,6 +60,8 @@ class HistoryCompleteFragment : BaseFragment() {
         loadingDialog = LoadingDialog()
         profileData = paperPref.getDataProfile()
 
+        initViewModel()
+
         adapter = HistoryAdapter(context)
         binding.rv.adapter = adapter
         binding.rv.layoutManager =
@@ -128,7 +130,7 @@ class HistoryCompleteFragment : BaseFragment() {
         if (profileData?.role == "customer" || profileData?.role == "member") {
             viewModel.getOrderListCust("", "", "", "selesai")
         } else {
-            viewModel.getOrderList("", "", "", "")
+            viewModel.getOrderList("", "", "", "selesai")
         }
     }
 

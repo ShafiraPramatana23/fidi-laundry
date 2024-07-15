@@ -123,41 +123,6 @@
                     </RelativeLayout>
 
                     <com.fidilaundry.app.util.FontTextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:includeFontPadding="false"
-                        android:text="Alamat"
-                        android:textColor="@color/blackHistory"
-                        android:textSize="@dimen/_10sdp"
-                        app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
-
-                        <com.fidilaundry.app.util.FontEditText
-                            android:id="@+id/etAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:hint="Masukkan alamat"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            app:fontName="@string/font_name_dmsans" />
-
-                    </RelativeLayout>
-
-                    <com.fidilaundry.app.util.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_18sdp"
@@ -222,49 +187,6 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:fontName="@string/font_name_dmsans" />
-
-                    </RelativeLayout>
-
-                    <com.fidilaundry.app.util.FontTextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:includeFontPadding="false"
-                        android:text="Gender"
-                        android:textColor="@color/blackHistory"
-                        android:textSize="@dimen/_10sdp"
-                        app:fontName="@string/font_name_dmsans"
-                        app:textStyle="@integer/font_style_semibold" />
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@drawable/bg_input_text"
-                        android:paddingHorizontal="@dimen/_16sdp"
-                        android:paddingVertical="@dimen/_12sdp">
-
-                        <com.fidilaundry.app.util.FontEditText
-                            android:id="@+id/etGender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:background="@null"
-                            android:hint="Pilih salah satu"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp"
-                            app:fontName="@string/font_name_dmsans" />
-
-                        <ImageView
-                            android:id="@+id/ivArrow"
-                            android:layout_width="@dimen/_16sdp"
-                            android:layout_height="@dimen/_16sdp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow" />
 
                     </RelativeLayout>
 
@@ -357,6 +279,7 @@
                     app:textStyle="@integer/font_style_bold" />
 
                 <View
+                    android:id="@+id/viewUpDel"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_10sdp"
                     android:layout_weight="0.05"/>

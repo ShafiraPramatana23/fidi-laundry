@@ -63,6 +63,7 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"${Url.urlDev}\"")
             buildConfigField("String", "API_BASE_URL", "\"${Url.apiBaseDev}\"")
+            buildConfigField("String", "API_BASE_UPLOAD_URL", "\"${Url.apiUploadBase}\"")
             buildConfigField("String", "API_GTM", "\"${Url.apiGtm}\"")
             buildConfigField("String", "API_DISTRICT", "\"${Url.apiDistrict}\"")
             buildConfigField("String", "API_GEO", "\"${Url.apiGeo}\"")
@@ -85,6 +86,7 @@ android {
 
             buildConfigField("String", "BASE_URL", "\"${Url.urlDev}\"")
             buildConfigField("String", "API_BASE_URL", "\"${Url.apiBaseDev}\"")
+            buildConfigField("String", "API_BASE_UPLOAD_URL", "\"${Url.apiUploadBase}\"")
             buildConfigField("String", "API_GTM", "\"${Url.apiGtm}\"")
             buildConfigField("String", "API_DISTRICT", "\"${Url.apiDistrict}\"")
             buildConfigField("String", "API_GEO", "\"${Url.apiGeo}\"")

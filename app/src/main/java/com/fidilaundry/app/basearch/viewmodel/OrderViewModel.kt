@@ -26,6 +26,7 @@ class OrderViewModel(private val orderRepository: OrderRepository, private val p
     val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
     val sendNotifResponse = SingleLiveEvent<BaseObjResponse>()
     val paymentResponse = SingleLiveEvent<PaymentListResponse>()
+    val orderListCustResponse = SingleLiveEvent<OrderListResponse>()
 
     val categoryId = NonNullMutableLiveData("")
     val service = NonNullMutableLiveData("")
@@ -173,6 +174,25 @@ class OrderViewModel(private val orderRepository: OrderRepository, private val p
                 is UseCaseResult.Failed -> showError.value = response.errorMessage
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getOrderListCust(custId: String, serviceId: String, step: String, status: String) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                orderRepository.getOrderListCust(custId, serviceId, step, status)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> orderListCustResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value =
+                    Utils.handleException(response.exception)
             }
         }
     }

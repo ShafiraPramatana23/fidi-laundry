@@ -32,7 +32,6 @@ class InProgressFragment : Fragment() {
 
     lateinit var loadingDialog: LoadingDialog
     lateinit var paperPrefs: PaperPrefs
-//    private var adapter: HistoryAdapter? = null
     private var adapter: ComplaintListAdapter? = null
 
     val viewModel by sharedViewModel<ComplaintViewModel>()
@@ -102,7 +101,11 @@ class InProgressFragment : Fragment() {
                 }
             }
 
-            adapter?.updateList(appList)
+            if (appList.size > 0) {
+                adapter?.updateList(appList)
+            } else {
+                binding.llEmpty.visibility = View.GONE
+            }
         } else {
             binding.llEmpty.visibility = View.VISIBLE
         }

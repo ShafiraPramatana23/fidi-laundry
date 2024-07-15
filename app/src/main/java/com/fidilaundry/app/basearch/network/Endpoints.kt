@@ -4,6 +4,7 @@ import androidx.room.FtsOptions.Order
 import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface Endpoints {
@@ -100,7 +101,8 @@ interface Endpoints {
 
     @GET("order/auth-user")
     suspend fun getOrderListCust(
-        @Header("Authorization") auth: String
+        @Header("Authorization") auth: String,
+        @Query("status") status: String
     ): OrderListResponse
 
     @GET("order/show/{id}")
@@ -162,9 +164,6 @@ interface Endpoints {
     suspend fun getPaymentList(
         @Header("Authorization") auth: String,
         @Query("order_id") orderId: Int
-//        @Query("user_id") userId: Int,
-//        @Query("payment_type") paymentType: Int,
-//        @Query("status") status: String,
     ): PaymentListResponse
 
     @POST("payment")
@@ -196,4 +195,5 @@ interface Endpoints {
         @Header("Content-Type") contentType: String,
         @Body req: SendNotifRequest
     ): BaseObjResponse
+
 }

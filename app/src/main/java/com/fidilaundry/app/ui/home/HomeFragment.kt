@@ -215,7 +215,15 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {
-        historyAdapter?.updateList(it?.results!!)
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status != "selesai") {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+            historyAdapter?.updateList(appList)
+        }
 
         if (it?.results?.size != 0) {
             binding.llEmpty .visibility = View.GONE

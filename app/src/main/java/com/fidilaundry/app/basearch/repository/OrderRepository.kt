@@ -124,7 +124,7 @@ class OrderRepositoryImpl(private val api: Endpoints, private val paperPrefs: Pa
         status: String
     ): UseCaseResult<OrderListResponse> {
         return try {
-            val result = api.getOrderListCust(paperPrefs.getToken())
+            val result = api.getOrderListCust(paperPrefs.getToken(), status)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

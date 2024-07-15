@@ -44,6 +44,7 @@ val reposModule = module {
     single<ComplaintRepository> {
         ComplaintRepositoryImpl(
             api = get(),
+            apiUpload = get(),
             paperPrefs = get()
         )
     }

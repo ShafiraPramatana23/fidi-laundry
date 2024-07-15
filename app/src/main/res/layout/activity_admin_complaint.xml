@@ -83,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_70sdp"
                     android:background="@drawable/bg_rounded_bottom_sheet"
                     android:orientation="vertical"
                     android:padding="@dimen/_16sdp">
@@ -95,6 +96,7 @@
                         app:cardUseCompatPadding="true">
 
                         <LinearLayout
+                            android:id="@+id/llUser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -172,6 +174,7 @@
                                             app:textStyle="@integer/font_style_reguler" />
 
                                         <ImageView
+                                            android:id="@+id/ivArrow"
                                             android:layout_width="@dimen/_14sdp"
                                             android:layout_height="@dimen/_10sdp"
                                             android:layout_alignBottom="@+id/tvOrder"
@@ -185,9 +188,61 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/llDetail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="@dimen/_12sdp">
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:includeFontPadding="false"
+                                    android:text="Judul"
+                                    android:textColor="@color/blackHistory"
+                                    android:textSize="@dimen/_12sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_semibold" />
+
+                                <com.fidilaundry.app.util.FontTextView
+                                    android:id="@+id/tvDesc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:includeFontPadding="false"
+                                    android:text="Deskripsi"
+                                    android:textColor="@color/blackHistory"
+                                    android:textSize="@dimen/_12sdp"
+                                    app:fontName="@string/font_name_dmsans"
+                                    app:textStyle="@integer/font_style_reguler" />
+
+                                <ImageView
+                                    android:id="@+id/ivComplaint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_150sdp"
+                                    android:layout_marginTop="@dimen/_5sdp" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
+                    <com.fidilaundry.app.util.FontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:includeFontPadding="false"
+                        android:text="Feedback Laundry"
+                        android:textColor="@color/blackHistory"
+                        android:textSize="@dimen/_12sdp"
+                        app:fontName="@string/font_name_dmsans"
+                        app:textStyle="@integer/font_style_semibold" />
+
 
                     <com.fidilaundry.app.util.FontTextView
                         android:layout_width="wrap_content"

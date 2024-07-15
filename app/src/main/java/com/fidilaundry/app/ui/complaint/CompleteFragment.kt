@@ -102,7 +102,11 @@ class CompleteFragment : Fragment() {
                 }
             }
 
-            adapter?.updateList(appList)
+            if (appList.size > 0) {
+                adapter?.updateList(appList)
+            } else {
+                binding.llEmpty.visibility = View.GONE
+            }
         } else {
             binding.llEmpty.visibility = View.VISIBLE
         }

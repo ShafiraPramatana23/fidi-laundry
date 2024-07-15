@@ -12,7 +12,7 @@ val viewModelsModule = module {
     viewModel { ProfileViewModel(profileRepository = get()) }
     viewModel { OrderViewModel(orderRepository = get(), paymentRepository = get()) }
     viewModel { MasterViewModel(masterRepository = get()) }
-    viewModel { CustomerViewModel(customerRepository = get()) }
+    viewModel { CustomerViewModel(customerRepository = get(), profileRepository = get()) }
     viewModel { ComplaintViewModel(complaintRepository = get()) }
     viewModel { HistoryViewModel(historyRepository = get()) }
     viewModel { ScannerViewModel(customerRepository = get(), orderRepository = get()) }

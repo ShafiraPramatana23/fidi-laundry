@@ -7,12 +7,10 @@ import android.text.TextWatcher
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fidilaundry.app.R
-import com.fidilaundry.app.basearch.viewmodel.CustomerViewModel
 import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivitySearchUserBinding
 import com.fidilaundry.app.model.request.OrderRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
-import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.model.response.RequestOrderResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse

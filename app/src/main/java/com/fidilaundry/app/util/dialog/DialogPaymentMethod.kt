@@ -7,12 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
-import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
 import com.fidilaundry.app.basearch.viewmodel.PaymentViewModel
-import com.fidilaundry.app.databinding.DialogAddDataBinding
 import com.fidilaundry.app.databinding.DialogPaymentMethodBinding
 import com.fidilaundry.app.model.request.CreatePaymentRequest
-import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.CreatePaymentResponse
 import com.fidilaundry.app.model.response.OrderDetailResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
@@ -20,7 +17,6 @@ import com.fidilaundry.app.ui.base.BaseDialogFragment
 import com.fidilaundry.app.ui.home.order.PaymentActivity
 import com.fidilaundry.app.ui.home.order.interfaces.IFPayment
 import com.fidilaundry.app.util.LoadingDialog
-import com.fidilaundry.app.util.StatusHelper
 import com.fidilaundry.app.util.fdialog.ErrorMessage
 import com.fidilaundry.app.util.fdialog.FGCallback
 import com.fidilaundry.app.util.fdialog.SuccessMessage

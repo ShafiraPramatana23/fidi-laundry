@@ -65,12 +65,8 @@ class LoginViewModel(private val authRepository: AuthRepository, private val pro
             } else {
                 showProgressLiveData.postValue(false)
                 when {
-                    (TextUtils.isEmpty(loginUsername.value) && TextUtils.isEmpty(loginPassword.value)) -> {
-                        showError.value = "emptyAll"
-                    }
-                    TextUtils.isEmpty(loginPassword.value) -> {
-                        showError.value = "emptyPass"
-                    }
+                    (TextUtils.isEmpty(loginUsername.value) && TextUtils.isEmpty(loginPassword.value)) -> showError.value = "emptyAll"
+                    TextUtils.isEmpty(loginPassword.value) -> showError.value = "emptyPass"
                 }
             }
         }

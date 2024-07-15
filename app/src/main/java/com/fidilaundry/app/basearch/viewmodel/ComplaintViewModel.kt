@@ -11,9 +11,11 @@ import com.fidilaundry.app.model.request.UserComplaintRequest
 import com.fidilaundry.app.model.response.BaseResponse
 import com.fidilaundry.app.model.response.ComplaintListResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
+import com.fidilaundry.app.model.response.UploadImgResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.RequestBody
 
 class ComplaintViewModel(private val complaintRepository: ComplaintRepository) : BaseViewModel() {
 
@@ -22,13 +24,14 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
     val feedbackComplaintRes = SingleLiveEvent<BaseResponse>()
     val complaintRes = SingleLiveEvent<ComplaintListResponse>()
     val complaintCompleteRes = SingleLiveEvent<ComplaintListResponse>()
+    val uploadImgRes = SingleLiveEvent<UploadImgResponse>()
 
     val ctgValue = NonNullMutableLiveData("")
     val desc = NonNullMutableLiveData("")
     val descFeedback = NonNullMutableLiveData("")
 
     fun addUserComplaint(req: UserComplaintRequest) {
-        showProgressLiveData.postValue(true)
+//        showProgressLiveData.postValue(true)
 
         scope.launch {
             val response = withContext(Dispatchers.IO) {
@@ -106,6 +109,32 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
                     Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun uploadImg(type: String, name: String, req: RequestBody) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                complaintRepository.uploadImg(type, name, req)
+            }
+
+            when (response) {
+                is UseCaseResult.Success -> uploadImgRes.value = response.data
+                is UseCaseResult.Failed -> {
+                    showProgressLiveData.postValue(false)
+                    showError.value = response.errorMessage
+                }
+                is UseCaseResult.SessionTimeOut -> {
+                    showProgressLiveData.postValue(false)
+                    showSessionTimeOut.value = response.errorMessage
+                }
+                is UseCaseResult.Error -> {
+                    showProgressLiveData.postValue(false)
+                    showError.value = Utils.handleException(response.exception)
+                }
             }
         }
     }

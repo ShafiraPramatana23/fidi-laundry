@@ -24,6 +24,8 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
     val confirmNewPass = NonNullMutableLiveData("")
     val name = NonNullMutableLiveData("")
     val phone = NonNullMutableLiveData("")
+    val email = NonNullMutableLiveData("")
+    val userId = NonNullMutableLiveData(0)
 
     fun getProfile() {
         launch {
@@ -43,7 +45,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
             val response = withContext(Dispatchers.IO) {
                 profileRepository.changeProfile(
                     ChangeProfileRequest(
-                        name.value, phone.value
+                        userId.value, name.value, phone.value, email.value
                     )
                 )
             }
@@ -64,7 +66,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : BaseV
         scope.launch {
             val response = withContext(Dispatchers.IO) {
                 profileRepository.changePass(
-                    ChangePassRequest(newPass.value)
+                    ChangePassRequest(userId.value, newPass.value)
                 )
             }
 

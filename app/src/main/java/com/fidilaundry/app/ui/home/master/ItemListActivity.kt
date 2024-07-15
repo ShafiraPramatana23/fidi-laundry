@@ -122,13 +122,4 @@ class ItemListActivity : BaseActivity() {
         }
         adapter?.updateList(categoryList)
     }
-
-    private val appList: List<String>
-        get() {
-            val appList: MutableList<String> = ArrayList()
-            appList.add("Shafira")
-            appList.add("Pramatana")
-            appList.add("Rachmadanti")
-            return appList
-        }
 }

@@ -11,6 +11,7 @@ object MainApplicationContract {
     const val DATABASE_NAME = BuildConfig.DB_NAME
 
     const val API_BASE_URL = BuildConfig.API_BASE_URL
+    const val API_BASE_UPLOAD_URL = BuildConfig.API_BASE_UPLOAD_URL
     const val API_GTM = BuildConfig.API_GTM
     const val API_DISTRICT = BuildConfig.API_DISTRICT
     const val API_GEO = BuildConfig.API_GEO

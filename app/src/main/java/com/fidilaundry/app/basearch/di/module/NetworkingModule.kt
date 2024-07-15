@@ -28,6 +28,8 @@ val networkingModule = module {
 
     single<Endpoints> { get<Retrofit>(named(baseRetrofitName)).create(Endpoints::class.java) }
 
+    single<EndpointsUpload> { get<Retrofit>(named(baseUploadRetrofitName)).create(EndpointsUpload::class.java) }
+
     single<EndpointsNoAuth> { get<Retrofit>(named(baseNoAuth)).create(EndpointsNoAuth::class.java) }
 
     single<Resources> { androidContext().resources }
@@ -51,6 +53,15 @@ val networkingModule = module {
         Retrofit.Builder()
             .baseUrl(MainApplicationContract.API_BASE_URL)
             .client(get<OkHttpClient>(named(withAuth)))
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(get()))
+            .build()
+    }
+
+    single<Retrofit>(named(baseUploadRetrofitName)) {
+        Retrofit.Builder()
+            .baseUrl(MainApplicationContract.API_BASE_UPLOAD_URL)
+            .client(get<OkHttpClient>(named(noAuth)))
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(get()))
             .build()

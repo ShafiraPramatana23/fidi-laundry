@@ -2,6 +2,8 @@ package com.fidilaundry.app.basearch.di.module
 
 const val baseRetrofitName = "base_retrofit"
 
+const val baseUploadRetrofitName = "base_upload_retrofit"
+
 const val baseGTMtName = "base_gtm"
 
 const val baseDistrict = "base_district"

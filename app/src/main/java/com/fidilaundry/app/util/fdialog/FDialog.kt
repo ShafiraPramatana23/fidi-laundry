@@ -52,21 +52,20 @@ fun WarningMessage(activity: Activity, title: String, messages: String) {
         .build()
 }
 
-
-fun ErrorMessageLogout(activity: Activity, title: String, messages: String, posCallback: FGCallback) {
+fun WarningMessage(activity: Activity, title: String, messages: String, callback: FGCallback) {
     FancyGifDialog.Builder(activity)
-            .setTitle(title)
-            .setMessage(messages)
-            .setPositiveBtnText("OK")
-            .setImageResource(R.drawable.success)
-            .setGifResource("failed.json")
-            .isCancellable(false)
-            .OnPositiveClicked(object : FancyGifDialogListener {
-                override fun onClick() {
-                    posCallback.onCallback()
-                }
-            })
-            .build()
+        .setTitle(title)
+        .setMessage(messages)
+        .setPositiveBtnText("OK")
+        .setImageResource(R.drawable.success)
+        .setGifResource("alert.json")
+        .isCancellable(false)
+        .OnPositiveClicked(object : FancyGifDialogListener {
+            override fun onClick() {
+                callback.onCallback()
+            }
+        })
+        .build()
 }
 
 fun ErrorMessage(activity: Activity, title: String, messages: String) {
@@ -77,6 +76,22 @@ fun ErrorMessage(activity: Activity, title: String, messages: String) {
         .setImageResource(R.drawable.success)
         .setGifResource("failed.json")
         .isCancellable(false)
+        .build()
+}
+
+fun ErrorMessage(activity: Activity, title: String, messages: String, callback: FGCallback) {
+    FancyGifDialog.Builder(activity)
+        .setTitle(title)
+        .setMessage(messages)
+        .setPositiveBtnText("OK")
+        .setImageResource(R.drawable.success)
+        .setGifResource("failed.json")
+        .isCancellable(false)
+        .OnPositiveClicked(object : FancyGifDialogListener {
+            override fun onClick() {
+                callback.onCallback()
+            }
+        })
         .build()
 }
 
