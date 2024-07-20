@@ -26,7 +26,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DialogShowQR : BaseDialogFragment() {
 
-    lateinit var paperPrefs: PaperPrefs
     lateinit var loadingDialog: LoadingDialog
 
     val viewModel by sharedViewModel<OrderViewModel>()
@@ -49,7 +48,6 @@ class DialogShowQR : BaseDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadingDialog = LoadingDialog()
-        paperPrefs = PaperPrefs(requireActivity())
 
         var profileData = paperPref.getDataProfile()
         generateQr(profileData?.id.toString(), binding.ivQr)

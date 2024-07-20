@@ -139,6 +139,21 @@
 
             </androidx.core.widget.NestedScrollView>
 
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/extended_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="Tambah"
+                android:text="Tambah"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                app:fontName="@string/font_name_dmsans"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:iconTint="@color/white"
+                app:icon="@drawable/ic_baseline_add_24"/>
         </RelativeLayout>
 
     </LinearLayout>

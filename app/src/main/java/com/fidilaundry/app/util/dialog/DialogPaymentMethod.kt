@@ -121,6 +121,7 @@ class DialogPaymentMethod(
                 val intent = Intent(requireActivity(), PaymentActivity::class.java)
                 intent.putExtra("snapToken", it?.results?.snapToken)
                 intent.putExtra("paymentId", it?.results?.paymentId)
+                intent.putExtra("data", dtDetail)
                 startActivity(intent)
             }
         }

@@ -112,7 +112,6 @@
                             android:id="@+id/etPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_8sdp"
                             android:afterTextChanged="@{vm::onPassword}"
                             android:background="@null"
@@ -135,6 +134,7 @@
                 </LinearLayout>
 
                 <com.fidilaundry.app.util.FontTextView
+                    android:visibility="gone"
                     android:id="@+id/tvForgotPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -10,7 +10,7 @@ val viewModelsModule = module {
     viewModel { RegisterViewModel(authRepository = get()) }
     viewModel { HomeViewModel(historyRepository = get(), orderRepository = get()) }
     viewModel { ProfileViewModel(profileRepository = get()) }
-    viewModel { OrderViewModel(orderRepository = get(), paymentRepository = get()) }
+    viewModel { OrderViewModel(orderRepository = get(), paymentRepository = get(), notifRepository = get()) }
     viewModel { MasterViewModel(masterRepository = get()) }
     viewModel { CustomerViewModel(customerRepository = get(), profileRepository = get()) }
     viewModel { ComplaintViewModel(complaintRepository = get()) }
@@ -19,4 +19,5 @@ val viewModelsModule = module {
     viewModel { TrackingViewModel(trackingRepository = get(), orderRepository = get()) }
     viewModel { SteppingViewModel(orderRepository = get()) }
     viewModel { PaymentViewModel(paymentRepository = get(), orderRepository = get()) }
+    viewModel { NotifViewModel(notifRepository = get()) }
 }

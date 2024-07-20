@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/notif"
-        android:name="com.fidilaundry.app.ui.home.HomeFragment"
+        android:name="com.fidilaundry.app.ui.notif.NotifFragment"
         android:label="NotifFragment">
 
         <action

@@ -196,4 +196,16 @@ interface Endpoints {
         @Body req: SendNotifRequest
     ): BaseObjResponse
 
+    @GET("send-notification/notif?")
+    suspend fun getNotifList(
+        @Header("Authorization") auth: String,
+        @Query("user_id") userId: Int
+    ): NotifResponse
+
+    @POST("send-notification/create")
+    suspend fun saveNotif(
+        @Header("Authorization") auth: String,
+        @Header("Content-Type") contentType: String,
+        @Body req: SaveNotifRequest
+    ): BaseResponse
 }

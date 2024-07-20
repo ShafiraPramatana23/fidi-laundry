@@ -38,6 +38,7 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
     private var isChange = false
     private var selectedDate = ""
     private var dateFilter: MutableList<String> = ArrayList()
+    private var type: Int = 0
 
     val viewModel by sharedViewModel<HistoryViewModel>()
     private var _binding: DialogFilterRepotBinding? = null
@@ -63,8 +64,13 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
 
         initDatePicker()
 
+        if (viewModel.typeFilter.value != "") {
+            setTypeFilter()
+        }
+
         binding.etType.inputType = InputType.TYPE_NULL
         binding.etYear.inputType = InputType.TYPE_NULL
+        binding.etStatus.inputType = InputType.TYPE_NULL
         binding.etStartDate.inputType = InputType.TYPE_NULL
         binding.etEndDate.inputType = InputType.TYPE_NULL
 
@@ -83,7 +89,14 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
         }
 
         binding.etStatus.setSafeOnClickListener {
+            type = 1
             val myRoundedBottomSheet = DialogStatus(1,  statusList, this)
+            myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
+        }
+
+        binding.etYear.setSafeOnClickListener {
+            type = 2
+            val myRoundedBottomSheet = DialogYearList(dateFilter, this)
             myRoundedBottomSheet.show(childFragmentManager, myRoundedBottomSheet.tag)
         }
     }
@@ -96,7 +109,7 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val formatDate = "dd MMM yyyy" // mention the format you need
+                val formatDate = "yyyy-MM-dd" // mention the format you need
                 val sdf = SimpleDateFormat(formatDate, Locale.US)
 
                 if (isStart) {
@@ -173,7 +186,7 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
 
     private fun getDateNow(): String {
         val c = Calendar.getInstance()
-        val formatDate = "dd MMM yyyy" // mention the format you need
+        val formatDate = "yyyy-MM-dd" // mention the format you need
         val sdf = SimpleDateFormat(formatDate, Locale.US)
         return sdf.format(c.time)
     }
@@ -181,8 +194,8 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
     private fun getYearly() {
         dateFilter.clear()
 
-        val df1: DateFormat = SimpleDateFormat("dd MMM yyyy")
-        val dateFrom: Date = df1.parse("01 Jan 2022")
+        val df1: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateFrom: Date = df1.parse("2022-01-01")
         val dateTo: Date = df1.parse(getDateNow())
         val locale = Locale.US
 
@@ -190,18 +203,16 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
         val years: MutableList<String> = getListYears(dateFrom, dateTo, locale, df2)!!
         dateFilter = years.reversed().toMutableList()
 
-        if (viewModel.startDate.value.isEmpty()) {
+        if (viewModel.year.value == "") {
             selectedDate = dateFilter[0]
             viewModel.year.value = selectedDate
-            binding.etYear.setText(selectedDate)
             isChange = false
         } else {
             if (isChange) {
-                selectedDate = dateFilter[0]
+                selectedDate = viewModel.year.value
                 isChange = !isChange
             }
             binding.etYear.setText(selectedDate)
-//            setEndDateValue(Calendar.DATE, 364, selectedDate)
         }
     }
 
@@ -251,8 +262,11 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
 
     override fun onItemSelected(value: String?, id: String) {
         viewModel.typeFilter.value = value!!
+        setTypeFilter()
+    }
 
-        if (value == "Tahunan") {
+    private fun setTypeFilter() {
+        if (viewModel.typeFilter.value == "Tahunan") {
             getYearly()
             binding.llYear.visibility = View.VISIBLE
             binding.llDate.visibility = View.GONE
@@ -263,7 +277,13 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
     }
 
     override fun onItemSelected(title: String?, value: String, id: Int) {
-        viewModel.status.value = value
-        viewModel.statusTitle.value = title.toString()
+        if (type == 1) {
+            viewModel.status.value = value
+            viewModel.statusTitle.value = title.toString()
+        } else if (type == 2) {
+            viewModel.year.value = value
+        }
+
+        type = 0
     }
 }

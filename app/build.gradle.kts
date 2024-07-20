@@ -220,6 +220,10 @@ dependencies {
     /* Midtrans */
     implementation(Libraries.midtrans)
 
+    /* GCP */
+//    implementation(platform("com.google.cloud:libraries-bom:26.42.0"))
+//    implementation("com.google.cloud:google-cloud-storage")
+
     testImplementation(TestLibraries.junit4)
     androidTestImplementation(TestLibraries.testRunner)
     androidTestImplementation(TestLibraries.espresso)

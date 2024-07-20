@@ -100,7 +100,7 @@ class ComplaintRepositoryImpl(private val api: Endpoints, private val apiUpload:
     override suspend fun uploadImg(type: String, name: String, req: RequestBody): UseCaseResult<UploadImgResponse> {
         return try {
             val contentType = "image/png"
-            val token = "Bearer ya29.a0AXooCgtZegA02clPcTYuicL0Ph0OQC-7q6-Hhrz_dXvApdkzXnGbX39hXQWyy7fy8KGgzug8Qt2S4BLgOx7V0Uu473e6nXG6g70E4Tsp3MxgqTYGfn-a4Cn6aYYPyqEm2C5hmDaCccT1iSi1Ze0yBEQAlWfF68ig6639aCgYKAVgSARISFQHGX2MirkH2B5jcPREiKlAZM_iZMA0171"
+            val token = "Bearer ya29.a0AXooCgvNOWgm3c-5zH5rXv0WyA9RjTKMkcp0h-m77rzfYPLAOPQqORZuUfdG07NoWPQCSH2tS0DNjqOmncorQm9SbUEROUuYJiBDjHc4DfMwSW8JoNUPg4Qn0s1_kCtxXjEJ8anVIrHpIcpNHTlrxqdbKQjpUOXapHfeaCgYKAe0SARISFQHGX2MiEYFk8AjMzJllBEvS5Ddt5w0171"
             val result = apiUpload.uploadImg(token, contentType, "media", name, req)
             UseCaseResult.Success(result)
         }

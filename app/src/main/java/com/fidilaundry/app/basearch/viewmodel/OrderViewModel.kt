@@ -1,22 +1,24 @@
 package com.fidilaundry.app.basearch.viewmodel
 
 import android.text.Editable
+import com.fidilaundry.app.basearch.repository.NotifRepository
 import com.fidilaundry.app.basearch.repository.OrderRepository
 import com.fidilaundry.app.basearch.repository.PaymentRepository
 import com.fidilaundry.app.basearch.util.SingleLiveEvent
 import com.fidilaundry.app.basearch.util.UseCaseResult
 import com.fidilaundry.app.basearch.util.Utils
-import com.fidilaundry.app.model.request.OrderRequest
-import com.fidilaundry.app.model.request.SendNotifRequest
-import com.fidilaundry.app.model.request.UpdateOrderRequest
-import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
+import com.fidilaundry.app.model.request.*
 import com.fidilaundry.app.model.response.*
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OrderViewModel(private val orderRepository: OrderRepository, private val paymentRepository: PaymentRepository) : BaseViewModel() {
+class OrderViewModel(
+    private val orderRepository: OrderRepository,
+    private val paymentRepository: PaymentRepository,
+    private val notifRepository: NotifRepository
+    ) : BaseViewModel() {
 
     val itemsListResponse = SingleLiveEvent<ItemListResponse>()
     val orderResponse = SingleLiveEvent<RequestOrderResponse>()
@@ -27,6 +29,8 @@ class OrderViewModel(private val orderRepository: OrderRepository, private val p
     val sendNotifResponse = SingleLiveEvent<BaseObjResponse>()
     val paymentResponse = SingleLiveEvent<PaymentListResponse>()
     val orderListCustResponse = SingleLiveEvent<OrderListResponse>()
+    val updatePaymentResponse = SingleLiveEvent<BaseResponse>()
+    val saveNotifResponse = SingleLiveEvent<BaseResponse>()
 
     val categoryId = NonNullMutableLiveData("")
     val service = NonNullMutableLiveData("")
@@ -178,6 +182,24 @@ class OrderViewModel(private val orderRepository: OrderRepository, private val p
         }
     }
 
+    fun updatePayment(req: UpdatePaymentRequest) {
+//        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                paymentRepository.updatePayment(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> updatePaymentResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
+            }
+        }
+    }
+
     fun getOrderListCust(custId: String, serviceId: String, step: String, status: String) {
         showProgressLiveData.postValue(true)
 
@@ -193,6 +215,24 @@ class OrderViewModel(private val orderRepository: OrderRepository, private val p
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
                     Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun saveNotif(req: SaveNotifRequest) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                notifRepository.saveNotif(req)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> saveNotifResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }

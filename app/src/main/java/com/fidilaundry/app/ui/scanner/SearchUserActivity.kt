@@ -15,6 +15,7 @@ import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.model.response.RequestOrderResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.ui.base.BaseActivity
+import com.fidilaundry.app.ui.home.master.AddUserActivity
 import com.fidilaundry.app.ui.home.master.adapter.UserListAdapter
 import com.fidilaundry.app.ui.home.order.AdminOrderActivity
 import com.fidilaundry.app.ui.scanner.interfaces.IFClick
@@ -81,6 +82,12 @@ class SearchUserActivity : BaseActivity(), IFClick {
                 }
             }
         )
+
+        binding.extendedFab.setSafeOnClickListener {
+            val intent = Intent(this, AddUserActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivity(intent)
+        }
     }
 
     fun doFilter(keySearch:String){

@@ -21,6 +21,9 @@ import com.fidilaundry.app.util.fdialog.ErrorMessage
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_admin.view.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : BaseFragment() {
     lateinit var loadingDialog: LoadingDialog
@@ -80,6 +83,17 @@ class HomeFragment : BaseFragment() {
 
         viewModel.getOrderList("", "", "", "")
 
+        val formatDate = "yyyy-MM-dd"
+        var cal = Calendar.getInstance()
+//        cal.add(Calendar.DATE, -1)
+        val sdf = SimpleDateFormat(formatDate)
+
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.add(Calendar.DATE, 1)
+        val endDate: Date = calendar.time
+
+        viewModel.getReport(sdf.format(cal.time), sdf.format(endDate))
+
         layAdmin.btnMaster.setSafeOnClickListener {
             activity?.intent = Intent(activity, MasterActivity::class.java)
             startActivity(activity?.intent)
@@ -93,6 +107,10 @@ class HomeFragment : BaseFragment() {
         layAdmin.btnComplaint.setSafeOnClickListener {
             activity?.intent = Intent(activity, ComplaintActivity::class.java)
             startActivity(activity?.intent)
+//            val intent = Intent(activity, AdminOrderActivity::class.java)
+//            intent.putExtra("transId", "")
+//            intent.putExtra("serviceId", 1)
+//            startActivity(intent)
         }
 
         layAdmin.btnReport.setSafeOnClickListener {

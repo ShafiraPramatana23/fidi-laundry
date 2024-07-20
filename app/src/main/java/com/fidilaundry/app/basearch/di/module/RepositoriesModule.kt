@@ -69,4 +69,11 @@ val reposModule = module {
             paperPrefs = get()
         )
     }
+
+    single<NotifRepository> {
+        NotifRepositoryImpl(
+            api = get(),
+            paperPrefs = get()
+        )
+    }
 }

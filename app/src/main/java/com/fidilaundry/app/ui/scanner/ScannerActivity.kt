@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.budiyev.android.codescanner.AutoFocusMode
@@ -20,12 +21,18 @@ import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityScannerBinding
 import com.fidilaundry.app.model.request.OrderRequest
+import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
+import com.fidilaundry.app.model.response.RequestOrderResponse
+import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.ui.base.BaseActivity
+import com.fidilaundry.app.ui.home.order.AdminOrderActivity
 import com.fidilaundry.app.ui.scanner.interfaces.IFClick
 import com.fidilaundry.app.util.LoadingDialog
 import com.fidilaundry.app.util.dialog.DialogOrderAdmin
 import com.fidilaundry.app.util.fdialog.ConfirmMessage
+import com.fidilaundry.app.util.fdialog.ErrorMessage
 import com.fidilaundry.app.util.fdialog.FGCallback
+import com.fidilaundry.app.util.fdialog.SuccessMessage
 import com.fidilaundry.app.util.setSafeOnClickListener
 import com.google.zxing.BarcodeFormat
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -36,6 +43,9 @@ class ScannerActivity : BaseActivity(), IFClick {
     lateinit var paperPrefs: PaperPrefs
     lateinit var loadingDialog: LoadingDialog
     lateinit var codeScanner: CodeScanner
+
+    private var transId: String = ""
+    private var serviceId: Int = 0
 
     private val binding: ActivityScannerBinding by binding(R.layout.activity_scanner)
 
@@ -52,6 +62,7 @@ class ScannerActivity : BaseActivity(), IFClick {
 
         askPermission()
         initScanner()
+        initViewModel()
 
         binding.scanner.setOnClickListener {
             codeScanner.startPreview()
@@ -66,6 +77,58 @@ class ScannerActivity : BaseActivity(), IFClick {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun initViewModel() {
+        viewModel.orderResponse.observe(this, Observer {
+            handleWhenOrderSuccess(it)
+        })
+
+        viewModel.updateOrderStatusResponse.observe(this, Observer {
+            handleWhenUpdateSuccess(it)
+        })
+
+        viewModel.showProgressLiveData.observe(this, Observer { showLoading ->
+            if (showLoading) {
+                if(loadingDialog != null){
+                    if(!loadingDialog.isShowLoad())
+                        loadingDialog.showProgressDialog(this, "Mohon tunggu…")
+                    else {
+                        loadingDialog.dismissDialog()
+                        loadingDialog.showProgressDialog(this, "Mohon tunggu…")
+                    }
+                }
+            } else {
+                loadingDialog.dismissDialog()
+            }
+        })
+
+        viewModel.showError.observe(this, Observer { showError ->
+            ErrorMessage(this, "", showError)
+        })
+    }
+
+    private fun handleWhenUpdateSuccess(it: UpdateStatusResponse?) {
+        SuccessMessage(this, "Sukses", "Pesanan berhasil ditambahkan!", object : FGCallback {
+            override fun onCallback() {
+                val intent = Intent(this@ScannerActivity, AdminOrderActivity::class.java)
+                intent.putExtra("transId", it?.results?.orderCode)
+                intent.putExtra("serviceId", it?.results?.serviceID)
+                startActivity(intent)
+                finish()
+            }
+        })
+    }
+
+    private fun handleWhenOrderSuccess(it: RequestOrderResponse?) {
+        transId = it?.results?.orderCode!!
+        serviceId = it?.results?.serviceID!!
+
+        viewModel.updateOrderStatus(
+            UpdateOrderStatusRequest(
+                transId, "cek item", ""
+            )
+        )
     }
 
     private fun initScanner() {

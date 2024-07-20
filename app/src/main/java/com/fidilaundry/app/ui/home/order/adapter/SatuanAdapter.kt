@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemSatuanBinding
+import com.fidilaundry.app.model.request.ItemService
+import com.fidilaundry.app.model.request.ItemServiceTitle
 import com.fidilaundry.app.model.response.ItemListResponse
 import com.fidilaundry.app.ui.home.order.interfaces.IFSatuan
 import com.fidilaundry.app.ui.home.order.model.SelectedSatuanItem
@@ -56,6 +58,15 @@ class SatuanAdapter(
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
+
+            /*var count = 0
+            if (selectedList.isNotEmpty()) {
+                var idx = selectedList.indexOfFirst { it.item_id == app.id }
+                if (idx >= 0) {
+                    binding.etQty.setText(selectedList[idx].qty.toString())
+                    count = selectedList[idx].qty
+                }
+            }*/
 
             binding.etQty.inputType = InputType.TYPE_NULL
             binding.tvName.text = app.title

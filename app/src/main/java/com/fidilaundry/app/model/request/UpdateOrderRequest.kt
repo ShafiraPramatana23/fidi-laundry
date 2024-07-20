@@ -19,6 +19,13 @@ class ItemService (
         var qty: Int
 )
 
+class ItemServiceTitle (
+        var item_id: Int,
+        var item_title: String,
+        var amount: Int,
+        var qty: Int
+)
+
 
 //class UpdateOrderRequest (
 //        @SerializedName("code") var code: String? = null,

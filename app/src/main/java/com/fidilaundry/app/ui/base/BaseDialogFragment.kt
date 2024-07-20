@@ -20,5 +20,10 @@ abstract class BaseDialogFragment : RoundedBottomSheetDialogFragment() {
         @LayoutRes resId: Int,
         container: ViewGroup?
     ): T =  DataBindingUtil.inflate(inflater, resId, container, false)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        paperPref = PaperPrefs(requireContext())
+    }
 }
 
