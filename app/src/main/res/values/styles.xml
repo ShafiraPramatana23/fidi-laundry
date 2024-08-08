@@ -110,8 +110,20 @@
         <item name="boxStrokeWidth">1dp</item>
     </style>
 
-    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+    <style name="DatePickerTheme" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerButtonStyle</item>
+    </style>
+
+    <style name="DatePickerButtonStyle" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+<!--        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>-->
     </style>
 
     <style name="EditTextUnderlineTheme">

@@ -183,7 +183,7 @@ class OrderViewModel(
     }
 
     fun updatePayment(req: UpdatePaymentRequest) {
-//        showProgressLiveData.postValue(true)
+        showProgressLiveData.postValue(true)
 
         scope.launch {
             val response = withContext(Dispatchers.IO) {

@@ -94,7 +94,7 @@ class NotifFragment : BaseFragment(), IFOrder {
 
     private fun handleWhenNotifSuccess(it: NotifResponse?) {
         if (it?.results?.size != 0) {
-            adapter?.updateList(it?.results!!)
+            adapter?.updateList(it?.results!!.reversed())
             binding.llEmpty.visibility = View.GONE
         } else {
             binding.llEmpty.visibility = View.VISIBLE

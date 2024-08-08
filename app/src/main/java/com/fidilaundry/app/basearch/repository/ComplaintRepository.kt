@@ -15,9 +15,10 @@ import com.fidilaundry.app.util.Constant
 import okhttp3.RequestBody
 
 interface ComplaintRepository {
-    suspend fun addUserComplaint(req: UserComplaintRequest): UseCaseResult<BaseResponse>
+    suspend fun addUserComplaint(req: RequestBody): UseCaseResult<BaseResponse>
+//    suspend fun addUserComplaint(req: UserComplaintRequest): UseCaseResult<BaseResponse>
     suspend fun updateOrderStatus(req: UpdateOrderStatusRequest): UseCaseResult<UpdateStatusResponse>
-    suspend fun feedbackComplaint(req: ComplaintFeedbackRequest): UseCaseResult<BaseResponse>
+    suspend fun feedbackComplaint(req: RequestBody): UseCaseResult<BaseResponse>
     suspend fun getComplaint(): UseCaseResult<ComplaintListResponse>
     suspend fun uploadImg(type: String, name: String, req: RequestBody): UseCaseResult<UploadImgResponse>
 }
@@ -25,10 +26,10 @@ interface ComplaintRepository {
 class ComplaintRepositoryImpl(private val api: Endpoints, private val apiUpload: EndpointsUpload, private val paperPrefs: PaperPrefs) :
     ComplaintRepository {
 
-    override suspend fun addUserComplaint(req: UserComplaintRequest): UseCaseResult<BaseResponse> {
+    override suspend fun addUserComplaint(req: RequestBody): UseCaseResult<BaseResponse> {
         return try {
             val contentType = "application/json"
-            val result = api.createComplaint(paperPrefs.getToken(), contentType, req)
+            val result = api.createComplaint(paperPrefs.getToken(), req)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)
@@ -61,10 +62,10 @@ class ComplaintRepositoryImpl(private val api: Endpoints, private val apiUpload:
         }!!
     }
 
-    override suspend fun feedbackComplaint(req: ComplaintFeedbackRequest): UseCaseResult<BaseResponse> {
+    override suspend fun feedbackComplaint(req: RequestBody): UseCaseResult<BaseResponse> {
         return try {
             val contentType = "application/json"
-            val result = api.feedbackComplaint(paperPrefs.getToken(), contentType, req)
+            val result = api.feedbackComplaint(paperPrefs.getToken(), req)
             when (result.status?.code) {
                 Constant.SUCCESSCODE -> {
                     UseCaseResult.Success(result)

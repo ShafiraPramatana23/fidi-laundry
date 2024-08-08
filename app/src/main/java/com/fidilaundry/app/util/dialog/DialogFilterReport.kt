@@ -6,6 +6,8 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.basearch.viewmodel.HistoryViewModel
 import com.fidilaundry.app.basearch.viewmodel.HomeViewModel
@@ -142,14 +144,14 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
                 cn.time = dateStart
 
                 DatePickerDialog(
-                    requireContext(), dateSetListener,
+                    requireContext(), R.style.DatePickerTheme, dateSetListener,
                     cn.get(Calendar.YEAR),
                     cn.get(Calendar.MONTH),
                     cn.get(Calendar.DAY_OF_MONTH)
                 )
             } else {
                 DatePickerDialog(
-                    requireContext(), dateSetListener,
+                    requireContext(), R.style.DatePickerTheme, dateSetListener,
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH)
@@ -160,7 +162,6 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
                 dpd.datePicker.maxDate = dateEnd?.time!!
             }*/
             dpd.datePicker.maxDate = Calendar.getInstance().timeInMillis
-
             dpd.show()
 
         }
@@ -170,7 +171,7 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
             isEndDate = true
 
             var dpd = DatePickerDialog(
-                requireContext(), dateSetListener,
+                requireContext(), R.style.DatePickerTheme, dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)
@@ -270,9 +271,12 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
             getYearly()
             binding.llYear.visibility = View.VISIBLE
             binding.llDate.visibility = View.GONE
+            viewModel.startDate.value = ""
+            viewModel.endDate.value = ""
         } else {
             binding.llYear.visibility = View.GONE
             binding.llDate.visibility = View.VISIBLE
+            viewModel.year.value = ""
         }
     }
 
@@ -282,6 +286,8 @@ class DialogFilterReport(private var inf: IFClick) : BaseDialogFragment(), IFIte
             viewModel.statusTitle.value = title.toString()
         } else if (type == 2) {
             viewModel.year.value = value
+            viewModel.startDate.value = ""
+            viewModel.endDate.value = ""
         }
 
         type = 0

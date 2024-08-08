@@ -8,6 +8,7 @@ import com.fidilaundry.app.basearch.util.Utils
 import com.fidilaundry.app.model.request.AddTrackingRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.BaseResponse
+import com.fidilaundry.app.model.response.OrderDetailResponse
 import com.fidilaundry.app.model.response.TrackingListResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
 import com.fidilaundry.app.util.livedata.NonNullMutableLiveData
@@ -23,6 +24,7 @@ class TrackingViewModel(
     val addTrackResponse = SingleLiveEvent<BaseResponse>()
     val trackResponse = SingleLiveEvent<TrackingListResponse>()
     val updateOrderStatusResponse = SingleLiveEvent<UpdateStatusResponse>()
+    val orderDetailResponse = SingleLiveEvent<OrderDetailResponse>()
 
     val desc = NonNullMutableLiveData("")
 
@@ -81,6 +83,24 @@ class TrackingViewModel(
                 is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
                 is UseCaseResult.Error -> showError.value =
                     Utils.handleException(response.exception)
+            }
+        }
+    }
+
+    fun getOrderDetail(id: String) {
+        showProgressLiveData.postValue(true)
+
+        scope.launch {
+            val response = withContext(Dispatchers.IO) {
+                orderRepository.getOrderDetail(id)
+            }
+
+            showProgressLiveData.postValue(false)
+            when (response) {
+                is UseCaseResult.Success -> orderDetailResponse.value = response.data
+                is UseCaseResult.Failed -> showError.value = response.errorMessage
+                is UseCaseResult.SessionTimeOut -> showSessionTimeOut.value = response.errorMessage
+                is UseCaseResult.Error -> showError.value = Utils.handleException(response.exception)
             }
         }
     }

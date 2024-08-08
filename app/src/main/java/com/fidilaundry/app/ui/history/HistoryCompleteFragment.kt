@@ -27,6 +27,7 @@ import com.fidilaundry.app.util.ListDivideritemDecoration
 import com.fidilaundry.app.util.ScrollingLinearLayoutManager
 import com.fidilaundry.app.util.fdialog.ErrorMessage
 import com.fidilaundry.app.util.setSafeOnClickListener
+import java.util.ArrayList
 
 class HistoryCompleteFragment : BaseFragment() {
     lateinit var loadingDialog: LoadingDialog
@@ -100,7 +101,16 @@ class HistoryCompleteFragment : BaseFragment() {
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {
-        adapter?.updateList(it?.results!!)
+//        adapter?.updateList(it?.results!!.sortedByDescending { it.createdAt })
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status == "selesai" || it1[i].status == "solve") {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+            adapter?.updateList(appList.sortedByDescending { it.createdAt })
+        }
 
         if (it?.results?.size != 0) {
             binding.llEmpty .visibility = View.GONE
@@ -110,7 +120,16 @@ class HistoryCompleteFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
-        adapter?.updateList(it?.results!!)
+//        adapter?.updateList(it?.results!!.sortedByDescending { it.createdAt })
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status == "selesai" || it1[i].status == "solve") {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+            adapter?.updateList(appList.sortedByDescending { it.createdAt })
+        }
 
         if (it?.results?.size != 0) {
             binding.llEmpty .visibility = View.GONE
@@ -128,9 +147,9 @@ class HistoryCompleteFragment : BaseFragment() {
         super.onResume()
 
         if (profileData?.role == "customer" || profileData?.role == "member") {
-            viewModel.getOrderListCust("", "", "", "selesai")
+            viewModel.getOrderListCust("", "", "", "")
         } else {
-            viewModel.getOrderList("", "", "", "selesai")
+            viewModel.getOrderList("", "", "", "")
         }
     }
 

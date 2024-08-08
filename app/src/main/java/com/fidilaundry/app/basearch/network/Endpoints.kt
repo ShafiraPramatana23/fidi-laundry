@@ -133,11 +133,17 @@ interface Endpoints {
         @Path("id") id: Int
     ): TrackingListResponse
 
+//    @POST("ticket/create")
+//    suspend fun createComplaint(
+//        @Header("Authorization") auth: String,
+//        @Header("Content-Type") contentType: String,
+//        @Body req: UserComplaintRequest
+//    ): BaseResponse
+
     @POST("ticket/create")
     suspend fun createComplaint(
         @Header("Authorization") auth: String,
-        @Header("Content-Type") contentType: String,
-        @Body req: UserComplaintRequest
+        @Body body: RequestBody
     ): BaseResponse
 
     @Multipart
@@ -156,8 +162,7 @@ interface Endpoints {
     @POST("ticket/feedback")
     suspend fun feedbackComplaint(
         @Header("Authorization") auth: String,
-        @Header("Content-Type") contentType: String,
-        @Body req: ComplaintFeedbackRequest
+        @Body body: RequestBody
     ): BaseResponse
 
     @GET("payment?")

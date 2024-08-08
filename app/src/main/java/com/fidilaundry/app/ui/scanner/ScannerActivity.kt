@@ -21,6 +21,7 @@ import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivityMasterBinding
 import com.fidilaundry.app.databinding.ActivityScannerBinding
 import com.fidilaundry.app.model.request.OrderRequest
+import com.fidilaundry.app.model.request.SendNotifRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.RequestOrderResponse
 import com.fidilaundry.app.model.response.UpdateStatusResponse
@@ -60,6 +61,7 @@ class ScannerActivity : BaseActivity(), IFClick {
             this.vm = viewModel
         }
 
+        loadingDialog = LoadingDialog()
         askPermission()
         initScanner()
         initViewModel()
@@ -88,6 +90,10 @@ class ScannerActivity : BaseActivity(), IFClick {
             handleWhenUpdateSuccess(it)
         })
 
+        viewModel.sendNotifResponse.observe(this, Observer {
+
+        })
+
         viewModel.showProgressLiveData.observe(this, Observer { showLoading ->
             if (showLoading) {
                 if(loadingDialog != null){
@@ -104,7 +110,10 @@ class ScannerActivity : BaseActivity(), IFClick {
         })
 
         viewModel.showError.observe(this, Observer { showError ->
-            ErrorMessage(this, "", showError)
+            when (showError) {
+                "errSendNotif" -> {}
+                else -> ErrorMessage(this, "", showError)
+            }
         })
     }
 
@@ -123,6 +132,15 @@ class ScannerActivity : BaseActivity(), IFClick {
     private fun handleWhenOrderSuccess(it: RequestOrderResponse?) {
         transId = it?.results?.orderCode!!
         serviceId = it?.results?.serviceID!!
+
+        viewModel.sendNotif(
+            SendNotifRequest(
+                "Pesanan Baru",
+                viewModel.custId.value.toInt(),
+                "Pesanan Anda telah diproses FIDI Laundry, cek riwayat untuk melihat detail.",
+                it?.results?.orderId!!
+            )
+        )
 
         viewModel.updateOrderStatus(
             UpdateOrderStatusRequest(
@@ -148,10 +166,7 @@ class ScannerActivity : BaseActivity(), IFClick {
             }
         }
         codeScanner.errorCallback = ErrorCallback {
-            runOnUiThread {
-                Toast.makeText(this, "Camera initialization error: ${it.message}",
-                    Toast.LENGTH_LONG).show()
-            }
+            ErrorMessage(this, "", "Camera initialization error: ${it.message}")
         }
     }
 
@@ -205,7 +220,7 @@ class ScannerActivity : BaseActivity(), IFClick {
                 override fun onCallback() {
                     viewModel.requestOrder(OrderRequest(
                         viewModel.serviceId.value.toInt(), "-7.5629624", "112.6794581",
-                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt(),
+                        "FIDI Laundry", "Datang Langsung", viewModel.custId.value.toInt(),
                         viewModel.custId.value.toInt()
                     ))
                 }

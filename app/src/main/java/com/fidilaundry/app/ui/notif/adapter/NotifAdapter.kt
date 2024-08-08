@@ -76,6 +76,7 @@ class NotifAdapter(private val context: Context?, private val inf: IFOrder) :
                     if (app.order?.status == "dijemput") {
                         val intent = Intent(context, OrderMapsActivity::class.java)
                         intent.putExtra("orderId", app.id)
+                        intent.putExtra("orderCode", "")
                         context!!.startActivity(intent)
                     } else {
                         var intent = Intent(context, OrderDetailActivity::class.java)

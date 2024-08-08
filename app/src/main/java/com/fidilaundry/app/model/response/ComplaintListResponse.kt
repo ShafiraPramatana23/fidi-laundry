@@ -44,6 +44,10 @@ class ComplaintListResponse: Serializable {
         @Expose
         var file: String? = null
 
+        @SerializedName("PhotoPath")
+        @Expose
+        var photoPath: String? = null
+
         @SerializedName("Feedbacks")
         @Expose
         var feedbacks: List<Feedback>? = null
@@ -81,6 +85,10 @@ class ComplaintListResponse: Serializable {
         @SerializedName("File")
         @Expose
         var file: String? = null
+
+        @SerializedName("PhotoPath")
+        @Expose
+        var photoPath: String? = null
     }
 
     class Order: Serializable {

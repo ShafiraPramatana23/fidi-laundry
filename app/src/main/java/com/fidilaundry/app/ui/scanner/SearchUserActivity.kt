@@ -10,6 +10,7 @@ import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.viewmodel.ScannerViewModel
 import com.fidilaundry.app.databinding.ActivitySearchUserBinding
 import com.fidilaundry.app.model.request.OrderRequest
+import com.fidilaundry.app.model.request.SendNotifRequest
 import com.fidilaundry.app.model.request.UpdateOrderStatusRequest
 import com.fidilaundry.app.model.response.CustomerListResponse
 import com.fidilaundry.app.model.response.RequestOrderResponse
@@ -143,6 +144,15 @@ class SearchUserActivity : BaseActivity(), IFClick {
         transId = it?.results?.orderCode!!
         serviceId = it?.results?.serviceID!!
 
+        viewModel.sendNotif(
+            SendNotifRequest(
+                "Pesanan Baru",
+                viewModel.custId.value.toInt(),
+                "Pesanan Anda telah diproses FIDI Laundry, cek riwayat untuk melihat detail.",
+                it?.results?.orderId!!
+            )
+        )
+
         viewModel.updateOrderStatus(UpdateOrderStatusRequest(
             transId, "cek item", ""
         ))
@@ -172,7 +182,7 @@ class SearchUserActivity : BaseActivity(), IFClick {
                 override fun onCallback() {
                     viewModel.requestOrder(OrderRequest(
                         viewModel.serviceId.value.toInt(), "-7.5629624", "112.6794581",
-                        "mana aja", "Datang Langsung", viewModel.custId.value.toInt(),
+                        "FIDI Laundry", "Datang Langsung", viewModel.custId.value.toInt(),
                         viewModel.custId.value.toInt()
                     ))
                 }

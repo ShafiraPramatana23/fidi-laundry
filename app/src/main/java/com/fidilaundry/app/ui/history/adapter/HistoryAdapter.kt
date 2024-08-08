@@ -47,7 +47,6 @@ class HistoryAdapter(private val context: Context?) :
     inner class ViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             val app = appList[position]
-
             binding.tvType.text = ServiceCtgHelper().getServiceName(app.serviceID.toString())
             binding.tvDate.text = DateTimeFormater(app.createdAt!!)
             binding.tvStatus.text = StatusHelper.setStatusName(app.status.toString())
@@ -59,6 +58,7 @@ class HistoryAdapter(private val context: Context?) :
                     if (app.status == "dijemput") {
                         val intent = Intent(context, OrderMapsActivity::class.java)
                         intent.putExtra("orderId", app.id)
+                        intent.putExtra("orderCode", app.code)
                         context!!.startActivity(intent)
                     } else {
                         val intent = Intent(context, OrderDetailActivity::class.java)

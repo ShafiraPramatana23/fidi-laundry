@@ -96,11 +96,11 @@ class HistoryInprogressFragment : BaseFragment() {
         it?.results?.let { it1 ->
             val appList: MutableList<OrderListResponse.Result> = ArrayList()
             for (i in 0 until it1?.size!!) {
-                if (it1[i].status != "selesai") {
+                if (it1[i].status != "selesai" && it1[i].status != "solve") {
                     appList.add(it?.results?.get(i)!!)
                 }
             }
-            adapter?.updateList(appList)
+            adapter?.updateList(appList.sortedByDescending { it.createdAt })
         }
 
         if (it?.results?.size != 0) {
@@ -111,7 +111,16 @@ class HistoryInprogressFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
-        adapter?.updateList(it?.results!!)
+//        adapter?.updateList(it?.results!!.sortedByDescending { it.createdAt })
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status != "selesai" && it1[i].status != "solve") {
+                    appList.add(it?.results?.get(i)!!)
+                }
+            }
+            adapter?.updateList(appList.sortedByDescending { it.createdAt })
+        }
 
         if (it?.results?.size != 0) {
             binding.llEmpty .visibility = View.GONE

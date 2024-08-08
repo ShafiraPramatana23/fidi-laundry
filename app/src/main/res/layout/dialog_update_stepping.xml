@@ -61,6 +61,7 @@
                 android:paddingVertical="@dimen/_12sdp"
                 android:background="@null"
                 android:hint="Cuci / Lipat / Setrika / Selesai"
+                android:focusableInTouchMode="false"
                 android:inputType="text"
                 android:maxLines="1"
                 android:text="@={vm.stepping}"

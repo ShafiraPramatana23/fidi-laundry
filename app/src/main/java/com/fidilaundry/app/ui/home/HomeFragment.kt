@@ -236,7 +236,7 @@ class HomeFragment : BaseFragment() {
         it?.results?.let { it1 ->
             val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
             for (i in 0 until it1?.size!!) {
-                if (it1[i].status != "selesai") {
+                if (it1[i].status != "selesai" && it1[i].status != "solve" && appList.size < 3) {
                     appList.add(it?.results?.get(i)!!)
                 }
             }
@@ -251,16 +251,15 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
-        var dt = it?.results?.sortedWith(compareByDescending { it.createdAt })
-        var appList: MutableList<OrderListResponse.Result> = ArrayList()
-        for (i in dt?.indices!!) {
-            if (appList.size < 3) {
-                appList.add(dt[i])
-            } else {
-                break
+        it?.results?.let { it1 ->
+            val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
+            for (i in 0 until it1?.size!!) {
+                if (it1[i].status != "selesai" && it1[i].status != "solve" && appList.size < 3) {
+                    appList.add(it?.results?.get(i)!!)
+                }
             }
+            historyAdapter?.updateList(appList.sortedByDescending { it.createdAt })
         }
-        historyAdapter?.updateList(appList)
 
         if (profileData?.role == "customer" || profileData?.role == "member") {
             if (it?.results?.size != 0) {

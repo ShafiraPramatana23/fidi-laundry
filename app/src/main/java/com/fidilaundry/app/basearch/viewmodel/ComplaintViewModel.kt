@@ -30,8 +30,9 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
     val desc = NonNullMutableLiveData("")
     val descFeedback = NonNullMutableLiveData("")
 
-    fun addUserComplaint(req: UserComplaintRequest) {
-//        showProgressLiveData.postValue(true)
+    fun addUserComplaint(req: RequestBody) {
+//    fun addUserComplaint(req: UserComplaintRequest) {
+        showProgressLiveData.postValue(true)
 
         scope.launch {
             val response = withContext(Dispatchers.IO) {
@@ -70,7 +71,7 @@ class ComplaintViewModel(private val complaintRepository: ComplaintRepository) :
         }
     }
 
-    fun feedbackComplaint(req: ComplaintFeedbackRequest) {
+    fun feedbackComplaint(req: RequestBody) {
         showProgressLiveData.postValue(true)
 
         scope.launch {

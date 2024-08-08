@@ -10,6 +10,7 @@ import com.fidilaundry.app.R
 import com.fidilaundry.app.basearch.localpref.PaperPrefs
 import com.fidilaundry.app.databinding.ItemPaymentBinding
 import com.fidilaundry.app.model.response.PaymentListResponse
+import com.fidilaundry.app.util.DateTimeFormater
 import com.fidilaundry.app.util.RupiahCurrency
 import com.fidilaundry.app.util.ServiceCtgHelper
 import java.util.ArrayList
@@ -48,6 +49,7 @@ class PaymentHistoryAdapter(
             var type = if (app.paymentType == 1) "Tunai" else "Non Tunai"
             binding.tvDesc.text = "${ServiceCtgHelper().getServiceName(app.order?.serviceID.toString())} . ${type}"
             binding.tvTotal.text = RupiahCurrency.Converter(app.payment?.toDouble())
+            binding.tvDate.text = DateTimeFormater(app.createdAt!!)
 
             with(app.status) {
                 when {
