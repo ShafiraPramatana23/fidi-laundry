@@ -220,6 +220,39 @@
                                     app:fontName="@string/font_name_dmsans"
                                     app:textStyle="@integer/font_style_semibold" />
                             </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/rlDescTracking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:padding="@dimen/_12sdp"
+                            android:background="@drawable/bg_green_menu"
+                            android:orientation="vertical">
+
+                            <com.fidilaundry.app.util.FontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:text="Keterangan : "
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/_10sdp"
+                                app:fontName="@string/font_name_dmsans"
+                                app:textStyle="@integer/font_style_reguler" />
+
+                            <com.fidilaundry.app.util.FontTextView
+                                android:id="@+id/tvNote"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:includeFontPadding="false"
+                                android:text="-"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/_10sdp"
+                                app:fontName="@string/font_name_dmsans"
+                                app:textStyle="@integer/font_style_reguler" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

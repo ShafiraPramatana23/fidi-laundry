@@ -233,8 +233,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {
+        val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
         it?.results?.let { it1 ->
-            val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
             for (i in 0 until it1?.size!!) {
                 if (it1[i].status != "selesai" && it1[i].status != "solve" && appList.size < 3) {
                     appList.add(it?.results?.get(i)!!)
@@ -243,7 +243,7 @@ class HomeFragment : BaseFragment() {
             historyAdapter?.updateList(appList)
         }
 
-        if (it?.results?.size != 0) {
+        if (appList.size != 0) {
             binding.llEmpty .visibility = View.GONE
         } else {
             binding.llEmpty.visibility = View.VISIBLE
@@ -251,8 +251,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
+        val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
         it?.results?.let { it1 ->
-            val appList: MutableList<OrderListResponse.Result> = java.util.ArrayList()
             for (i in 0 until it1?.size!!) {
                 if (it1[i].status != "selesai" && it1[i].status != "solve" && appList.size < 3) {
                     appList.add(it?.results?.get(i)!!)
@@ -262,14 +262,14 @@ class HomeFragment : BaseFragment() {
         }
 
         if (profileData?.role == "customer" || profileData?.role == "member") {
-            if (it?.results?.size != 0) {
+            if (appList.size != 0) {
                 binding.llEmpty .visibility = View.GONE
             } else {
                 binding.llEmpty.visibility = View.VISIBLE
             }
         } else {
             var layAdmin = binding.layoutAdmin
-            if (it?.results?.size != 0) {
+            if (appList.size != 0) {
                 layAdmin.llEmptyAdmin.visibility = View.GONE
             } else {
                 layAdmin.llEmptyAdmin.visibility = View.VISIBLE

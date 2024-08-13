@@ -56,6 +56,8 @@ class CompleteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadingDialog = LoadingDialog()
+        paperPrefs = PaperPrefs(requireContext())
+
         initViewModel()
 
         adapter = ComplaintListAdapter(context, 2)
@@ -93,19 +95,27 @@ class CompleteFragment : Fragment() {
     }
 
     private fun handleWhenListSuccess(it: ComplaintListResponse?) {
+        var profile = paperPrefs.getDataProfile()
         if (it?.results?.size != 0) {
             binding.llEmpty.visibility = View.GONE
             val appList: MutableList<ComplaintListResponse.Result> = ArrayList()
             for (i in 0 until it?.results?.size!!) {
                 if (it?.results?.get(i)?.feedbacks?.size!! > 0) {
-                    appList.add(it?.results?.get(i)!!)
+                    if (profile?.role =="customer" && profile?.id == it.results!!.get(i).userID) {
+                        appList.add(it?.results?.get(i)!!)
+                    }
+
+                    if (profile?.role !="customer") {
+                        appList.add(it?.results?.get(i)!!)
+                    }
                 }
             }
 
             if (appList.size > 0) {
                 adapter?.updateList(appList)
-            } else {
                 binding.llEmpty.visibility = View.GONE
+            } else {
+                binding.llEmpty.visibility = View.VISIBLE
             }
         } else {
             binding.llEmpty.visibility = View.VISIBLE

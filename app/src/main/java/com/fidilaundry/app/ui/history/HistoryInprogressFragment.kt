@@ -93,8 +93,8 @@ class HistoryInprogressFragment : BaseFragment() {
     }
 
     private fun handleWhenListCustSuccess(it: OrderListResponse?) {
+        val appList: MutableList<OrderListResponse.Result> = ArrayList()
         it?.results?.let { it1 ->
-            val appList: MutableList<OrderListResponse.Result> = ArrayList()
             for (i in 0 until it1?.size!!) {
                 if (it1[i].status != "selesai" && it1[i].status != "solve") {
                     appList.add(it?.results?.get(i)!!)
@@ -103,7 +103,7 @@ class HistoryInprogressFragment : BaseFragment() {
             adapter?.updateList(appList.sortedByDescending { it.createdAt })
         }
 
-        if (it?.results?.size != 0) {
+        if (appList.size != 0) {
             binding.llEmpty .visibility = View.GONE
         } else {
             binding.llEmpty.visibility = View.VISIBLE
@@ -111,9 +111,8 @@ class HistoryInprogressFragment : BaseFragment() {
     }
 
     private fun handleWhenListSuccess(it: OrderListResponse?) {
-//        adapter?.updateList(it?.results!!.sortedByDescending { it.createdAt })
+        val appList: MutableList<OrderListResponse.Result> = ArrayList()
         it?.results?.let { it1 ->
-            val appList: MutableList<OrderListResponse.Result> = ArrayList()
             for (i in 0 until it1?.size!!) {
                 if (it1[i].status != "selesai" && it1[i].status != "solve") {
                     appList.add(it?.results?.get(i)!!)
@@ -122,7 +121,7 @@ class HistoryInprogressFragment : BaseFragment() {
             adapter?.updateList(appList.sortedByDescending { it.createdAt })
         }
 
-        if (it?.results?.size != 0) {
+        if (appList.size != 0) {
             binding.llEmpty .visibility = View.GONE
         } else {
             binding.llEmpty.visibility = View.VISIBLE
